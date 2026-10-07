@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="th" class="light">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulas4Us - คลังสูตร เทคนิค และสัญลักษณ์ ม.1 - ม.6</title>
+    <title>Formulas4Us - ศูนย์รวมสูตรคณิตศาสตร์ เคมี ฟิสิกส์ ม.1 - ม.6</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,28 +17,51 @@
                             50: '#f0f9ff',
                             100: '#e0f2fe',
                             500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            900: '#0c4a6e'
-                        }
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        math: '#2563eb',
+                        physics: '#7c3aed',
+                        chem: '#059669',
+                        symbol: '#d97706'
                     },
                     fontFamily: {
-                        sans: ['Prompt', 'Sarabun', 'sans-serif']
+                        sans: ['Kanit', 'Prompt', 'Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace']
                     }
                 }
             }
         }
     </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Kanit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Prompt', 'Sarabun', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Kanit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         .math-font {
-            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        .formula-box {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+        }
+        .dark .formula-box {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.8) 100%);
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -44,1405 +69,1547 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
         ::-webkit-scrollbar-thumb {
             background: rgba(156, 163, 175, 0.5);
-            border-radius: 4px;
+            border-radius: 9999px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(107, 114, 128, 0.8);
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(75, 85, 99, 0.5);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-                
-                <!-- Logo & Title -->
-                <div class="flex items-center justify-between w-full md:w-auto">
-                    <div class="flex items-center gap-3 cursor-pointer" onclick="setActiveTab('all'); setGradeFilter('all');">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-sky-500/20">
-                            F4U
-                        </div>
-                        <div>
-                            <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">
-                                Formulas4Us
-                            </h1>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-normal">
-                                คลังสูตร เทคนิค และสัญลักษณ์ ม.1 - ม.6
-                            </p>
-                        </div>
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 glass-header shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+                        <i class="fa-solid font-square-root-variable text-xl"></i>
                     </div>
-
-                    <!-- Header Right Icons (Mobile) -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="themeToggleMobile" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" aria-label="Toggle Dark Mode">
-                            🌙
-                        </button>
+                    <div>
+                        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-sky-600 via-indigo-600 to-violet-600 dark:from-sky-400 dark:to-violet-400 bg-clip-text text-transparent">Formulas4Us</span>
+                        <span class="block text-[10px] text-slate-500 dark:text-slate-400 -mt-1 font-medium">คณิตศาสตร์ • เคมี • ฟิสิกส์</span>
                     </div>
                 </div>
 
-                <!-- Live Search Bar -->
-                <div class="relative w-full md:max-w-md">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                        🔍
-                    </div>
-                    <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="ค้นหาสูตร, วิชา, สัญลักษณ์, หรือบทเรียน..." class="w-full pl-10 pr-10 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white dark:focus:bg-slate-900 transition">
-                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
-                        ✖
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-all text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50">
+                        <i class="fa-solid fa-house mr-1.5"></i>หน้าแรก
                     </button>
-                </div>
+                    <button onclick="navigateTo('math')" id="nav-math" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <i class="fa-solid fa-calculator text-blue-500 mr-1.5"></i>คณิตศาสตร์
+                    </button>
+                    <button onclick="navigateTo('physics')" id="nav-physics" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <i class="fa-solid fa-atom text-purple-500 mr-1.5"></i>ฟิสิกส์
+                    </button>
+                    <button onclick="navigateTo('chemistry')" id="nav-chemistry" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <i class="fa-solid fa-flask text-emerald-500 mr-1.5"></i>เคมี
+                    </button>
+                    <button onclick="navigateTo('symbols')" id="nav-symbols" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <i class="fa-solid fa-spell-check text-amber-500 mr-1.5"></i>สัญลักษณ์
+                    </button>
+                </nav>
 
-                <!-- Desktop Header Actions -->
-                <div class="hidden md:flex items-center gap-3">
-                    <div id="offlineBadge" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
+                <!-- Right Tools: Offline Badge & Theme Switcher -->
+                <div class="flex items-center space-x-3">
+                    <!-- Status Badge -->
+                    <div id="status-badge" class="flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        พร้อมใช้งานออฟไลน์
+                        <span id="status-text">ออนไลน์</span>
                     </div>
 
-                    <button id="themeToggleDesktop" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm" title="สลับธีม สว่าง / มืด">
-                        <span id="themeIcon">🌙</span>
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition-all" title="เปลี่ยนโหมดสว่าง/มืด">
+                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- Mobile Hamburger Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
-
             </div>
+        </div>
+
+        <!-- Mobile Nav Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg font-medium flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-house w-5 text-sky-500"></i><span>หน้าแรก (HOME)</span>
+            </button>
+            <button onclick="navigateTo('math'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg font-medium flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-calculator w-5 text-blue-500"></i><span>สูตรคณิตศาสตร์</span>
+            </button>
+            <button onclick="navigateTo('physics'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg font-medium flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-atom w-5 text-purple-500"></i><span>สูตรฟิสิกส์</span>
+            </button>
+            <button onclick="navigateTo('chemistry'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg font-medium flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-flask w-5 text-emerald-500"></i><span>สูตรเคมี</span>
+            </button>
+            <button onclick="navigateTo('symbols'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg font-medium flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-spell-check w-5 text-amber-500"></i><span>พจนานุกรมสัญลักษณ์</span>
+            </button>
         </div>
     </header>
 
-    <!-- Main Navigation Container -->
-    <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xs transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Category Tabs (Horizontal Scroll on Mobile) -->
-            <div class="flex items-center gap-1 overflow-x-auto py-2 scrollbar-none no-scrollbar text-sm font-medium">
-                <button onclick="setActiveTab('all')" id="tab-all" class="nav-tab active-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    📚 ทั้งหมด
-                </button>
-                <button onclick="setActiveTab('math')" id="tab-math" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    📐 คณิตศาสตร์
-                </button>
-                <button onclick="setActiveTab('chem')" id="tab-chem" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    🧪 เคมี
-                </button>
-                <button onclick="setActiveTab('physics')" id="tab-physics" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    ⚡ ฟิสิกส์
-                </button>
-                <button onclick="setActiveTab('symbols')" id="tab-symbols" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    🔣 พจนานุกรมสัญลักษณ์
-                </button>
-                <button onclick="setActiveTab('tables')" id="tab-tables" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    📊 ตาราง & เครื่องมือคำนวณ
-                </button>
-                <button onclick="setActiveTab('tricks')" id="tab-tricks" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    💡 เทคนิคการจำ
-                </button>
-                <button onclick="setActiveTab('bookmarks')" id="tab-bookmarks" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition">
-                    ⭐ สูตรที่บันทึกไว้ (<span id="bookmarkCount">0</span>)
-                </button>
-            </div>
+    <!-- Main Content Dynamic Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-            <!-- Grade Level Filter Bar (Visible for Subject & All Tabs) -->
-            <div id="gradeFilterBar" class="flex items-center gap-2 py-2 border-t border-slate-100 dark:border-slate-800 text-xs overflow-x-auto">
-                <span class="text-slate-400 font-medium whitespace-nowrap mr-1">ระดับชั้น:</span>
-                <button onclick="setGradeFilter('all')" id="grade-all" class="grade-pill active-grade px-3 py-1 rounded-lg border transition">ทั้งหมด</button>
-                <button onclick="setGradeFilter('m1')" id="grade-m1" class="grade-pill px-3 py-1 rounded-lg border transition">ม.1</button>
-                <button onclick="setGradeFilter('m2')" id="grade-m2" class="grade-pill px-3 py-1 rounded-lg border transition">ม.2</button>
-                <button onclick="setGradeFilter('m3')" id="grade-m3" class="grade-pill px-3 py-1 rounded-lg border transition">ม.3</button>
-                <button onclick="setGradeFilter('m4')" id="grade-m4" class="grade-pill px-3 py-1 rounded-lg border transition">ม.4</button>
-                <button onclick="setGradeFilter('m5')" id="grade-m5" class="grade-pill px-3 py-1 rounded-lg border transition">ม.5</button>
-                <button onclick="setGradeFilter('m6')" id="grade-m6" class="grade-pill px-3 py-1 rounded-lg border transition">ม.6</button>
-            </div>
+        <!-- PAGE 1: HOME -->
+        <section id="page-home" class="space-y-8 animate-fade-in">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-600 via-indigo-600 to-violet-700 text-white p-6 sm:p-10 shadow-xl">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-sky-100">
+                        <i class="fa-solid fa-circle-check text-emerald-300 mr-1.5"></i> ใช้งานได้แม้ออฟไลน์ (100% Offline Ready)
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        คลังสูตรคำนวณและสัญลักษณ์<br class="hidden sm:inline"> สำหรับนักเรียน ม.1 - ม.6
+                    </h1>
+                    <p class="text-sky-100 text-sm sm:text-base font-light leading-relaxed">
+                        รวบรวมสูตรคณิตศาสตร์ ฟิสิกส์ และเคมี แยกหมวดหมู่อย่างเป็นระเบียบ ชัดเจน ครบถ้วนทุกระดับชั้น พร้อมตัวอย่างโจทย์วิธีทำ คำอธิบายสัญลักษณ์ และเครื่องคิดเลขช่วยคำนวณด่วน
+                    </p>
 
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        
-        <!-- Toast Notification Container -->
-        <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2 text-sm font-medium pointer-events-none">
-            <span id="toastIcon">✅</span>
-            <span id="toastMsg">คัดลอกสูตรแล้ว</span>
-        </div>
-
-        <!-- Formulas Grid View -->
-        <div id="formulasView" class="space-y-6">
-            <div id="formulasHeader" class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                    <span id="sectionTitle">สูตรทั้งหมด</span>
-                    <span id="totalCountBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400">0 รายการ</span>
-                </h2>
-            </div>
-
-            <!-- Formulas Cards Grid -->
-            <div id="formulasGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Cards injected via JavaScript -->
-            </div>
-            
-            <div id="emptyFormulas" class="hidden text-center py-16">
-                <div class="text-4xl mb-3">🔍</div>
-                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-300">ไม่พบสูตรที่ตรงกับเงื่อนไข</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ลองเปลี่ยนคำค้นหา หรือเลือกหมวดหมู่และระดับชั้นอื่น</p>
-            </div>
-        </div>
-
-        <!-- Symbols Dictionary View -->
-        <div id="symbolsView" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10 p-5 rounded-2xl border border-sky-200 dark:border-sky-900/50">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    🔣 พจนานุกรมสัญลักษณ์ทางคณิตศาสตร์และวิทยาศาสตร์
-                </h2>
-                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                    รวบรวมสัญลักษณ์ตั้งแต่ระดับพื้นฐานไปจนถึงระดับสูง พร้อมคำอธิบาย หน่วยการวัด และตัวอย่างการใช้งานครบถ้วน
-                </p>
-
-                <!-- Symbol Level Filter -->
-                <div class="flex flex-wrap gap-2 mt-4 text-xs">
-                    <button onclick="setSymbolFilter('all')" id="sym-all" class="sym-filter active-sym px-3 py-1.5 rounded-lg border transition">ทั้งหมด</button>
-                    <button onclick="setSymbolFilter('basic')" id="sym-basic" class="sym-filter px-3 py-1.5 rounded-lg border transition">พื้นฐาน (Basic)</button>
-                    <button onclick="setSymbolFilter('set')" id="sym-set" class="sym-filter px-3 py-1.5 rounded-lg border transition">เซต & ตรรกศาสตร์</button>
-                    <button onclick="setSymbolFilter('algebra')" id="sym-algebra" class="sym-filter px-3 py-1.5 rounded-lg border transition">พีชคณิต & ฟังก์ชัน</button>
-                    <button onclick="setSymbolFilter('calculus')" id="sym-calculus" class="sym-filter px-3 py-1.5 rounded-lg border transition">แคลคูลัส & ชั้นสูง</button>
-                    <button onclick="setSymbolFilter('science')" id="sym-science" class="sym-filter px-3 py-1.5 rounded-lg border transition">ฟิสิกส์ & เคมี</button>
+                    <!-- Universal Search Bar -->
+                    <div class="pt-2">
+                        <div class="relative max-w-2xl">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                            <input type="text" id="global-search" oninput="handleGlobalSearch(this.value)" placeholder="ค้นหาสูตร, หัวข้อ, หรือสัญลักษณ์... (เช่น พิทาโกรัส, กฎของบอยล์, Ohm's law, dy/dx)" 
+                                class="w-full pl-12 pr-10 py-3.5 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-2xl shadow-lg border-2 border-transparent focus:border-sky-400 focus:outline-none text-sm sm:text-base placeholder-slate-400">
+                            <button onclick="clearGlobalSearch()" id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                <i class="fa-solid fa-circle-xmark text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="symbolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Symbols injected via JS -->
+            <!-- Global Search Results Container (Hidden by default) -->
+            <div id="search-results-container" class="hidden space-y-4 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                    <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center">
+                        <i class="fa-solid fa-list-check text-sky-500 mr-2"></i>ผลการค้นหาข้อมูล
+                    </h2>
+                    <span id="search-count" class="text-xs px-2.5 py-1 rounded-full bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300 font-semibold">0 รายการ</span>
+                </div>
+                <div id="search-results-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Search items dynamically populated -->
+                </div>
             </div>
-        </div>
 
-        <!-- Tables & Calculators View -->
-        <div id="tablesView" class="hidden space-y-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <!-- Power & Exponent Card -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
-                        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                            🔢 เครื่องมือ & ตารางเลขยกกำลัง
-                        </h3>
+            <!-- Main Categories Grid -->
+            <div>
+                <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800 dark:text-slate-100">
+                    <i class="fa-solid fa-layer-group text-indigo-500 mr-2"></i>เลือกวิชาและหมวดหมู่สูตร
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Math Card -->
+                    <div onclick="navigateTo('math')" class="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">คณิตศาสตร์</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">เรขาคณิต, พีชคณิต, ตรีโกณมิติ, แคลคูลัส, สถิติ ม.1 - ม.6</p>
+                        <div class="mt-4 flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400">
+                            เข้าสู่คลังสูตรคณิต <i class="fa-solid fa-arrow-right ml-1 transition-transform group-hover:translate-x-1"></i>
+                        </div>
                     </div>
 
-                    <!-- Calculator Tool -->
-                    <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl space-y-3">
-                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">เครื่องมือคำนวณ $a^b$ และ $\sqrt[n]{a}$</span>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <!-- Physics Card -->
+                    <div onclick="navigateTo('physics')" class="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-purple-500 dark:hover:border-purple-400 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/70 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">ฟิสิกส์</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">กลศาสตร์, คลื่น, เสียง, แสง, ไฟฟ้า, ความร้อน & นิวเคลียร์</p>
+                        <div class="mt-4 flex items-center text-xs font-semibold text-purple-600 dark:text-purple-400">
+                            เข้าสู่คลังสูตรฟิสิกส์ <i class="fa-solid fa-arrow-right ml-1 transition-transform group-hover:translate-x-1"></i>
+                        </div>
+                    </div>
+
+                    <!-- Chemistry Card -->
+                    <div onclick="navigateTo('chemistry')" class="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">เคมี</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">ปริมาณสารสัมพันธ์, กฎของแก๊ส, กรด-เบส, สมดุลเคมี, ไฟฟ้าเคมี</p>
+                        <div class="mt-4 flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                            เข้าสู่คลังสูตรเคมี <i class="fa-solid fa-arrow-right ml-1 transition-transform group-hover:translate-x-1"></i>
+                        </div>
+                    </div>
+
+                    <!-- Symbols Card -->
+                    <div onclick="navigateTo('symbols')" class="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-400 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-spell-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">พจนานุกรมสัญลักษณ์</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">รวมความหมายสัญลักษณ์วิทยศาสตร์และคณิตศาสตร์กว่า 100+ ตัว</p>
+                        <div class="mt-4 flex items-center text-xs font-semibold text-amber-600 dark:text-amber-400">
+                            เปิดคลังสัญลักษณ์ <i class="fa-solid fa-arrow-right ml-1 transition-transform group-hover:translate-x-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Quick Calculators Section -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-calculator-simple"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white">เครื่องคำนวณด่วน (Quick Solvers)</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">คำนวณผลลัพธ์พร้อมแสดงวิธีคิดแบบทันที</p>
+                    </div>
+                </div>
+
+                <!-- Calculators Tabs Switcher -->
+                <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-200 dark:border-slate-700 pb-3">
+                    <button onclick="switchCalcTab('quad')" id="calc-tab-quad" class="calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white shadow-sm">
+                        สมการกำลังสอง ($ax^2 + bx + c = 0$)
+                    </button>
+                    <button onclick="switchCalcTab('mole')" id="calc-tab-mole" class="calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200">
+                        โมล/มวล ($n = g/M$)
+                    </button>
+                    <button onclick="switchCalcTab('ohm')" id="calc-tab-ohm" class="calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200">
+                        กฎของโอห์ม ($V = IR$)
+                    </button>
+                    <button onclick="switchCalcTab('ph')" id="calc-tab-ph" class="calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200">
+                        คำนวณ pH ($pH = -\log[H^+]$)
+                    </button>
+                </div>
+
+                <!-- Calculator Panels -->
+                <!-- 1. Quadratic Solver -->
+                <div id="calc-panel-quad" class="calc-panel grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">ใส่ค่าสัมประสิทธิ์</label>
+                        <div class="grid grid-cols-3 gap-3">
                             <div>
-                                <label class="text-xs text-slate-500">ฐาน (a)</label>
-                                <input type="number" id="calcBase" value="2" class="w-full p-2 text-sm rounded-lg border dark:border-slate-700 bg-white dark:bg-slate-800">
+                                <span class="text-xs text-slate-500 font-medium">ค่า $a$</span>
+                                <input type="number" id="quad-a" value="1" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-indigo-500">
                             </div>
                             <div>
-                                <label class="text-xs text-slate-500">กำลัง/ราก (b หรือ n)</label>
-                                <input type="number" id="calcExp" value="10" class="w-full p-2 text-sm rounded-lg border dark:border-slate-700 bg-white dark:bg-slate-800">
+                                <span class="text-xs text-slate-500 font-medium">ค่า $b$</span>
+                                <input type="number" id="quad-b" value="-5" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-indigo-500">
                             </div>
-                            <div class="col-span-2 sm:col-span-1 flex items-end">
-                                <button onclick="calculateExponent()" class="w-full py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-sm font-medium transition">
-                                    คำนวณ
-                                </button>
+                            <div>
+                                <span class="text-xs text-slate-500 font-medium">ค่า $c$</span>
+                                <input type="number" id="quad-c" value="6" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-indigo-500">
                             </div>
                         </div>
-                        <div id="calcExpResult" class="p-2.5 bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/50 rounded-lg text-sm font-semibold text-sky-800 dark:text-sky-300">
-                            ผลลัพธ์ $2^{10} = 1024$
-                        </div>
+                        <button onclick="solveQuadratic()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm transition-colors shadow-md">
+                            คำนวณคำตอบ $x$
+                        </button>
                     </div>
-
-                    <!-- Exponents Reference Table -->
-                    <div class="max-h-80 overflow-y-auto rounded-xl border border-slate-200 dark:border-slate-700">
-                        <table class="w-full text-xs text-left">
-                            <thead class="sticky top-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
-                                <tr>
-                                    <th class="p-2">n</th>
-                                    <th class="p-2">n²</th>
-                                    <th class="p-2">n³</th>
-                                    <th class="p-2">2ⁿ</th>
-                                    <th class="p-2">3ⁿ</th>
-                                    <th class="p-2">5ⁿ</th>
-                                    <th class="p-2">10ⁿ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="powersTableBody" class="divide-y divide-slate-100 dark:divide-slate-700 font-mono">
-                                <!-- JS Injected -->
-                            </tbody>
-                        </table>
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 flex flex-col justify-center">
+                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">ผลลัพธ์การคำนวณ</span>
+                        <div id="quad-result" class="mt-2 text-sm space-y-2 text-slate-800 dark:text-slate-200 font-mono">
+                            กดปุ่มคำนวณเพื่อแสดงผลลัพธ์
+                        </div>
                     </div>
                 </div>
 
-                <!-- Logarithm Card -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
-                        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                            📈 เครื่องมือ & ตาราง Logarithm (log₁₀)
-                        </h3>
-                    </div>
-
-                    <!-- Log Calculator -->
-                    <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl space-y-3">
-                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">เครื่องมือคำนวณ Log / Antilog</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                            <div class="sm:col-span-2">
-                                <label class="text-xs text-slate-500">ค่า X</label>
-                                <input type="number" id="calcLogInput" value="100" step="any" class="w-full p-2 text-sm rounded-lg border dark:border-slate-700 bg-white dark:bg-slate-800">
+                <!-- 2. Mole Converter -->
+                <div id="calc-panel-mole" class="calc-panel hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">คำนวณจำนวนโมล ($n = g / M$)</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <span class="text-xs text-slate-500 font-medium">มวลสาร $g$ (กรัม)</span>
+                                <input type="number" id="mole-g" value="36" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-500">
                             </div>
-                            <div class="flex gap-2 items-end">
-                                <button onclick="calcLog()" class="w-1/2 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium transition">
-                                    log₁₀(X)
-                                </button>
-                                <button onclick="calcAntilog()" class="w-1/2 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-medium transition">
-                                    10ˣ (Antilog)
-                                </button>
+                            <div>
+                                <span class="text-xs text-slate-500 font-medium">มวลโมเลกุล $M$ (g/mol)</span>
+                                <input type="number" id="mole-m" value="18" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-500">
                             </div>
                         </div>
-                        <div id="calcLogResult" class="p-2.5 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/50 rounded-lg text-sm font-semibold text-indigo-800 dark:text-indigo-300">
-                            ผลลัพธ์ log₁₀(100) = 2
-                        </div>
+                        <button onclick="solveMole()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm transition-colors shadow-md">
+                            คำนวณโมล ($n$)
+                        </button>
                     </div>
-
-                    <!-- Log Reference Table -->
-                    <div class="max-h-80 overflow-y-auto rounded-xl border border-slate-200 dark:border-slate-700">
-                        <table class="w-full text-xs text-left">
-                            <thead class="sticky top-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
-                                <tr>
-                                    <th class="p-2">x</th>
-                                    <th class="p-2">log₁₀(x)</th>
-                                    <th class="p-2">x</th>
-                                    <th class="p-2">log₁₀(x)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="logTableBody" class="divide-y divide-slate-100 dark:divide-slate-700 font-mono">
-                                <!-- JS Injected -->
-                            </tbody>
-                        </table>
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 flex flex-col justify-center">
+                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">ผลลัพธ์คำนวณ</span>
+                        <div id="mole-result" class="mt-2 text-sm space-y-2 text-slate-800 dark:text-slate-200 font-mono">
+                            กดปุ่มคำนวณเพื่อแสดงผลลัพธ์
+                        </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
+                <!-- 3. Ohm's Law Calculator -->
+                <div id="calc-panel-ohm" class="calc-panel hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">คำนวณไฟฟ้าวัดค่า $V, I, R$ ($V = I \times R$)</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <span class="text-xs text-slate-500 font-medium">กระแสไฟฟ้า $I$ (แอมแปร์, A)</span>
+                                <input type="number" id="ohm-i" value="2" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 font-medium">ความต้านทาน $R$ (โอห์ม, $\Omega$)</span>
+                                <input type="number" id="ohm-r" value="10" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                        <button onclick="solveOhm()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl text-sm transition-colors shadow-md">
+                            คำนวณความต่างศักย์ ($V$)
+                        </button>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 flex flex-col justify-center">
+                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">ผลลัพธ์คำนวณ</span>
+                        <div id="ohm-result" class="mt-2 text-sm space-y-2 text-slate-800 dark:text-slate-200 font-mono">
+                            กดปุ่มคำนวณเพื่อแสดงผลลัพธ์
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Memory Tricks View -->
-        <div id="tricksView" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 p-5 rounded-2xl border border-amber-200 dark:border-amber-900/50">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    💡 เทคนิคการจำ และกลเม็ดสูตรลัดประจำข้อสอบ
-                </h2>
-                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                    เคล็ดลับการจำสูตรอย่างเป็นระบบ เทคนิคตัดตัวเลือก และข้อควรระวังที่ไม่ควรพลาดในข้อสอบจริง
-                </p>
+                <!-- 4. pH Calculator -->
+                <div id="calc-panel-ph" class="calc-panel hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">คำนวณค่าความเป็นกรด-เบส ($pH = -\log[H^+]$)</label>
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">ความเข้มข้นไฮโดรเนียมไอออน $[H^+]$ (mol/L)</span>
+                            <input type="number" id="ph-h" value="0.001" step="any" class="w-full mt-1 p-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-2 focus:ring-sky-500">
+                        </div>
+                        <button onclick="solvepH()" class="w-full py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-xl text-sm transition-colors shadow-md">
+                            คำนวณค่า pH & pOH
+                        </button>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 flex flex-col justify-center">
+                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">ผลลัพธ์คำนวณ</span>
+                        <div id="ph-result" class="mt-2 text-sm space-y-2 text-slate-800 dark:text-slate-200 font-mono">
+                            กดปุ่มคำนวณเพื่อแสดงผลลัพธ์
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div id="tricksGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Injected via JS -->
+            <!-- Bookmarked Formulas Section -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-star text-amber-400 mr-2"></i>สูตรที่บันทึกไว้ (Bookmarks)
+                    </h2>
+                    <span id="bookmark-count-badge" class="text-xs px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 font-bold">0 สูตร</span>
+                </div>
+                <div id="bookmarks-container-home" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Dynamic bookmarks populated here -->
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Bookmarks View Empty State -->
-        <div id="bookmarksEmpty" class="hidden text-center py-16">
-            <div class="text-4xl mb-3">⭐</div>
-            <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-300">ยังไม่มีสูตรที่บันทึกไว้</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">กดที่ไอคอนดาว ⭐ ตรงมุมสูตรที่ต้องการ เพื่อบันทึกไว้ดูภายหลัง</p>
-        </div>
+        <!-- PAGE 2: MATHEMATICS -->
+        <section id="page-math" class="hidden space-y-6 animate-fade-in">
+            <!-- Header Banner -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-calculator text-blue-600 mr-3"></i>สูตรคณิตศาสตร์ (Mathematics Formulas)
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        สูตรคณิตศาสตร์พื้นฐานและเพิ่มเติม ครบถ้วนตั้งแต่ ม.1 ถึง ม.6 พร้อมคำอธิบายและตัวอย่างโจทย์
+                    </p>
+                </div>
+                <!-- Filter Pills -->
+                <div class="flex items-center space-x-2 overflow-x-auto pb-2 sm:pb-0">
+                    <input type="text" id="math-filter-text" oninput="filterMathFormulas()" placeholder="ค้นหาสูตรคณิต..." class="px-3 py-1.5 text-xs rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="setMathCategory('all')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-blue-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
+                <button onclick="setMathCategory('เรขาคณิต')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เรขาคณิต">เรขาคณิต & พี้นที่</button>
+                <button onclick="setMathCategory('พีชคณิต')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="พีชคณิต">พีชคณิต & สมการ</button>
+                <button onclick="setMathCategory('ตรีโกณมิติ')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ตรีโกณมิติ">ตรีโกณมิติ</button>
+                <button onclick="setMathCategory('ภาคตัดกรวย')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ภาคตัดกรวย">เรขาคณิตวิเคราะห์ & ภาคตัดกรวย</button>
+                <button onclick="setMathCategory('ลอการิทึม')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ลอการิทึม">เอ็กซ์โพเนนเชียล & ลอการิทึม</button>
+                <button onclick="setMathCategory('เมทริกซ์')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เมทริกซ์">เมทริกซ์ & เวกเตอร์</button>
+                <button onclick="setMathCategory('แคลคูลัส')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="แคลคูลัส">แคลคูลัส</button>
+                <button onclick="setMathCategory('สถิติ')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="สถิติ">สถิติและความน่าจะเป็น</button>
+            </div>
+
+            <!-- Formulas Cards Grid Container -->
+            <div id="math-formulas-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- PAGE 3: PHYSICS -->
+        <section id="page-physics" class="hidden space-y-6 animate-fade-in">
+            <!-- Header Banner -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-atom text-purple-600 mr-3"></i>สูตรฟิสิกส์ (Physics Formulas)
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        รวบรวมสูตรวิชาฟิสิกส์ ม.4 - ม.6 แยกตามหมวดหมู่ พร้อมหน่วยของตัวแปรและตัวอย่างการคำนวณอย่างละเอียด
+                    </p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="physics-filter-text" oninput="filterPhysicsFormulas()" placeholder="ค้นหาสูตรฟิสิกส์..." class="px-3 py-1.5 text-xs rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="setPhysicsCategory('all')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-purple-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
+                <button onclick="setPhysicsCategory('การเคลื่อนที่')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การเคลื่อนที่">การเคลื่อนที่แนวตรง & กฎนิวตัน</button>
+                <button onclick="setPhysicsCategory('งานและพลังงาน')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="งานและพลังงาน">งาน พลังงาน & โมเมนตัม</button>
+                <button onclick="setPhysicsCategory('การเคลื่อนที่แบบซิมเปิล')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การเคลื่อนที่แบบซิมเปิล">วงกลม & SHM</button>
+                <button onclick="setPhysicsCategory('คลื่นและแสง')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="คลื่นและแสง">คลื่น เสียง & แสง</button>
+                <button onclick="setPhysicsCategory('ความร้อนและแก๊ส')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ความร้อนและแก๊ส">ความร้อน & ทฤษฎีจลน์แก๊ส</button>
+                <button onclick="setPhysicsCategory('ไฟฟ้าและแม่เหล็ก')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ไฟฟ้าและแม่เหล็ก">ไฟฟ้าสถิต/กระแส & แม่เหล็ก</button>
+                <button onclick="setPhysicsCategory('ฟิสิกส์ยุคใหม่')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ฟิสิกส์ยุคใหม่">ฟิสิกส์อะตอม & นิวเคลียร์</button>
+            </div>
+
+            <!-- Grid Container -->
+            <div id="physics-formulas-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- PAGE 4: CHEMISTRY -->
+        <section id="page-chemistry" class="hidden space-y-6 animate-fade-in">
+            <!-- Header Banner -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-flask text-emerald-600 mr-3"></i>สูตรเคมี (Chemistry Formulas)
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        คลังสูตรคำนวณเคมี ม.4 - ม.6 ปริมาณสารสัมพันธ์ แก๊ส กรด-เบส ไฟฟ้าเคมี พร้อมตัวอย่างโจทย์
+                    </p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="chem-filter-text" oninput="filterChemFormulas()" placeholder="ค้นหาสูตรเคมี..." class="px-3 py-1.5 text-xs rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="setChemCategory('all')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-emerald-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
+                <button onclick="setChemCategory('ปริมาณสารสัมพันธ์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ปริมาณสารสัมพันธ์">ปริมาณสารสัมพันธ์ & ความเข้มข้น</button>
+                <button onclick="setChemCategory('แก๊สและของแข็ง')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="แก๊สและของแข็ง">แก๊สและสมบัติของแก๊ส</button>
+                <button onclick="setChemCategory('อัตราและสมดุล')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="อัตราและสมดุล">อัตราการเกิดปฏิกิริยา & สมดุลเคมี</button>
+                <button onclick="setChemCategory('กรด-เบส')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="กรด-เบส">กรด - เบส & บัฟเฟอร์</button>
+                <button onclick="setChemCategory('ไฟฟ้าเคมี')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ไฟฟ้าเคมี">ไฟฟ้าเคมี</button>
+                <button onclick="setChemCategory('เคมีอินทรีย์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เคมีอินทรีย์">เคมีอินทรีย์ & เทอร์โมเคมี</button>
+            </div>
+
+            <!-- Grid Container -->
+            <div id="chem-formulas-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- PAGE 5: SYMBOL DICTIONARY -->
+        <section id="page-symbols" class="hidden space-y-6 animate-fade-in">
+            <!-- Header Banner -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-spell-check text-amber-500 mr-3"></i>พจนานุกรมสัญลักษณ์ทางวิทยาศาสตร์และคณิตศาสตร์
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        รวบรวมเครื่องหมาย สัญลักษณ์ ค่าคงที่ทางฟิสิกส์ และอักษรกรีก ความหมายละเอียดพร้อมตัวอย่างใช้งาน
+                    </p>
+                </div>
+                <div>
+                    <input type="text" id="symbol-search-input" oninput="filterSymbols()" placeholder="ค้นหาสัญลักษณ์ (เช่น π, lim, pH, Δ, ∫)..." 
+                        class="w-full sm:w-64 px-3.5 py-2 text-sm rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="setSymbolCategory('all')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-amber-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
+                <button onclick="setSymbolCategory('การคำนวณพื้นฐาน')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การคำนวณพื้นฐาน">พีชคณิต & การคำนวณ</button>
+                <button onclick="setSymbolCategory('เรขาคณิตและเซต')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เรขาคณิตและเซต">เรขาคณิต & เซต</button>
+                <button onclick="setSymbolCategory('แคลคูลัสและตรรกศาสตร์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="แคลคูลัสและตรรกศาสตร์">แคลคูลัส & ตรรกศาสตร์</button>
+                <button onclick="setSymbolCategory('เมทริกซ์และเวกเตอร์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เมทริกซ์และเวกเตอร์">เมทริกซ์ & เวกเตอร์</button>
+                <button onclick="setSymbolCategory('ค่าคงที่ฟิสิกส์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ค่าคงที่ฟิสิกส์">ค่าคงที่ทางฟิสิกส์</button>
+                <button onclick="setSymbolCategory('สัญลักษณ์ทางเคมี')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="สัญลักษณ์ทางเคมี">สัญลักษณ์ทางเคมี</button>
+                <button onclick="setSymbolCategory('อักษรกรีก')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="อักษรกรีก">อักษรกรีก (Greek Letters)</button>
+            </div>
+
+            <!-- Symbols Table / Grid Container -->
+            <div id="symbols-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamic Symbols populated here -->
+            </div>
+        </section>
 
     </main>
 
+    <!-- Toast Floating Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 border border-slate-700 dark:border-slate-200">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">คัดลอกสูตรเรียบร้อยแล้ว</span>
+    </div>
+
     <!-- Footer -->
-    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
-            <p class="font-medium">Formulas4Us &copy; คลังสูตรคณิตศาสตร์ เคมี ฟิสิกส์ ม.1 - ม.6</p>
-            <p class="text-slate-400 dark:text-slate-500">พัฒนาขึ้นสำหรับการเรียนรู้ รองรับการใช้งานออฟไลน์ 100%</p>
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-700 dark:text-slate-300">Formulas4Us • ศูนย์รวมสูตรและสัญลักษณ์วิทยศาสตร์คณิตศาสตร์เพื่อการเรียนรู้</p>
+            <p>ออกแบบรองรับการใช้งานออฟไลน์ 100% สำหรับนักเรียน ม.1 - ม.6 ทั่วประเทศ</p>
+            <p class="text-[11px] text-slate-400 pt-2">© 2026 Formulas4Us All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- JavaScript Data and Controller Code -->
     <script>
-        const state = {
-            activeTab: 'all',
-            gradeFilter: 'all',
-            symbolFilter: 'all',
-            searchQuery: '',
-            bookmarks: JSON.parse(localStorage.getItem('f4u_bookmarks') || '[]'),
-            theme: localStorage.getItem('f4u_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-        };
 
-        const SYMBOLS_DATA = [
-            // Basic Arithmetic
-            { sym: "+", name: "บวก (Plus / Addition)", level: "basic", desc: "การบวกจำนวนสองจำนวนขึ้นไป", eg: "3 + 5 = 8" },
-            { sym: "-", name: "ลบ (Minus / Subtraction)", level: "basic", desc: "การหาผลต่างระหว่างจำนวน", eg: "10 - 4 = 6" },
-            { sym: "× / ·", name: "คูณ (Multiply)", level: "basic", desc: "การบวกซ้ำตามจำนวนที่กำหนด", eg: "4 × 3 = 12" },
-            { sym: "÷ / /", name: "หาร (Divide)", level: "basic", desc: "การแบ่งออกเป็นส่วนเท่าๆ กัน", eg: "20 ÷ 4 = 5" },
-            { sym: "=", name: "เท่ากับ (Equals)", level: "basic", desc: "แสดงความเท่ากันของทั้งสองฝั่ง", eg: "2 + 2 = 4" },
-            { sym: "≠", name: "ไม่เท่ากับ (Not Equal)", level: "basic", desc: "แสดงความไม่เท่ากันของสองฝั่ง", eg: "5 ≠ 3" },
-            { sym: "≈", name: "ประมาณ (Approximately Equal)", level: "basic", desc: "ค่าใกล้เคียงโดยประมาณ", eg: "π ≈ 3.14159" },
-            { sym: "< / >", name: "น้อยกว่า / มากกว่า", level: "basic", desc: "แสดงความสัมพันธ์เชิงปริมาณ", eg: "3 < 7, 9 > 2" },
-            { sym: "≤ / ≥", name: "น้อยกว่าหรือเท่ากับ / มากกว่าหรือเท่ากับ", level: "basic", desc: "มีค่าไม่เกิน หรือไม่ต่ำกว่า", eg: "x ≤ 10" },
-            { sym: "±", name: "บวกหรือลบ (Plus-Minus)", level: "basic", desc: "มีค่าได้ทั้งทางบวกและทางลบ", eg: "x = ±3" },
-            { sym: "%", name: "เปอร์เซ็นต์ (Percent)", level: "basic", desc: "อัตราส่วนต่อ 100", eg: "50% = 0.5" },
-            { sym: "√x", name: "รากที่สอง (Square Root)", level: "basic", desc: "จำนวนที่ยกกำลังสองแล้วได้ x", eg: "√16 = 4" },
-            { sym: "∛x", name: "รากที่สาม (Cube Root)", level: "basic", desc: "จำนวนที่ยกกำลังสามแล้วได้ x", eg: "∛27 = 3" },
-            { sym: "xⁿ", name: "ยกกำลัง (Exponent)", level: "basic", desc: "x คูณกันเอง n ตัว", eg: "2³ = 8" },
-            { sym: "|x|", name: "ค่าสัมบูรณ์ (Absolute Value)", level: "basic", desc: "ระยะห่างจากศูนย์บนเส้นจำนวน (เป็นบวกเสมอ)", eg: "|-5| = 5" },
-            { sym: "n!", name: "แฟกทอเรียล (Factorial)", level: "basic", desc: "ผลคูณตั้งแต่ 1 ถึง n", eg: "4! = 4×3×2×1 = 24" },
+        // State Store
+        let currentTab = 'home';
+        let mathCategory = 'all';
+        let physicsCategory = 'all';
+        let chemCategory = 'all';
+        let symbolCategory = 'all';
+        let bookmarks = JSON.parse(localStorage.getItem('f4us_bookmarks') || '[]');
 
-            // Sets & Logic
-            { sym: "ℝ", name: "จำนวนจริง (Real Numbers)", level: "set", desc: "เซตของจำนวนจริงทั้งหมด (รวมตรรกยะและอตรรกยะ)", eg: "ℝ = (-∞, ∞)" },
-            { sym: "ℕ", name: "จำนวนธรรมชาติ / จำนวนนับ (Natural Numbers)", level: "set", desc: "จำนวนเต็มบวก {1, 2, 3, ...}", eg: "5 ∈ ℕ" },
-            { sym: "ℤ", name: "จำนวนเต็ม (Integers)", level: "set", desc: "เซตของจำนวนเต็ม {...-2, -1, 0, 1, 2...}", eg: "-3 ∈ ℤ" },
-            { sym: "ℚ", name: "จำนวนตรรกยะ (Rational Numbers)", level: "set", desc: "จำนวนที่เขียนในรูปเศษส่วน a/b ได้ (b≠0)", eg: "3/4 ∈ ℚ" },
-            { sym: "ℂ", name: "จำนวนเชิงซ้อน (Complex Numbers)", level: "set", desc: "จำนวนในรูป a + bi โดยที่ i = √(-1)", eg: "3 + 4i ∈ ℂ" },
-            { sym: "∅", name: "เซตว่าง (Empty Set)", level: "set", desc: "เซตที่ไม่มีสมาชิกเลย", eg: "A = ∅" },
-            { sym: "∈ / ∉", name: "เป็นสมาชิกของ / ไม่เป็นสมาชิกของ", level: "set", desc: "ระบุความสัมพันธ์ระหว่างสมาชิกกับเซต", eg: "2 ∈ ℕ, -1 ∉ ℕ" },
-            { sym: "⊂ / ⊄", name: "เป็นสับเซตของ / ไม่เป็นสับเซต", level: "set", desc: "สมาชิกทุกตัวของ A อยู่ใน B", eg: "A ⊂ B" },
-            { sym: "∪", name: "ยูเนียน (Union)", level: "set", desc: "เอาสมาชิกทั้งหมดมารวมกัน", eg: "{1,2} ∪ {2,3} = {1,2,3}" },
-            { sym: "∩", name: "อินเตอร์เซกชัน (Intersection)", level: "set", desc: "เอาเฉพาะสมาชิกที่ซ้ำกัน", eg: "{1,2} ∩ {2,3} = {2}" },
-            { sym: "A'", name: "คอมพลีเมนต์ (Complement)", level: "set", desc: "สมาชิกในเอกภพสัมพัทธ์ที่ไม่ใช่อยู่ใน A", eg: "A' = U - A" },
-            { sym: "|A| / n(A)", name: "ขนาดของเซต (Cardinality)", level: "set", desc: "จำนวนสมาชิกในเซต A", eg: "A={a,b,c} ⇒ n(A)=3" },
-            { sym: "∀", name: "สำหรับทุกตัว (For All)", level: "set", desc: "ตัวบ่งปริมาณ 'สำหรับทุกค่าของ x'", eg: "∀x [x² ≥ 0]" },
-            { sym: "∃", name: "มีบางตัว (There Exists)", level: "set", desc: "ตัวบ่งปริมาณ 'มีอย่างน้อยหนึ่งค่า'", eg: "∃x [x + 2 = 5]" },
-
-            // Algebra & Functions
-            { sym: "π", name: "ค่าพาย (Pi)", level: "algebra", desc: "อัตราส่วนเส้นรอบวงต่อเส้นผ่านศูนย์กลาง", eg: "π ≈ 3.14159265" },
-            { sym: "e", name: "ค่าออยเลอร์ (Euler's Number)", level: "algebra", desc: "ฐานของลอการิทึมธรรมชาติ", eg: "e ≈ 2.71828" },
-            { sym: "log x", name: "ลอการิทึมฐาน 10 (Common Log)", level: "algebra", desc: "ฟังก์ชันตรงข้ามของ 10^y", eg: "log 100 = 2" },
-            { sym: "ln x", name: "ลอการิทึมธรรมชาติ (Natural Log)", level: "algebra", desc: "ลอการิทึมฐาน e (log_e x)", eg: "ln(e) = 1" },
-            { sym: "antilog", name: "แอนติลอการิทึม (Antilogarithm)", level: "algebra", desc: "ฟังก์ชันผกผันของ Log (10^x)", eg: "antilog(2) = 100" },
-            { sym: "∑", name: "ซิกมา / ผลรวม (Sigma / Summation)", level: "algebra", desc: "ผลบวกอนุกรมจาก i=1 ถึง n", eg: "∑ i (1 to 3) = 1+2+3 = 6" },
-            { sym: "∏", name: "ไพ / ผลคูณ (Capital Pi / Product)", level: "algebra", desc: "ผลคูณอนุกรมต่อเนื่อง", eg: "∏ i (1 to 3) = 1×2×3 = 6" },
-            { sym: "f⁻¹(x)", name: "ฟังก์ชันผกผัน (Inverse Function)", level: "algebra", desc: "ฟังก์ชันย้อนกลับของ f(x)", eg: "f(x)=2x ⇒ f⁻¹(x)=x/2" },
-            { sym: "∞", name: "อนันต์ (Infinity)", level: "algebra", desc: "ปริมาณที่ไม่มีขอบเขตจำกัด", eg: "lim (1/x) as x→0 = ∞" },
-
-            // Calculus & Advanced
-            { sym: "lim", name: "ลิมิต (Limit)", level: "calculus", desc: "ค่าที่ฟังก์ชันเข้าใกล้เมื่อ x เข้าใกล้จุดหนึ่ง", eg: "lim (x→2) [x+3] = 5" },
-            { sym: "dy/dx", name: "อนุพันธ์ (Derivative)", level: "calculus", desc: "อัตราการเปลี่ยนแปลงขณะใดขณะหนึ่ง (ความชัน)", eg: "d/dx (x²) = 2x" },
-            { sym: "∂/∂x", name: "อนุพันธ์ย่อย (Partial Derivative)", level: "calculus", desc: "อนุพันธ์เทียบตัวแปรเดียวโดยมองตัวอื่นเป็นคงที่", eg: "∂(x²y)/∂x = 2xy" },
-            { sym: "∫", name: "อินทิกรัล (Integral)", level: "calculus", desc: "การหาพื้นที่ใต้โค้ง / ฟังก์ชันย้อนกลับอนุพันธ์", eg: "∫ 2x dx = x² + C" },
-            { sym: "∬ / ∭", name: "อินทิกรัลสองชั้น / สามชั้น", level: "calculus", desc: "การคำนวณปริมาตรและรูปทรงในหลายมิติ", eg: "∬ f(x,y) dx dy" },
-            { sym: "∮", name: "อินทิกรัลตามเส้นปิด (Contour Integral)", level: "calculus", desc: "อินทิกรัลไปตามเส้นทางปิด", eg: "∮ E · ds" },
-            { sym: "∆", name: "เดลตา / ผลต่าง (Delta)", level: "calculus", desc: "การเปลี่ยนแปลงของปริมาณ (ค่าหลัง - ค่าแรก)", eg: "∆v = v - u" },
-            { sym: "∇", name: "นาบลา / เกรเดียนต์ (Nabla / Gradient)", level: "calculus", desc: "โอเปอเรเตอร์เวกเตอร์อนุพันธ์", eg: "∇f = (∂f/∂x, ∂f/∂y)" },
-
-            // Physics & Chem
-            { sym: "λ", name: "แลมบ์ดา / ความยาวคลื่น (Wavelength)", level: "science", desc: "ระยะทางระหว่างยอดคลื่นที่ติดกัน (หน่วย m)", eg: "v = fλ" },
-            { sym: "μ", name: "มิว / สัมประสิทธิ์ความเสียดทาน", level: "science", desc: "อัตราส่วนแรงเสียดทานต่อแรงแนวตั้งฉาก", eg: "f = μN" },
-            { sym: "ρ", name: "โรห์ / ความหนาแน่น (Density)", level: "science", desc: "มวลต่อหนึ่งหน่วยปริมาตร (kg/m³)", eg: "ρ = m/V" },
-            { sym: "σ", name: "ซิกมา / ความเค้น (Stress)", level: "science", desc: "แรงภายในต่อหนึ่งหน่วยพื้นที่ (N/m²)", eg: "σ = F/A" },
-            { sym: "ε₀", name: "สถิตไฟฟ้าสุญญากาศ (Permittivity)", level: "science", desc: "ค่าคงตัวสภาพอนุญาตสุญญากาศ ≈ 8.854×10⁻¹² F/m", eg: "F = k(q1q2/r²)" },
-            { sym: "θ / ω", name: "มุม / ความถี่เชิงมุม (Angle / Angular Freq)", level: "science", desc: "มุม (rad) และอัตราเปลี่ยนมุม (rad/s)", eg: "ω = 2πf" },
-            { sym: "τ", name: "ทอร์ก / แรงบิด (Torque)", level: "science", desc: "ผลของแรงที่ทำให้เกิดการหมุน (N·m)", eg: "τ = r × F" },
-            { sym: "∆H", name: "เอนทาลปี (Enthalpy Change)", level: "science", desc: "การเปลี่ยนแปลงความร้อนปฏิกิริยา (kJ/mol)", eg: "∆H < 0 คือคายความร้อน" },
-            { sym: "pH", name: "ค่าความเป็นกรด-ด่าง (pH Level)", level: "science", desc: "ดัชนีแสดงความเข้มข้น [H⁺]", eg: "pH = -log[H⁺]" }
-        ];
-
-        const MATH_FORMULAS = [
+        // Global Data Sets
+        const mathData = [
             {
-                id: "m_pythagoras",
-                subject: "math",
-                grade: "m1",
-                topic: "ทฤษฎีบทพีทาโกรัส",
-                title: "ทฤษฎีบทพีทาโกรัส (Pythagorean Theorem)",
-                formula: "c² = a² + b²",
-                displayMath: "c = \\sqrt{a^2 + b^2}",
+                id: 'm1',
+                title: 'พีทาโกรัส (Pythagorean Theorem)',
+                category: 'เรขาคณิต',
+                level: 'ม.2',
+                formula: 'c^2 = a^2 + b^2',
+                displayFormula: 'c² = a² + b²',
+                desc: 'ใช้คำนวณความยาวด้านของสามเหลี่ยมมุมฉาก เมื่อทราบความยาวด้านสองด้าน',
                 vars: [
-                    { name: "c", desc: "ความยาวด้านตรงข้ามมุมฉาก" },
-                    { name: "a, b", desc: "ความยาวด้านประกอบมุมฉากทั้งสองด้าน" }
+                    { symbol: 'c', name: 'ความยาวด้านตรงข้ามมุมฉาก' },
+                    { symbol: 'a, b', name: 'ความยาวด้านประกอบมุมฉากทั้งสองด้าน' }
                 ],
-                tip: "ชุดเลขสามเหลี่ยมฉากยอดฮิตที่ควรจำ: (3,4,5), (5,12,13), (7,24,25), (8,15,17), (9,40,41)"
+                exampleProblem: 'สามเหลี่ยมมุมฉากมีด้านประกอบมุมฉากยาว 3 ซม. และ 4 ซม. จงหาความยาวด้านตรงข้ามมุมฉาก (c)',
+                exampleSolution: 'จากสูตร c² = a² + b²\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 ซม.'
             },
             {
-                id: "m_area_vol",
-                subject: "math",
-                grade: "m2",
-                topic: "พื้นที่ผิวและปริมาตร",
-                title: "สูตรพื้นที่ผิวและปริมาตรทรงกลม / ทรงกระบอก",
-                formula: "V_ทรงกลม = (4/3)πr³, V_ทรงกระบอก = πr²h",
-                displayMath: "V_{ทรงกลม} = \\frac{4}{3}\\pi r^3, \\quad V_{ทรงกระบอก} = \\pi r^2 h",
+                id: 'm2',
+                title: 'สมการกำลังสอง (Quadratic Formula)',
+                category: 'พีชคณิต',
+                level: 'ม.3',
+                formula: 'x = (-b ± √(b^2 - 4ac)) / (2a)',
+                displayFormula: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
+                displayMath: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
+                desc: 'สูตรหาคำตอบของสมการกำลังสองรูปทั่วไป ax² + bx + c = 0',
                 vars: [
-                    { name: "r", desc: "รัศมีของวงกลม/ทรงกลม" },
-                    { name: "h", desc: "ความสูงของทรงกระบอก" }
+                    { symbol: 'a', name: 'สัมประสิทธิ์หน้า x² (a ≠ 0)' },
+                    { symbol: 'b', name: 'สัมประสิทธิ์หน้า x' },
+                    { symbol: 'c', name: 'ค่าคงตัว' }
                 ],
-                tip: "พื้นที่ผิวทรงกลมใช้สูตร A = 4πr² (อย่าสับสนกับปริมาตรที่มี 4/3 และกำลังสาม)"
+                exampleProblem: 'จงหาคำตอบของสมการ x² - 5x + 6 = 0',
+                exampleSolution: 'a = 1, b = -5, c = 6\nx = [-(-5) ± √((-5)² - 4(1)(6))] / 2(1)\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1] / 2\nดังนั้น x = 3 หรือ x = 2'
             },
             {
-                id: "m_quad_eq",
-                subject: "math",
-                grade: "m3",
-                topic: "สมการกำลังสองตัวแปรเดียว",
-                title: "สูตรหาคำตอบสมการกำลังสอง (Quadratic Formula)",
-                formula: "x = [-b ± √(b² - 4ac)] / (2a)",
-                displayMath: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+                id: 'm3',
+                title: 'เอกลักษณ์ตรีโกณมิติพื้นฐาน',
+                category: 'ตรีโกณมิติ',
+                level: 'ม.5',
+                formula: 'sin^2(θ) + cos^2(θ) = 1',
+                displayFormula: 'sin²(θ) + cos²(θ) = 1',
+                desc: 'เอกลักษณ์สำคัญที่เชื่อมโยงระหว่างค่า sine และ cosine ของมุมเดียวกัน',
                 vars: [
-                    { name: "a, b, c", desc: "สัมประสิทธิ์ของสมการ ax² + bx + c = 0 (โดยที่ a ≠ 0)" }
+                    { symbol: 'θ', name: 'ขนาดของมุม (เรเดียน หรือ องศา)' }
                 ],
-                tip: "พิจารณา Discriminant ∆ = b² - 4ac: ถ้า ∆ > 0 มี 2 คำตอบจริง, ∆ = 0 มี 1 คำตอบจริง, ∆ < 0 ไม่มีคำตอบในจำนวนจริง"
+                exampleProblem: 'ถ้า sin(θ) = 3/5 จงหาค่า cos(θ) เมื่อ θ เป็นมุมแหลม',
+                exampleSolution: 'จาก sin²(θ) + cos²(θ) = 1\n(3/5)² + cos²(θ) = 1\n9/25 + cos²(θ) = 1\ncos²(θ) = 16/25 => cos(θ) = 4/5'
             },
             {
-                id: "m_sets_inc_exc",
-                subject: "math",
-                grade: "m4",
-                topic: "เซต (Set)",
-                title: "สูตรการนับสมาชิกเซต (Inclusion-Exclusion Principle)",
-                formula: "n(A ∪ B) = n(A) + n(B) - n(A ∩ B)",
-                displayMath: "n(A \\cup B \\cup C) = n(A)+n(B)+n(C) - n(A\\cap B) - n(B\\cap C) - n(A\\cap C) + n(A\\cap B\\cap C)",
+                id: 'm4',
+                title: 'สมการวงกลม (Circle Equation)',
+                category: 'ภาคตัดกรวย',
+                level: 'ม.4',
+                formula: '(x - h)^2 + (y - k)^2 = r^2',
+                displayFormula: '(x - h)² + (y - k)² = r²',
+                desc: 'สมการมาตรฐานของวงกลมที่มีจุดศูนย์กลางอยู่ที่ (h, k) และรัศมี r',
                 vars: [
-                    { name: "n(A)", desc: "จำนวนสมาชิกในเซต A" },
-                    { name: "A ∪ B", desc: "ยูเนียน (สมาชิกที่อยู่ใน A หรือ B)" },
-                    { name: "A ∩ B", desc: "อินเตอร์เซกชัน (สมาชิกที่ซ้ำกัน)" }
+                    { symbol: '(h, k)', name: 'พิกัดจุดศูนย์กลางวงกลม' },
+                    { symbol: 'r', name: 'ความยาวรัศมีของวงกลม' }
                 ],
-                tip: "สำหรับ 3 เซต ให้บวกเดี่ยว ลบคู่ บวกสาม เพื่อไม่ให้เกิดการนับซ้ำ"
+                exampleProblem: 'จงหาสมการวงกลมที่มีจุดศูนย์กลางอยู่ที่ (2, -3) และรัศมียาว 5 หน่วย',
+                exampleSolution: 'แทนค่า h = 2, k = -3, r = 5 ในสูตร\n(x - 2)² + (y - (-3))² = 5²\n(x - 2)² + (y + 3)² = 25'
             },
             {
-                id: "m_conic_circle",
-                subject: "math",
-                grade: "m4",
-                topic: "ภาคตัดกรวย (Conic Sections)",
-                title: "สมการมาตรฐานวงกลม & พาราโบลา",
-                formula: "(x-h)² + (y-k)² = r²",
-                displayMath: "(x-h)^2 + (y-k)^2 = r^2, \\quad (y-k)^2 = 4c(x-h)",
+                id: 'm5',
+                title: 'สมบัติลอการิทึม (Logarithm Rules)',
+                category: 'ลอการิทึม',
+                level: 'ม.4',
+                formula: 'log_a(x * y) = log_a(x) + log_a(y)',
+                displayFormula: 'logₐ(x · y) = logₐ(x) + logₐ(y)',
+                desc: 'ลอการิทึมของผลคูณเท่ากับผลบวกของลอการิทึมแต่ละตัว',
                 vars: [
-                    { name: "(h, k)", desc: "จุดศูนย์กลางของวงกลม หรือ จุดยอดพาราโบลา" },
-                    { name: "r", desc: "รัศมีวงกลม" },
-                    { name: "c", desc: "ระยะจากจุดยอดไปยังจุดโฟกัสพาราโบลา" }
+                    { symbol: 'a', name: 'ฐานของลอการิทึม (a > 0, a ≠ 1)' },
+                    { symbol: 'x, y', name: 'จำนวนจริงบวก' }
                 ],
-                tip: "ถ้า c > 0 พาราโบลาอ้าขวา (หรือขึ้นบน), ถ้า c < 0 อ้าซ้าย (หรือลงล่าง)"
+                exampleProblem: 'จงหาค่าของ log₂ (4 × 8)',
+                exampleSolution: 'วิธีที่ 1: log₂ (32) = 5\nวิธีที่ 2: log₂ (4) + log₂ (8) = 2 + 3 = 5'
             },
             {
-                id: "m_expo_log",
-                subject: "math",
-                grade: "m5",
-                topic: "เอ็กซ์โพเนนเชียล & ลอการิทึม",
-                title: "กฎพื้นฐานของ Logarithm",
-                formula: "log_a(x·y) = log_a(x) + log_a(y), log_a(x^k) = k·log_a(x)",
-                displayMath: "\\log_a(xy) = \\log_a x + \\log_a y, \\quad \\log_a\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y",
+                id: 'm6',
+                title: 'ดีเทอร์มิแนนต์เมทริกซ์ 2x2 (Determinant 2x2)',
+                category: 'เมทริกซ์',
+                level: 'ม.5',
+                formula: 'det(A) = ad - bc',
+                displayFormula: 'det([a  b; c  d]) = ad - bc',
+                desc: 'การหาค่าดีเทอร์มิแนนต์ของเมทริกซ์ขนาด 2x2',
                 vars: [
-                    { name: "a", desc: "ฐานของลอการิทึม (a > 0 และ a ≠ 1)" },
-                    { name: "x, y", desc: "จำนวนจริงบวก (x > 0, y > 0)" }
+                    { symbol: 'a,b,c,d', name: 'สมาชิกในเมทริกซ์แถวและหลัก' }
                 ],
-                tip: "สูตรเปลี่ยนฐาน: log_b(x) = (log_a x) / (log_a b)"
+                exampleProblem: 'จงหา det ของเมทริกซ์ A = [[3, 2], [1, 4]]',
+                exampleSolution: 'det(A) = (3)(4) - (2)(1) = 12 - 2 = 10'
             },
             {
-                id: "m_trig_identities",
-                subject: "math",
-                grade: "m5",
-                topic: "ตรีโกณมิติ (Trigonometry)",
-                title: "เอกลักษณ์ตรีโกณมิติ & ผลบวกมุม",
-                formula: "sin²θ + cos²θ = 1, sin(A±B) = sinA cosB ± cosA sinB",
-                displayMath: "\\sin(A \\pm B) = \\sin A \\cos B \\pm \\cos A \\sin B, \\quad \\cos(A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B",
+                id: 'm7',
+                title: 'อนุพันธ์ของฟังก์ชันกำลัง (Power Rule Derivative)',
+                category: 'แคลคูลัส',
+                level: 'ม.6',
+                formula: 'd/dx (x^n) = n * x^(n-1)',
+                displayFormula: '\\frac{d}{dx}(x^n) = n \\cdot x^{n-1}',
+                desc: 'กฎพื้นฐานในการหาอนุพันธ์ของฟังก์ชันเลขยกกำลัง',
                 vars: [
-                    { name: "A, B", desc: "ขนาดของมุมในหน่วยองศาหรือเรเดียน" }
+                    { symbol: 'n', name: 'เลขชี้กำลัง (จำนวนจริง)' }
                 ],
-                tip: "สูตรมุมสองเท่า: sin(2A) = 2sinA cosA, cos(2A) = cos²A - sin²A = 2cos²A - 1 = 1 - 2sin²A"
+                exampleProblem: 'จงหาอนุพันธ์ d/dx (x⁴ + 3x²)',
+                exampleSolution: 'd/dx (x⁴) + d/dx (3x²)\n= 4x⁴⁻¹ + 3(2x²⁻¹)\n= 4x³ + 6x'
             },
             {
-                id: "m_complex_num",
-                subject: "math",
-                grade: "m5",
-                topic: "จำนวนเชิงซ้อน (Complex Numbers)",
-                title: "รูปเชิงขั้ว (Polar Form) & ทฤษฎีบทของเดอมัวฟร์",
-                formula: "z = r(cosθ + i sinθ) ⇒ zⁿ = rⁿ(cos(nθ) + i sin(nθ))",
-                displayMath: "z^n = r^n \\left( \\cos n\\theta + i \\sin n\\theta \\right)",
+                id: 'm8',
+                title: 'ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)',
+                category: 'สถิติ',
+                level: 'ม.6',
+                formula: 'x_bar = (Σ x) / N',
+                displayFormula: '\\bar{x} = \\frac{\\sum x}{N}',
+                desc: 'การหาค่ากลางของข้อมูลโดยนำผลรวมข้อมูลทั้งหมดหารด้วยจำนวนข้อมูล',
                 vars: [
-                    { name: "r", desc: "ขนาดของจำนวนเชิงซ้อน |z| = √(a² + b²)" },
-                    { name: "θ", desc: "อาร์กิวเมนต์ของ z โดย tanθ = b/a" }
+                    { symbol: 'x̄', name: 'ค่าเฉลี่ยเลขคณิต' },
+                    { symbol: 'Σx', name: 'ผลรวมของข้อมูลทุกตัว' },
+                    { symbol: 'N', name: 'จำนวนข้อมูลทั้งหมด' }
                 ],
-                tip: "i¹ = i, i² = -1, i³ = -i, i⁴ = 1 (วนลูปทุกๆ กำลัง 4)"
-            },
-            {
-                id: "m_arith_geo_seq",
-                subject: "math",
-                grade: "m6",
-                topic: "ลำดับและอนุกรม",
-                title: "สูตรพจน์ทั่วไปและผลบวกอนุกรม (เลขคณิต & เรขาคณิต)",
-                formula: "a_n = a_1 + (n-1)d, S_n = (n/2)[a_1 + a_n]",
-                displayMath: "a_n = a_1 r^{n-1}, \\quad S_\\infty = \\frac{a_1}{1-r} \\quad (|r| < 1)",
-                vars: [
-                    { name: "a_1", desc: "พจน์แรกของลำดับ" },
-                    { name: "d", desc: "ผลต่างร่วม (สำหรับลำดับเลขคณิต)" },
-                    { name: "r", desc: "อัตราส่วนร่วม (สำหรับลำดับเรขาคณิต)" }
-                ],
-                tip: "อนุกรมเรขาคณิตอนันต์จะมีค่า (ลู่เข้า) ก็ต่อเมื่อ |-r| < 1 เท่านั้น"
-            },
-            {
-                id: "m_calculus_diff_int",
-                subject: "math",
-                grade: "m6",
-                topic: "แคลคูลัส (Calculus)",
-                title: "การหาอนุพันธ์และอินทิกรัลเลขยกกำลัง",
-                formula: "d/dx (xⁿ) = n·xⁿ⁻¹, ∫ xⁿ dx = (xⁿ⁺¹)/(n+1) + C",
-                displayMath: "\\frac{d}{dx}[x^n] = n x^{n-1}, \\quad \\int x^n dx = \\frac{x^{n+1}}{n+1} + C \\quad (n \\neq -1)",
-                vars: [
-                    { name: "n", desc: "เลขยกกำลัง" },
-                    { name: "C", desc: "ค่าคงตัวของการอินทิเกรต" }
-                ],
-                tip: "ดิฟผลคูณ: (uv)' = u v' + v u', ดิฟผลหาร: (u/v)' = (v u' - u v') / v²"
-            },
-            {
-                id: "m_statistics_zscore",
-                subject: "math",
-                grade: "m6",
-                topic: "สถิติและการแจกแจง",
-                title: "คะแนนมาตรฐาน (Z-Score) และการแจกแจงปกติ",
-                formula: "Z = (x - μ) / σ",
-                displayMath: "Z = \\frac{x - \\mu}{\\sigma}",
-                vars: [
-                    { name: "x", desc: "ข้อมูลดิบที่ต้องการแปลง" },
-                    { name: "μ", desc: "ค่าเฉลี่ยเลขคณิตของประชากร (Mean)" },
-                    { name: "σ", desc: "ส่วนเบี่ยงเบนมาตรฐาน (Standard Deviation)" }
-                ],
-                tip: "พื้นที่ใต้โค้งปกติรวมทั้งหมดเท่ากับ 1 (หรือ 100%) โดย Z=0 อยู่ที่ตำแหน่งค่าเฉลี่ยตรงกลางพอดี"
+                exampleProblem: 'คะแนนสอบ 5 คน ได้แก่ 10, 12, 14, 16, 18 จงหาค่าเฉลี่ย',
+                exampleSolution: 'x̄ = (10 + 12 + 14 + 16 + 18) / 5 = 70 / 5 = 14'
             }
         ];
 
-        const CHEM_FORMULAS = [
+        const physicsData = [
             {
-                id: "c_density_conc",
-                subject: "chem",
-                grade: "m1",
-                topic: "สารและสมบัติ",
-                title: "ความหนาแน่นและความเข้มข้นร้อยละ",
-                formula: "ρ = m/V, %w/v = (มวลตัวละลาย / ปริมาตรสารละลาย) × 100",
-                displayMath: "\\rho = \\frac{m}{V}, \\quad \\% (w/v) = \\frac{g_{solute}}{V_{solution}(mL)} \\times 100",
+                id: 'p1',
+                title: 'สมการการเคลื่อนที่เส้นตรงความเร่งคงที่',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'v = u + at,  s = ut + (1/2)at^2,  v^2 = u^2 + 2as',
+                displayFormula: 'v = u + at \\quad | \\quad s = ut + \\frac{1}{2}at^2 \\quad | \\quad v^2 = u^2 + 2as',
+                desc: '4 สมการหลักในการคำนวณการเคลื่อนที่แนวตรงเมื่อความเร่งคงที่',
                 vars: [
-                    { name: "ρ (m/V)", desc: "ความหนาแน่น (g/cm³ หรือ kg/m³)" },
-                    { name: "m", desc: "มวลของสาร (g)" },
-                    { name: "V", desc: "ปริมาตรของสาร (cm³ หรือ mL)" }
+                    { symbol: 'u', name: 'ความเร็วต้น (m/s)' },
+                    { symbol: 'v', name: 'ความเร็วปลาย (m/s)' },
+                    { symbol: 'a', name: 'ความเร่ง (m/s²)' },
+                    { symbol: 's', name: 'การกระจัด (m)' },
+                    { symbol: 't', name: 'เวลา (s)' }
                 ],
-                tip: "อย่าลืมตรวจสอบหน่วยของมวลและปริมาตรให้สอดคล้องกันก่อนคำนวณ"
+                exampleProblem: 'รถยนต์ออกตัวจากหยุดนิ่ง (u=0) ด้วยความเร่ง 2 m/s² เป็นเวลา 5 วินาที จงหาความเร็วปลายและการกระจัด',
+                exampleSolution: '1. หาความเร็วปลาย: v = u + at = 0 + (2)(5) = 10 m/s\n2. หาการกระจัด: s = (0)(5) + 0.5(2)(5)² = 25 เมตร'
             },
             {
-                id: "c_mole_bridge",
-                subject: "chem",
-                grade: "m4",
-                topic: "ปริมาณสารสัมพันธ์",
-                title: "สะพานโมล (Mole Concept Formulas)",
-                formula: "n = g/MW = N/(6.02×10²³) = V_STP/22.4 = (C×V)/1000",
-                displayMath: "n = \\frac{g}{MW} = \\frac{N}{6.022 \\times 10^{23}} = \\frac{V_{STP}}{22.4} = \\frac{C \\times V_{(mL)}}{1000}",
+                id: 'p2',
+                title: 'กฎข้อที่สองของนิวตัน (Newton\'s 2nd Law)',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'ΣF = m * a',
+                displayFormula: '\\Sigma \\vec{F} = m \\vec{a}',
+                desc: 'แรงลัพธ์ที่กระทำต่อวัตถุเท่ากับมวลคูณด้วยความเร่งของวัตถุนั้น',
                 vars: [
-                    { name: "n", desc: "จำนวนโมล (mol)" },
-                    { name: "g / MW", desc: "มวลเป็นกรัม / มวลโมเลกุล (g/mol)" },
-                    { name: "N", desc: "จำนวนอนุภาค (อะตอม, โมเลกุล, ไอออน)" },
-                    { name: "V_STP", desc: "ปริมาตรแก๊สที่ STP (dm³ หรือ L)" },
-                    { name: "C, V", desc: "ความเข้มข้น (mol/L) และ ปริมาตร (mL)" }
+                    { symbol: 'ΣF', name: 'แรงลัพธ์ (นิวตัน, N)' },
+                    { symbol: 'm', name: 'มวลของวัตถุ (กิโลกรัม, kg)' },
+                    { symbol: 'a', name: 'ความเร่ง (m/s²)' }
                 ],
-                tip: "หัวใจสำคัญของเคมี! ใช้สะพานโมลนี้เชื่อมโยงปริมาณสารในปฏิกิริยาเคมีได้ทุกรูปแบบ"
+                exampleProblem: 'วัตถุมวล 5 kg ถูกแรงผลัก 20 N บนพื้นลื่น จงหาความเร่งของวัตถุ',
+                exampleSolution: 'จาก ΣF = ma\n20 = 5 × a\na = 20 / 5 = 4 m/s²'
             },
             {
-                id: "c_dilution",
-                subject: "chem",
-                grade: "m4",
-                topic: "ปริมาณสารสัมพันธ์",
-                title: "สูตรการเจือจางและการผสมสารละลาย",
-                formula: "C₁V₁ = C₂V₂, C_ผสมV_รวม = C₁V₁ + C₂V₂",
-                displayMath: "C_1 V_1 = C_2 V_2, \\quad C_{mix} V_{total} = \\sum (C_i V_i)",
+                id: 'p3',
+                title: 'พลังงานจลน์และพลังงานศักย์โน้มถ่วง',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'E_k = (1/2)mv^2,  E_p = mgh',
+                displayFormula: 'E_k = \\frac{1}{2}mv^2 \\quad | \\quad E_p = mgh',
+                desc: 'พลังงานจลน์เนื่องจากการเคลื่อนที่ และพลังงานศักย์เนื่องจากความสูง',
                 vars: [
-                    { name: "C₁, C₂", desc: "ความเข้มข้นก่อนและหลังเจือจาง" },
-                    { name: "V₁, V₂", desc: "ปริมาตรสารละลายก่อนและหลังเจือจาง" }
+                    { symbol: 'E_k', name: 'พลังงานจลน์ (จูล, J)' },
+                    { symbol: 'E_p', name: 'พลังงานศักย์โน้มถ่วง (จูล, J)' },
+                    { symbol: 'm', name: 'มวล (kg)' },
+                    { symbol: 'v', name: 'ความเร็ว (m/s)' },
+                    { symbol: 'g', name: 'ความเร่งเนื่องจากแรงดึงดูดโลก (≈ 9.8 หรือ 10 m/s²)' },
+                    { symbol: 'h', name: 'ความสูงจากระดับอ้างอิง (m)' }
                 ],
-                tip: "ในการเจือจาง ปริมาณโมลของตัวละลายก่อนและหลังเติมน้ำจะเท่าเดิมเสมอ (n₁ = n₂)"
+                exampleProblem: 'วัตถุมวล 2 kg ตกจากที่สูง 5 เมตร (g = 10 m/s²) จงหาพลังงานศักย์ที่จุดเริ่มต้น',
+                exampleSolution: 'E_p = mgh = (2 kg) × (10 m/s²) × (5 m) = 100 จูล (J)'
             },
             {
-                id: "c_gas_laws",
-                subject: "chem",
-                grade: "m5",
-                topic: "แก๊สและสมบัติของแก๊ส",
-                title: "กฎแก๊สอุดมคติ & กฎรวมแก๊ส",
-                formula: "PV = nRT, (P₁V₁)/T₁ = (P₂V₂)/T₂",
-                displayMath: "P V = n R T, \\quad \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2}",
+                id: 'p4',
+                title: 'ความสัมพันธ์คลื่น (Wave Equation)',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'v = f * λ',
+                displayFormula: 'v = f \\cdot \\lambda',
+                desc: 'ความสัมพันธ์ระหว่างอัตราเร็วคลื่น ความถี่ และความยาวคลื่น',
                 vars: [
-                    { name: "P", desc: "ความดันแก๊ส (atm)" },
-                    { name: "V", desc: "ปริมาตรแก๊ส (L หรือ dm³)" },
-                    { name: "T", desc: "อุณหภูมิสัมบูรณ์ เคลวิน (K = °C + 273.15)" },
-                    { name: "R", desc: "ค่าคงตัวของแก๊ส = 0.0821 L·atm/(mol·K)" }
+                    { symbol: 'v', name: 'อัตราเร็วคลื่น (m/s)' },
+                    { symbol: 'f', name: 'ความถี่คลื่น (เฮิรตซ์, Hz)' },
+                    { symbol: 'λ (แลมบ์ดา)', name: 'ความยาวคลื่น (m)' }
                 ],
-                tip: "ข้อควรระวัง! คำนวณเรื่องแก๊สทุกครั้ง อุณหภูมิ T ต้องใช้หน่วย เคลวิน (K) เสมอ ห้ามใช้ °C"
+                exampleProblem: 'คลื่นเสียงมีความถี่ 500 Hz เคลื่อนที่ในอากาศด้วยอัตราเร็ว 340 m/s จงหาความยาวคลื่น',
+                exampleSolution: 'จาก v = fλ\n340 = 500 × λ\nλ = 340 / 500 = 0.68 เมตร'
             },
             {
-                id: "c_graham_law",
-                subject: "chem",
-                grade: "m5",
-                topic: "แก๊สและสมบัติของแก๊ส",
-                title: "กฎการแพร่ผ่านของเกรแฮม (Graham's Law)",
-                formula: "R₁/R₂ = √(MW₂/MW₁) = √(d₂/d₁)",
-                displayMath: "\\frac{R_1}{R_2} = \\sqrt{\\frac{MW_2}{MW_1}} = \\sqrt{\\frac{\\rho_2}{\\rho_1}}",
+                id: 'p5',
+                title: 'กฎแก๊สอุดมคติ (Ideal Gas Law)',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'P * V = n * R * T',
+                displayFormula: 'P V = n R T',
+                desc: 'สมการสภาวะของแก๊สอุดมคติ เชื่อมโยงความดัน ปริมาตร โมล และอุณหภูมิ',
                 vars: [
-                    { name: "R₁, R₂", desc: "อัตราการแพร่ของแก๊สชนิดที่ 1 และ 2" },
-                    { name: "MW₁, MW₂", desc: "มวลโมเลกุลของแก๊สชนิดที่ 1 และ 2" }
+                    { symbol: 'P', name: 'ความดัน (พาสคัล Pa หรือ atm)' },
+                    { symbol: 'V', name: 'ปริมาตร (m³ หรือ L)' },
+                    { symbol: 'n', name: 'จำนวนโมล (mol)' },
+                    { symbol: 'R', name: 'ค่าคงที่แก๊ส (8.314 J/mol·K หรือ 0.0821 L·atm/mol·K)' },
+                    { symbol: 'T', name: 'อุณหภูมิสัมบูรณ์ (เคลวิน, K)' }
                 ],
-                tip: "แก๊สที่ตัวเบากว่า (MW น้อยกว่า) จะเคลื่อนที่และแพร่ได้เร็วกว่าแก๊สที่หนักกว่าเสมอ"
+                exampleProblem: 'แก๊ส 1 โมล ที่อุณหภูมิ 27°C (300 K) ความดัน 1 atm มีปริมาตรกี่ลิตร (R = 0.0821)',
+                exampleSolution: 'PV = nRT\n(1)(V) = (1)(0.0821)(300)\nV = 24.63 ลิตร'
             },
             {
-                id: "c_equilibrium",
-                subject: "chem",
-                grade: "m5",
-                topic: "สมดุลเคมี (Equilibrium)",
-                title: "ค่าคงที่สมดุล (K_c และ K_p)",
-                formula: "aA + bB ⇌ cC + dD ⇒ K_c = ([C]ᶜ[D]ᵈ) / ([A]ᵃ[B]ᵇ)",
-                displayMath: "K_c = \\frac{[C]^c [D]^d}{[A]^a [B]^b}, \\quad K_p = K_c(RT)^{\\Delta n}",
+                id: 'p6',
+                title: 'กฎของโอห์มและกำลังไฟฟ้า (Ohm\'s Law & Power)',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'V = I * R,  P = V * I = I^2 * R = V^2 / R',
+                displayFormula: 'V = I R \\quad | \\quad P = V I = I^2 R = \\frac{V^2}{R}',
+                desc: 'ความต่างศักย์ กระแส ความต้านทาน และกำลังไฟฟ้าในวงจรไฟฟ้ากระแสตรง',
                 vars: [
-                    { name: "[A], [B]...", desc: "ความเข้มข้นของสารที่สภาวะสมดุล (mol/L)" },
-                    { name: "a, b, c, d", desc: "เลขสัมประสิทธิ์หน้าสารในสมการที่ดุลแล้ว" }
+                    { symbol: 'V', name: 'ความต่างศักย์ (โวลต์, V)' },
+                    { symbol: 'I', name: 'กระแสไฟฟ้า (แอมแปร์, A)' },
+                    { symbol: 'R', name: 'ความต้านทาน (โอห์ม, Ω)' },
+                    { symbol: 'P', name: 'กำลังไฟฟ้า (วัตต์, W)' }
                 ],
-                tip: "สารบริสุทธิ์ที่เป็นของแข็ง (s) และของเหลวบริสุทธิ์ (l) จะไม่นำมาคิดในสมการค่า K!"
+                exampleProblem: 'พัดลมไฟฟ้าใช้ความต่างศักย์ 220V มีกระแสไหลผ่าน 0.5A จงหากำลังไฟฟ้า',
+                exampleSolution: 'P = V × I = 220 V × 0.5 A = 110 วัตต์ (W)'
             },
             {
-                id: "c_acid_base_ph",
-                subject: "chem",
-                grade: "m5",
-                topic: "กรด-เบส (Acid-Base)",
-                title: "การคำนวณ pH, pOH และการแตกตัว",
-                formula: "pH = -log[H⁺], pH + pOH = 14, [H⁺] = √(K_a × C_a)",
-                displayMath: "pH = -\\log[H^+], \\quad K_w = [H^+][OH^-] = 1.0 \\times 10^{-14} \\text{ (ที่ 25°C)}",
+                id: 'p7',
+                title: 'พลังงานโฟตอนและสมการไอน์สไตน์ (Photoelectric)',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'E = h * f = h * c / λ',
+                displayFormula: 'E = h f = \\frac{h c}{\\lambda}',
+                desc: 'พลังงานของคลื่นแม่เหล็กไฟฟ้า (โฟตอน) ตามทฤษฎีควอนตัมของพลังค์',
                 vars: [
-                    { name: "[H⁺]", desc: "ความเข้มข้นไฮโดรเนียมไอออน (mol/L)" },
-                    { name: "K_a", desc: "ค่าคงที่การแตกตัวของกรดอ่อน" },
-                    { name: "C_a", desc: "ความเข้มข้นเริ่มต้นของกรด" }
+                    { symbol: 'E', name: 'พลังงานโฟตอน (J)' },
+                    { symbol: 'h', name: 'ค่าคงที่ของพลังค์ (6.626 × 10⁻³⁴ J·s)' },
+                    { symbol: 'f', name: 'ความถี่ของแสง (Hz)' },
+                    { symbol: 'c', name: 'ความเร็วแสง (3 × 10⁸ m/s)' }
                 ],
-                tip: "สารละลายกรด pH < 7, เป็นกลาง pH = 7, เบส pH > 7 (เมื่อวัดที่อุณหภูมิ 25°C)"
-            },
-            {
-                id: "c_electrochem",
-                subject: "chem",
-                grade: "m6",
-                topic: "ไฟฟ้าเคมี (Electrochemistry)",
-                title: "ศักย์ไฟฟ้ามาตรฐานของเซลล์ (E°cell)",
-                formula: "E°cell = E°cathode - E°anode",
-                displayMath: "E^{\\circ}_{cell} = E^{\\circ}_{cathode} - E^{\\circ}_{anode}",
-                vars: [
-                    { name: "Cathode", desc: "ขั้วแคโทด เกิดปฏิกิริยารีดักชัน (รับ e⁻)" },
-                    { name: "Anode", desc: "ขั้วแอโนด เกิดปฏิกิริยาออกซิเดชัน (จ่าย e⁻)" }
-                ],
-                tip: "จำขึ้นใจ: 'แคโทด รับ ลด (Reduction)', 'แอโนด จ่าย เพิ่ม (Oxidation)'. ถ้า E°cell > 0 เกิดขึ้นได้เอง!"
-            },
-            {
-                id: "c_organic_alkane",
-                subject: "chem",
-                grade: "m6",
-                topic: "เคมีอินทรีย์ (Organic Chemistry)",
-                title: "สูตรโมเลกุลทั่วไปของไฮโดรคาร์บอน",
-                formula: "Alkane: C_n H_2n+2, Alkene: C_n H_2n, Alkyne: C_n H_2n-2",
-                displayMath: "\\text{Alkane: } C_n H_{2n+2}, \\quad \\text{Alkene: } C_n H_{2n}, \\quad \\text{Alkyne: } C_n H_{2n-2}",
-                vars: [
-                    { name: "n", desc: "จำนวนอะตอมของคาร์บอน (C)" }
-                ],
-                tip: "Alkane สารประกอบอิ่มตัว (พันธะเดี่ยว), Alkene ไม่อิ่มตัว (มีพันธะคู่ 1 แห่ง), Alkyne (มีพันธะสาม 1 แห่ง)"
+                exampleProblem: 'จงหาพลังงานของแสงที่มีความถี่ 5 × 10¹⁴ Hz',
+                exampleSolution: 'E = hf = (6.63 × 10⁻³⁴) × (5 × 10¹⁴)\nE = 3.315 × 10⁻¹⁹ จูล'
             }
         ];
 
-        const PHYSICS_FORMULAS = [
+        const chemData = [
             {
-                id: "p_motion_5",
-                subject: "physics",
-                grade: "m4",
-                topic: "การเคลื่อนที่แนวตรง",
-                title: "5 สูตรหลักการเคลื่อนที่ด้วยความเร่งคงที่",
-                formula: "v = u + at, s = ut + ½at², v² = u² + 2as, s = ½(u+v)t, s = vt - ½at²",
-                displayMath: "v = u + at, \\quad s = ut + \\frac{1}{2}at^2, \\quad v^2 = u^2 + 2as, \\quad s = \\left(\\frac{u+v}{2}\\right)t",
+                id: 'c1',
+                title: 'สูตรคำนวณจำนวนโมล (Mole Concept)',
+                category: 'ปริมาณสารสัมพันธ์',
+                level: 'ม.4',
+                formula: 'n = g / M = V / 22.4 = N / (6.02 * 10^23)',
+                displayFormula: 'n = \\frac{g}{M} = \\frac{V_{STP}}{22.4} = \\frac{N}{6.02 \\times 10^{23}}',
+                desc: 'การแปลงหน่วยจำนวนโมล กับมวลสาร ปริมาตรแก๊สที่ STP และจำนวนอนุภาค',
                 vars: [
-                    { name: "u, v", desc: "ความเร็วต้น และ ความเร็วปลาย (m/s)" },
-                    { name: "a", desc: "ความเร่ง (m/s²)" },
-                    { name: "s", desc: "การกระจัด (m)" },
-                    { name: "t", desc: "เวลา (s)" }
+                    { symbol: 'n', name: 'จำนวนโมล (mol)' },
+                    { symbol: 'g', name: 'มวลสาร (กรัม, g)' },
+                    { symbol: 'M', name: 'มวลโมเลกุล หรือ มวลอะตอม (g/mol)' },
+                    { symbol: 'V', name: 'ปริมาตรแก๊สที่ STP (ลิตร, L)' },
+                    { symbol: 'N', name: 'จำนวนอนุภาค (อะตอม/โมเลกุล/ไอออน)' }
                 ],
-                tip: "เคล็ดลับ: แต่ละสูตรจะมีตัวแปรขาดหายไป 1 ตัว ให้เลือกใช้สูตรที่ไม่มีตัวแปรที่เราไม่ทราบค่า!"
+                exampleProblem: 'แก๊สคาร์บอนไดออกไซด์ (CO₂) มวล 44 กรัม คิดเป็นกี่โมล และมีปริมาตรเท่าใดที่ STP (M = 44 g/mol)',
+                exampleSolution: '1. n = g / M = 44 / 44 = 1 โมล\n2. V = n × 22.4 = 1 × 22.4 = 22.4 ลิตร ที่ STP'
             },
             {
-                id: "p_newton_laws",
-                subject: "physics",
-                grade: "m4",
-                topic: "แรงและกฎการเคลื่อนที่",
-                title: "กฎข้อที่ 2 ของนิวตัน & แรงเสียดทาน",
-                formula: "∑F = ma, f_s = μ_s N, f_k = μ_k N",
-                displayMath: "\\sum \\vec{F} = m \\vec{a}, \\quad f_s \\le \\mu_s N, \\quad f_k = \\mu_k N",
+                id: 'c2',
+                title: 'การเตรียมและเจือจางสารละลาย (Dilution)',
+                category: 'ปริมาณสารสัมพันธ์',
+                level: 'ม.4',
+                formula: 'C1 * V1 = C2 * V2',
+                displayFormula: 'C_1 V_1 = C_2 V_2',
+                desc: 'คำนวณการเจือจางสารละลายเข้มข้นด้วยการเติมตัวทำละลาย (โมลสารเท่าเดิม)',
                 vars: [
-                    { name: "∑F", desc: "แรงลัพธ์ที่กระทำต่อวัตถุ (N)" },
-                    { name: "m", desc: "มวลของวัตถุ (kg)" },
-                    { name: "μ_s, μ_k", desc: "สัมประสิทธิ์ความเสียดทานสถิต และ ความเสียดทานจลน์" },
-                    { name: "N", desc: "แรงปฏิกิริยาในแนวตั้งฉากกับพื้นผิว (N)" }
+                    { symbol: 'C1, C2', name: 'ความเข้มข้นก่อนและหลังเจือจาง (Molar, %)' },
+                    { symbol: 'V1, V2', name: 'ปริมาตรก่อนและหลังเจือจาง (mL หรือ L)' }
                 ],
-                tip: "แรงเสียดทานสถิต f_s มีค่าไม่คงที่ มีค่าได้ตั้งแต่ 0 จนถึงค่าสูงสุด μ_s N (ขณะวัตถุเริ่มเคลื่อนที่พอดี)"
+                exampleProblem: 'ต้องการเตรียมสารละลาย HCl 0.5 M ปริมาตร 500 mL จากสารละลายเข้มข้น 2.0 M ต้องใช้เข้มข้นกี่ mL',
+                exampleSolution: 'C1 V1 = C2 V2\n(2.0 M) × V1 = (0.5 M) × (500 mL)\nV1 = (0.5 × 500) / 2.0 = 125 mL'
             },
             {
-                id: "p_work_energy",
-                subject: "physics",
-                grade: "m4",
-                topic: "งานและพลังงาน",
-                title: "สูตรงาน พลังงานจลน์ และพลังงานศักย์",
-                formula: "W = F·s·cosθ, E_k = ½mv², E_p = mgh, E_p(สปริง) = ½kx²",
-                displayMath: "W = F s \\cos\\theta, \\quad E_k = \\frac{1}{2}m v^2, \\quad E_p = mgh, \\quad E_p^{spring} = \\frac{1}{2}k x^2",
+                id: 'c3',
+                title: 'กฎรวมแก๊ส (Combined Gas Law)',
+                category: 'แก๊สและของแข็ง',
+                level: 'ม.5',
+                formula: '(P1 * V1) / T1 = (P2 * V2) / T2',
+                displayFormula: '\\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2}',
+                desc: 'คำนวณการเปลี่ยนสภาวะของแก๊สเมื่อมวลของแก๊สคงที่',
                 vars: [
-                    { name: "W", desc: "งานที่ทำโดยแรง F (J หรือ N·m)" },
-                    { name: "θ", desc: "มุมระหว่างแนวแรง F กับทิศทางการกระจัด s" },
-                    { name: "k, x", desc: "ค่าคงตัวสปริง (N/m) และ ระยะยืด/หดจากตำแหน่งสมดุล (m)" }
+                    { symbol: 'P1, P2', name: 'ความดันแก๊ส' },
+                    { symbol: 'V1, V2', name: 'ปริมาตรแก๊ส' },
+                    { symbol: 'T1, T2', name: 'อุณหภูมิแก๊ส (ต้องใช้ Kelvin, K = °C + 273)' }
                 ],
-                tip: "ทฤษฎีบทงาน-พลังงาน: งานลัพธ์ที่กระทำต่อวัตถุ เท่ากับการเปลี่ยนแปลงพลังงานจลน์ (W_total = ΔE_k)"
+                exampleProblem: 'แก๊สปริมาตร 2 L ที่ 27°C (300K) ความดัน 1 atm ถูกอัดจนเหลือ 1 L ที่อุณหภูมิ 127°C (400K) ความดันใหม่เป็นเท่าใด',
+                exampleSolution: '(1 × 2) / 300 = (P2 × 1) / 400\nP2 = (2 / 300) × 400 = 2.67 atm'
             },
             {
-                id: "p_momentum_impulse",
-                subject: "physics",
-                grade: "m4",
-                topic: "โมเมนตัมและการชน",
-                title: "โมเมนตัม แรงดล และอนุรักษ์โมเมนตัม",
-                formula: "p = mv, I = ∆p = F_avg·∆t, ∑p_ก่อน = ∑p_หลัง",
-                displayMath: "\\vec{p} = m\\vec{v}, \\quad \\vec{I} = \\Delta \\vec{p} = \\vec{F}_{avg} \\Delta t, \\quad \\sum \\vec{p}_{before} = \\sum \\vec{p}_{after}",
+                id: 'c4',
+                title: 'ค่า pH และ pOH สารละลายกรด-เบส',
+                category: 'กรด-เบส',
+                level: 'ม.5',
+                formula: 'pH = -log[H+],  pOH = -log[OH-],  pH + pOH = 14',
+                displayFormula: 'pH = -\\log[H^+] \\quad | \\quad pOH = -\\log[OH^-] \\quad | \\quad pH + pOH = 14',
+                desc: 'การบอกระดับความเป็นกรด-เบสของสารละลายจากความเข้มข้นไฮโดรเนียมและไฮดรอกไซด์ไอออน',
                 vars: [
-                    { name: "p", desc: "โมเมนตัม (kg·m/s)" },
-                    { name: "I", desc: "แรงดล / การเปลี่ยนโมเมนตัม (N·s)" },
-                    { name: "F_avg", desc: "แรงดลเฉลี่ย (N)" }
+                    { symbol: '[H+]', name: 'ความเข้มข้น H⁺ หรือ H₃O⁺ (mol/L)' },
+                    { symbol: '[OH-]', name: 'ความเข้มข้น OH⁻ (mol/L)' }
                 ],
-                tip: "การชนแบบยืดหยุ่นสมบูรณ์ พลังงานจลน์รวมจะอนุรักษ์ด้วย (∑E_k ก่อน = ∑E_k หลัง) และ u₁ + v₁ = u₂ + v₂"
+                exampleProblem: 'สารละลายชนิดหนึ่งมีความเข้มข้น [H⁺] = 1 × 10⁻⁴ mol/L จงหาค่า pH และ pOH',
+                exampleSolution: 'pH = -log(10⁻⁴) = 4\npOH = 14 - pH = 14 - 4 = 10'
             },
             {
-                id: "p_circular_shm",
-                subject: "physics",
-                grade: "m4",
-                topic: "การเคลื่อนที่แบบวงกลม & SHM",
-                title: "การเคลื่อนที่เข้าสู่ศูนย์กลาง & คาบ SHM",
-                formula: "F_c = mv²/r = mω²r, T_ลูกตุ้ม = 2π√(l/g), T_สปริง = 2π√(m/k)",
-                displayMath: "F_c = \\frac{m v^2}{r} = m \\omega^2 r, \\quad T_{pendulum} = 2\\pi \\sqrt{\\frac{l}{g}}, \\quad T_{spring} = 2\\pi \\sqrt{\\frac{m}{k}}",
+                id: 'c5',
+                title: 'ค่าคงที่สมดุลเคมี (Equilibrium Constant Kc)',
+                category: 'อัตราและสมดุล',
+                level: 'ม.5',
+                formula: 'aA + bB ⇌ cC + dD  =>  Kc = ([C]^c * [D]^d) / ([A]^a * [B]^b)',
+                displayFormula: 'K_c = \\frac{[C]^c [D]^d}{[A]^a [B]^b}',
+                desc: 'อัตราส่วนความเข้มข้นของสารผลิตภัณฑ์ยกกำลังด้วยสัมประสิทธิ์ ต่อสารตั้งต้น ณ จุดสมดุล',
                 vars: [
-                    { name: "F_c", desc: "แรงเข้าสู่ศูนย์กลาง (N)" },
-                    { name: "ω", desc: "ความเร็วเชิงมุม (rad/s) โดย ω = 2πf = 2π/T" },
-                    { name: "T, f", desc: "คาบเวลา (s) และ ความถี่ (Hz)" }
+                    { symbol: '[A],[B],[C],[D]', name: 'ความเข้มข้นของสาร ณ จุดสมดุล (mol/L)' },
+                    { symbol: 'a,b,c,d', name: 'เลขสัมประสิทธิ์แสดงจำนวนโมลในสมการเคมี' }
                 ],
-                tip: "คาบของลูกตุ้มนาฬิกาขึ้นกับความยาวสาย l และ g เท่านั้น 'ไม่ขึ้นกับมวล' ของลูกตุ้ม!"
+                exampleProblem: 'สำหรับสมการ N₂ + 3H₂ ⇌ 2NH₃ จงเขียนนิพจน์ค่าคงที่สมดุล Kc',
+                exampleSolution: 'Kc = [NH₃]² / ([N₂][H₂]³)'
             },
             {
-                id: "p_fluids_bernoulli",
-                subject: "physics",
-                grade: "m5",
-                topic: "ของไหล (Fluids)",
-                title: "ความดันเกจ แรงลอยตัว และสมการแบร์นูลลี",
-                formula: "P_เกจ = ρgh, F_B = ρ_ของเหลว·V_จม·g, P + ½ρv² + ρgh = C",
-                displayMath: "P_{gauge} = \\rho g h, \\quad F_B = \\rho_{fluid} V_{sub} g, \\quad P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2",
+                id: 'c6',
+                title: 'ศักย์ไฟฟ้าของเซลล์ (Cell Potential E°cell)',
+                category: 'ไฟฟ้าเคมี',
+                level: 'ม.6',
+                formula: 'E°cell = E°cathode - E°anode',
+                displayFormula: 'E^\\circ_{\\text{cell}} = E^\\circ_{\\text{cathode}} - E^\\circ_{\\text{anode}}',
+                desc: 'คำนวณแรงเคลื่อนไฟฟ้าของเซลล์กัลวานิกจากค่าศักย์ไฟฟ้ามาตรฐานของการรีดักชัน',
                 vars: [
-                    { name: "P", desc: "ความดัน (Pa หรือ N/m²)" },
-                    { name: "ρ", desc: "ความหนาแน่นของของไหล (kg/m³)" },
-                    { name: "F_B", desc: "แรงลอยตัวของพอยต์ (Buoyant Force)" }
+                    { symbol: 'E°cathode', name: 'ศักย์ไฟฟ้ามาตรฐานขั้วแคโทด (เกิดปฏิกิริยารีดักชัน)' },
+                    { symbol: 'E°anode', name: 'ศักย์ไฟฟ้ามาตรฐานขั้วแอโนด (เกิดปฏิกิริยาออกซิเดชัน)' }
                 ],
-                tip: "สมการการต่อเนื่อง: A₁v₁ = A₂v₂ (บริเวณที่ท่อแคบลง ความเร็ว v จะเพิ่มขึ้น ส่งผลให้ความดัน P ลดลงตามหลักแบร์นูลลี)"
-            },
-            {
-                id: "p_thermo_gas",
-                subject: "physics",
-                grade: "m5",
-                topic: "ความร้อนและแก๊ส",
-                title: "ความร้อน พลังงานจลน์เฉลี่ย และ v_rms",
-                formula: "Q = mc∆T, Q = mL, E_k_avg = (3/2)k_B T, v_rms = √(3RT/M)",
-                displayMath: "Q = mc\\Delta T, \\quad Q = mL, \\quad \\bar{E}_k = \\frac{3}{2} k_B T, \\quad v_{rms} = \\sqrt{\\frac{3RT}{M}}",
-                vars: [
-                    { name: "c, L", desc: "ความจุความร้อนจำเพาะ และ ความร้อนแฝงจำเพาะ" },
-                    { name: "k_B", desc: "ค่าคงตัวโบลตซ์มันน์ = 1.38×10⁻²³ J/K" },
-                    { name: "v_rms", desc: "อัตราเร็วรากที่สองของกำลังสองเฉลี่ย" }
-                ],
-                tip: "พลังงานจลน์เฉลี่ยของโมเลกุลแก๊ส ขึ้นอยู่กับ 'อุณหภูมิสัมบูรณ์ (T)' เพียงอย่างเดียวเท่านั้น!"
-            },
-            {
-                id: "p_waves_sound",
-                subject: "physics",
-                grade: "m5",
-                topic: "คลื่นและเสียง",
-                title: "อัตราเร็วคลื่น ระดับเสียง และปรากฏการณ์ดอปเปลอร์",
-                formula: "v = fλ, β = 10 log₁₀(I/I₀), f' = f₀[(v ± v_o)/(v ∓ v_s)]",
-                displayMath: "v = f \\lambda, \\quad \\beta = 10 \\log_{10}\\left(\\frac{I}{I_0}\\right), \\quad f' = f_0 \\left( \\frac{v \\pm v_o}{v \\mp v_s} \\right)",
-                vars: [
-                    { name: "β", desc: "ระดับเสียง (เดซิเบล: dB)" },
-                    { name: "I₀", desc: "ความเข้มเสียงต่ำสุดที่มนุษย์ได้ยิน = 10⁻¹² W/m²" },
-                    { name: "v_s, v_o", desc: "ความเร็วของแหล่งกำเนิดเสียง และ ผู้ฟัง" }
-                ],
-                tip: "ดอปเปลอร์: เมื่อแหล่งกำเนิดวิ่งเข้าหาผู้ฟัง ความถี่สังเกตได้ f' จะสูงขึ้น (เสียงแหลมขึ้น)"
-            },
-            {
-                id: "p_optics_lens",
-                subject: "physics",
-                grade: "m5",
-                topic: "แสงเชิงเรขาคณิต",
-                title: "สูตรกระจกและเลนส์บาง",
-                formula: "1/f = 1/s + 1/s', m = y'/y = -s'/s",
-                displayMath: "\\frac{1}{f} = \\frac{1}{s} + \\frac{1}{s'}, \\quad m = \\frac{y'}{y} = -\\frac{s'}{s} = \\frac{f}{s - f}",
-                vars: [
-                    { name: "f", desc: "ความยาวโฟกัส (เลนส์นูน/กระจกเว้าเป็น +, เลนส์เว้า/กระจกนูนเป็น -)" },
-                    { name: "s, s'", desc: "ระยะวัตถุ (เป็น +) และ ระยะภาพ (ภาพจริงเป็น +, ภาพเสมือนเป็น -)" },
-                    { name: "m", desc: "กำลังขยาย (ภาพจริงเป็น -, ภาพเสมือนเป็น +)" }
-                ],
-                tip: "จำเครื่องหมายง่ายๆ: 'นูนรับ (+) เว้าจ่าย (-)', 'ภาพจริงหน้ากระจก/หลังเลนส์ (+)', 'ภาพเสมือน (-)'"
-            },
-            {
-                id: "p_electrostatics",
-                subject: "physics",
-                grade: "m6",
-                topic: "ไฟฟ้าสถิต",
-                title: "กฎของคูลอมบ์ สนามไฟฟ้า และศักย์ไฟฟ้า",
-                formula: "F = k(q₁q₂)/r², E = kq/r², V = kq/r, U = qV",
-                displayMath: "F = k \\frac{|q_1 q_2|}{r^2}, \\quad E = k \\frac{|q|}{r^2}, \\quad V = k \\frac{q}{r}",
-                vars: [
-                    { name: "k", desc: "ค่าคงตัวคูลอมบ์ ≈ 9×10⁹ N·m²/C²" },
-                    { name: "E", desc: "สนามไฟฟ้า (N/C หรือ V/m) เป็นปริมาณเวกเตอร์" },
-                    { name: "V", desc: "ศักย์ไฟฟ้า (V) เป็นปริมาณสเกลาร์ (ต้องแทนเครื่องหมาย +,- ของประจุด้วย!)" }
-                ],
-                tip: "การคำนวณเวกเตอร์ E และ F 'ไม่ต้องแทนเครื่องหมายประจุ' ให้ใช้ทิศทางแยกคิด, แต่การคำนวณศักย์ไฟฟ้า V 'ต้องแทนเครื่องหมายประจุ'!"
-            },
-            {
-                id: "p_circuits_dc",
-                subject: "physics",
-                grade: "m6",
-                topic: "ไฟฟ้ากระแสตรง",
-                title: "กฎของโอห์ม กำลังไฟฟ้า และการต่อตัวต้านทาน",
-                formula: "V = IR, P = VI = I²R = V²/R, R_อนุกรม = ∑R, 1/R_ขนาน = ∑(1/R)",
-                displayMath: "V = I R, \\quad P = V I = I^2 R = \\frac{V^2}{R}, \\quad R_{parallel} = \\frac{R_1 R_2}{R_1 + R_2}",
-                vars: [
-                    { name: "V", desc: "ความต่างศักย์ไฟฟ้า (V)" },
-                    { name: "I", desc: "กระแสไฟฟ้า (A)" },
-                    { name: "R", desc: "ความต้านทาน (Ω)" },
-                    { name: "P", desc: "กำลังไฟฟ้า (W หรือ J/s)" }
-                ],
-                tip: "การต่ออนุกรม: กระแส I เท่ากันทั้งวงจร, การต่อขนาน: ความต่างศักย์ V เท่ากันทุกคร่อมขา"
-            },
-            {
-                id: "p_atomic_photoelectric",
-                subject: "physics",
-                grade: "m6",
-                topic: "ฟิสิกส์อะตอม",
-                title: "พลังงานโฟตอน & ปรากฏการณ์โฟโตอิเล็กทริก",
-                formula: "E = hf = hc/λ, E_k_max = hf - W_0 = e V_s",
-                displayMath: "E = h f = \\frac{h c}{\\lambda}, \\quad E_k^{max} = h f - W_0 = e V_s",
-                vars: [
-                    { name: "h", desc: "ค่าคงตัวของพลังค์ ≈ 6.626×10⁻³⁴ J·s" },
-                    { name: "W_0", desc: "ฟังก์ชันงานของโลหะ (Work Function)" },
-                    { name: "V_s", desc: "ความต่างศักย์หยุดยั้ง (Stopping Potential)" }
-                ],
-                tip: "อิเล็กตรอนจะหลุดออกมารูปโฟโตอิเล็กตรอนได้ก็ต่อเมื่อ ความถี่ของแสง hf ≥ W_0 (หรือ f ≥ f_0) เท่านั้น"
-            },
-            {
-                id: "p_nuclear_half_life",
-                subject: "physics",
-                grade: "m6",
-                topic: "ฟิสิกส์นิวเคลียร์",
-                title: "การสลายตัว radioactive & ครึ่งชีวิต & E = mc²",
-                formula: "N_t = N_0(1/2)^(t / T_1/2), ∆E = ∆m c²",
-                displayMath: "N(t) = N_0 \\left(\\frac{1}{2}\\right)^{\\frac{t}{T_{1/2}}}, \\quad E = \\Delta m c^2",
-                vars: [
-                    { name: "N_0, N_t", desc: "จำนวนนิวเคลียสเริ่มต้น และ ที่เหลืออยู่ ณ เวลา t" },
-                    { name: "T_1/2", desc: "ครึ่งชีวิต (Half-life)" },
-                    { name: "∆m", desc: "มวลพร่อง (Mass Defect: kg หรือ amu)" }
-                ],
-                tip: "แปลงมวลพร่อง 1 amu เป็นพลังงานยึดเหนี่ยวจะได้พลังงานประมาณ 931.5 MeV"
+                exampleProblem: 'เซลล์ไฟฟ้าประกอบด้วย Cu²⁺/Cu (E° = +0.34 V) และ Zn²⁺/Zn (E° = -0.76 V) จงหาค่า E°cell',
+                exampleSolution: 'แคโทด (Cu): +0.34 V (ค่ามากกว่า), แอโนด (Zn): -0.76 V\nE°cell = (+0.34) - (-0.76) = +1.10 โวลต์ (เกิดปฏิกิริยาได้เอง)'
             }
         ];
 
-        const TRICKS_DATA = [
-            {
-                title: "✋ เทคนิคใช้นิ้วมือจำค่าตรีโกณมิติ (30°, 45°, 60°)",
-                category: "คณิตศาสตร์ / ฟิสิกส์",
-                content: `
-                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-                        หงายฝ่ามือซ้ายขึ้นมา กำหนดให้นิ้วหัวแม่มือคือ 0°, นิ้วชี้ 30°, นิ้วกลาง 45°, นิ้วนาง 60°, นิ้วก้อย 90°
-                    </p>
-                    <div class="bg-slate-100 dark:bg-slate-900 p-3 rounded-xl text-xs space-y-2 font-mono">
-                        <p class="font-bold text-sky-600 dark:text-sky-400">สูตรจำ: √(นิ้วฝั่งที่ต้องการ) / 2</p>
-                        <ul class="list-disc pl-4 space-y-1">
-                            <li><strong>sin θ:</strong> นับจำนวนนิ้วทาง<b>ด้านซ้าย (ฝั่งนิ้วโป้ง)</b> ของนิ้วที่พับ</li>
-                            <li><strong>cos θ:</strong> นับจำนวนนิ้วทาง<b>ด้านขวา (ฝั่งนิ้วก้อย)</b> ของนิ้วที่พับ</li>
-                            <li><strong>tan θ:</strong> √(นิ้วฝั่งซ้าย) / √(นิ้วฝั่งขวา)</li>
-                        </ul>
-                    </div>
-                    <div class="mt-3 p-2.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-lg text-xs">
-                        💡 <strong>มุมยอดฮิตในฟิสิกส์:</strong><br>
-                        37° & 53° (สามเหลี่ยม 3-4-5): sin 37° = 3/5 (0.6), cos 37° = 4/5 (0.8), tan 37° = 3/4
-                    </div>
-                `
-            },
-            {
-                title: "🌉 แผนผังสะพานโมล (Mole Bridge Cheat Card)",
-                category: "เคมี",
-                content: `
-                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-                        เปลี่ยนหน่วยเคมีทุกอย่างให้ผ่าน **"โมล (n)"** เป็นจุดศูนย์กลางเสมอ!
-                    </p>
-                    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-                        <div class="p-2 bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 rounded-lg">
-                            <span class="font-bold text-sky-700 dark:text-sky-300">มวล (g) ↔ โมล (n)</span><br>
-                            g = n × MW<br>
-                            n = g / MW
-                        </div>
-                        <div class="p-2 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 rounded-lg">
-                            <span class="font-bold text-indigo-700 dark:text-indigo-300">อนุภาค (N) ↔ โมล (n)</span><br>
-                            N = n × 6.02×10²³<br>
-                            n = N / 6.02×10²³
-                        </div>
-                        <div class="p-2 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 rounded-lg">
-                            <span class="font-bold text-emerald-700 dark:text-emerald-300">ปริมาตรที่ STP ↔ โมล</span><br>
-                            V = n × 22.4 L<br>
-                            n = V / 22.4
-                        </div>
-                        <div class="p-2 bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-800 rounded-lg">
-                            <span class="font-bold text-purple-700 dark:text-purple-300">สารละลาย (C,V) ↔ โมล</span><br>
-                            n = (C × V_mL) / 1000<br>
-                            C = (n × 1000) / V
-                        </div>
-                    </div>
-                `
-            },
-            {
-                title: "🔍 เทคนิคเครื่องหมาย (+/-) เรื่องเลนส์และกระจก",
-                category: "ฟิสิกส์",
-                content: `
-                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-                        จำหลักการกำหนดเครื่องหมายในสูตร 1/f = 1/s + 1/s' เพื่อไม่ให้พลาดคะแนน:
-                    </p>
-                    <div class="space-y-2 text-xs">
-                        <div class="p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                            <strong>1. ความยาวโฟกัส (f):</strong><br>
-                            • โฟกัสบวก (+): <b>กระจกเว้า / เลนส์นูน</b> (รวมแสง)<br>
-                            • โฟกัสลบ (-): <b>กระจกนูน / เลนส์เว้า</b> (กระจายแสง)
-                        </div>
-                        <div class="p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
-                            <strong>2. ระยะภาพ (s') และ กำลังขยาย (m):</strong><br>
-                            • เป็นบวก (+): <b>ภาพจริง</b> (ตัดกันจริง หัวกลับ เกิดหน้ากระจก/หลังเลนส์)<br>
-                            • เป็นลบ (-): <b>ภาพเสมือน</b> (เสมือนตัด หัวตั้ง เกิดหลังกระจก/หน้าเลนส์)
-                        </div>
-                    </div>
-                `
-            },
-            {
-                title: "⚠️ Top 5 จุดโดนหลอกยอดฮิตในข้อสอบ A-Level / TPAT3",
-                category: "ข้อสอบจริง",
-                content: `
-                    <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300 list-disc pl-4">
-                        <li><strong>เรื่องแก๊ส (ฟิสิกส์/เคมี):</strong> อุณหภูมิ T ในสูตร PV=nRT หรือ (P1V1)/T1 ต้องเปลี่ยนเป็น Kelvin (K = °C + 273) เสมอ!</li>
-                        <li><strong>งานและพลังงาน:</strong> แรงที่ตั้งฉากกับการเคลื่อนที่ (θ = 90°) จะ **ไม่เกิดงาน** (W = 0) เช่น แรงแนวตั้งฉาก N หรือ แรงเข้าสู่ศูนย์กลาง Fc</li>
-                        <li><strong>เรื่องกรด-เบส:</strong> สารละลายกรดแก่เจือจางมากๆ (เช่น HCl 10⁻⁸ M) pH จะไม่เท่ากับ 8! (เพราะต้องคิด [H⁺] จากน้ำ 10⁻⁷ M ร่วมด้วย pH จะใกล้เคียง 6.98)</li>
-                        <li><strong>ไฟฟ้าสถิต:</strong> การหาศักย์ไฟฟ้า V เป็นสเกลาร์ **ต้องใส่เครื่องหมาย +,- ของประจุ** ลงในสูตรเสมอ! ต่างจากสนามไฟฟ้า E ที่คิดเฉพาะขนาด</li>
-                        <li><strong>แคลคูลัส:</strong> อย่าลืมบวกค่าคงตัว <b>+ C</b> ทุกครั้งเมื่อทำ อินทิกรัลไม่จำกัดเขต (Indefinite Integral)</li>
-                    </ul>
-                `
-            }
+        const symbolsData = [
+            // Arithmetic & Basics
+            { sym: '+', name: 'บวก (Plus)', mean: 'การรวมจำนวนสองจำนวนเข้าด้วยกัน', cat: 'การคำนวณพื้นฐาน', ex: '5 + 3 = 8' },
+            { sym: '-', name: 'ลบ (Minus)', mean: 'การหักออก หรือผลต่างของสองจำนวน', cat: 'การคำนวณพื้นฐาน', ex: '10 - 4 = 6' },
+            { sym: '×', name: 'คูณ (Multiply)', mean: 'การเพิ่มจำนวนเท่าๆ กันตามจำนวนคูณ', cat: 'การคำนวณพื้นฐาน', ex: '6 × 7 = 42' },
+            { sym: '÷', name: 'หาร (Divide)', mean: 'การแบ่งออกเป็นส่วนๆ เท่ากัน', cat: 'การคำนวณพื้นฐาน', ex: '20 ÷ 4 = 5' },
+            { sym: '±', name: 'บวกลบ (Plus-Minus)', mean: 'ค่าที่เป็นได้ทั้งบวกและลบ หรือช่วงค่าความคลาดเคลื่อน', cat: 'การคำนวณพื้นฐาน', ex: 'x = 5 ± 0.2, x = (-b ± √D)/2a' },
+            { sym: '=', name: 'เท่ากับ (Equals)', mean: 'ค่าสองข้างสมบูรณ์เท่ากัน', cat: 'การคำนวณพื้นฐาน', ex: '2 + 2 = 4' },
+            { sym: '≠', name: 'ไม่เท่ากับ (Not Equal)', mean: 'ค่าสองข้างไม่เท่ากัน', cat: 'การคำนวณพื้นฐาน', ex: '5 ≠ 3' },
+            { sym: '≈', name: 'ประมาณเท่ากับ (Approximately Equal)', mean: 'ค่าใกล้เคียงกันโดยประมาณ', cat: 'การคำนวณพื้นฐาน', ex: 'π ≈ 3.14159' },
+            { sym: '≡', name: 'สมกรูเอนท์ / เอกลักษณ์ (Congruent / Identical)', mean: 'เท่ากันทุกประการ หรือเป็นเอกลักษณ์ทางคณิตศาสตร์', cat: 'การคำนวณพื้นฐาน', ex: 'A ≡ B, sin²θ + cos²θ ≡ 1' },
+            { sym: '<', name: 'น้อยกว่า (Less Than)', mean: 'ค่าทางซ้ายน้อยกว่าค่าทางขวา', cat: 'การคำนวณพื้นฐาน', ex: '3 < 8' },
+            { sym: '>', name: 'มากกว่า (Greater Than)', mean: 'ค่าทางซ้ายมากกว่าค่าทางขวา', cat: 'การคำนวณพื้นฐาน', ex: '10 > 2' },
+            { sym: '≤', name: 'น้อยกว่าหรือเท่ากับ', mean: 'ค่าทางซ้ายไม่เกินค่าทางขวา', cat: 'การคำนวณพื้นฐาน', ex: 'x ≤ 10' },
+            { sym: '≥', name: 'มากกว่าหรือเท่ากับ', mean: 'ค่าทางซ้ายไม่น้อยกว่าค่าทางขวา', cat: 'การคำนวณพื้นฐาน', ex: 'x ≥ 0' },
+            { sym: '√', name: 'รากที่สอง (Square Root)', mean: 'จำนวนที่คูณตัวเองแล้วได้ค่าในเครื่องหมาย', cat: 'การคำนวณพื้นฐาน', ex: '√16 = 4' },
+            { sym: '∛', name: 'รากที่สาม (Cube Root)', mean: 'จำนวนที่คูณกันสามครั้งแล้วได้ค่าในเครื่องหมาย', cat: 'การคำนวณพื้นฐาน', ex: '∛27 = 3' },
+            { sym: '%', name: 'เปอร์เซ็นต์ (Percent)', mean: 'อัตราส่วนต่อร้อย', cat: 'การคำนวณพื้นฐาน', ex: '50% = 0.5' },
+            { sym: '!', name: 'แฟกทอเรียล (Factorial)', mean: 'ผลคูณของจำนวนเต็มบวกตั้งแต่ 1 ถึง n', cat: 'การคำนวณพื้นฐาน', ex: '5! = 5×4×3×2×1 = 120' },
+            { sym: '|x|', name: 'ค่าสัมบูรณ์ (Absolute Value)', mean: 'ระยะห่างจากศูนย์บนเส้นจำนวน (ค่าเป็นบวกเสมอ)', cat: 'การคำนวณพื้นฐาน', ex: '|-7| = 7' },
+            { sym: '⌊x⌋', name: 'ฟังก์ชันปัดลง (Floor Function)', mean: 'จำนวนเต็มที่มากที่สุดที่ไม่เกิน x', cat: 'การคำนวณพื้นฐาน', ex: '⌊3.8⌋ = 3' },
+            { sym: '⌈x⌉', name: 'ฟังก์ชันปัดขึ้น (Ceiling Function)', mean: 'จำนวนเต็มที่น้อยที่สุดที่ไม่น้อยกว่า x', cat: 'การคำนวณพื้นฐาน', ex: '⌈3.1⌉ = 4' },
+
+            // Geometry & Sets
+            { sym: 'π', name: 'พาย (Pi)', mean: 'อัตราส่วนเส้นรอบวงต่อเส้นผ่านศูนย์กลางวงกลม (≈ 3.14159 หรือ 22/7)', cat: 'เรขาคณิตและเซต', ex: 'พื้นที่วงกลม A = π r²' },
+            { sym: '∞', name: 'อนันต์ (Infinity)', mean: 'แนวคิดของค่าที่มากอย่างไม่มีที่สิ้นสุด', cat: 'เรขาคณิตและเซต', ex: 'lim (1/x) เมื่อ x → 0⁺ = ∞' },
+            { sym: '∈', name: 'เป็นสมาชิกของ (Element Of)', mean: 'สมาชิกตัวนั้นอยู่ในเซต', cat: 'เรขาคณิตและเซต', ex: '2 ∈ ℕ' },
+            { sym: '∉', name: 'ไม่เป็นสมาชิกของ (Not Element Of)', mean: 'สมาชิกตัวนั้นไม่อยู่ในเซต', cat: 'เรขาคณิตและเซต', ex: '-3 ∉ ℕ' },
+            { sym: '⊂', name: 'เป็นซับเซตแท้ (Proper Subset)', mean: 'ทุกสมาชิกของเซตแรกอยู่ในเซตหลัง และไม่เท่ากัน', cat: 'เรขาคณิตและเซต', ex: '{1} ⊂ {1, 2}' },
+            { sym: '⊆', name: 'เป็นซับเซต (Subset)', mean: 'ทุกสมาชิกของเซตแรกอยู่ในเซตหลัง', cat: 'เรขาคณิตและเซต', ex: 'A ⊆ B' },
+            { sym: '∪', name: 'ยูเนียน (Union)', mean: 'การรวมสมาชิกของทุกเซตเข้าด้วยกัน', cat: 'เรขาคณิตและเซต', ex: '{1,2} ∪ {2,3} = {1,2,3}' },
+            { sym: '∩', name: 'อินเตอร์เซกชัน (Intersection)', mean: 'เอาเฉพาะสมาชิกที่ซ้ำกันของเซต', cat: 'เรขาคณิตและเซต', ex: '{1,2} ∩ {2,3} = {2}' },
+            { sym: '∅', name: 'เซตว่าง (Empty Set)', mean: 'เซตที่ไม่มีสมาชิกอยู่เลย', cat: 'เรขาคณิตและเซต', ex: '{x | x² = -1, x∈ℝ} = ∅' },
+            { sym: 'ℝ', name: 'เซตจำนวนจริง (Real Numbers)', mean: 'เซตของจำนวนตรรกยะและอตรรกยะทั้งหมด', cat: 'เรขาคณิตและเซต', ex: 'π ∈ ℝ, -5 ∈ ℝ' },
+            { sym: 'ℤ', name: 'เซตจำนวนเต็ม (Integers)', mean: 'เซตจำนวนเต็มลบ ศูนย์ และเต็มบวก {..., -2, -1, 0, 1, 2, ...}', cat: 'เรขาคณิตและเซต', ex: '-10 ∈ ℤ' },
+            { sym: 'ℕ', name: 'เซตจำนวนนับ (Natural Numbers)', mean: 'เซตจำนวนเต็มบวก {1, 2, 3, 4, ...}', cat: 'เรขาคณิตและเซต', ex: '5 ∈ ℕ' },
+
+            // Calculus & Logic
+            { sym: '∑', name: 'ซิกมา / ผลรวม (Sigma / Summation)', mean: 'การบวกสะสมค่าของลำดับตัวเลข', cat: 'แคลคูลัสและตรรกศาสตร์', ex: '∑ i (i=1 ถึง 5) = 1+2+3+4+5 = 15' },
+            { sym: '∏', name: 'ไพ / ผลคูณ (Pi / Product)', mean: 'การคูณสะสมค่าของลำดับตัวเลข', cat: 'แคลคูลัสและตรรกศาสตร์', ex: '∏ i (i=1 ถึง 4) = 1×2×3×4 = 24' },
+            { sym: 'lim', name: 'ลิมิต (Limit)', mean: 'ค่าของฟังก์ชันเมื่อตัวแปรเข้าใกล้จุดใดจุดหนึ่ง', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'lim(x→2) x² = 4' },
+            { sym: 'dy/dx', name: 'อนุพันธ์ (Derivative)', mean: 'อัตราการเปลี่ยนแปลงของ y เทียบกับ x', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'd/dx (x³) = 3x²' },
+            { sym: '∫', name: 'ปริพันธ์ / อินทิกรัล (Integral)', mean: 'การหาพื้นที่ใต้กราฟ หรือฟังก์ชันย้อนกลับของอนุพันธ์', cat: 'แคลคูลัสและตรรกศาสตร์', ex: '∫ x dx = x²/2 + C' },
+            { sym: 'Δ', name: 'เดลตา / ผลต่าง (Delta)', mean: 'การเปลี่ยนแปลงของค่าตัวแปร (ค่าหลัง - ค่าแรก)', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'Δv = v_final - v_initial' },
+            { sym: '∀', name: 'สำหรับทุกตัว (For All)', mean: 'ตัวบ่งปริมาณ หมายถึง สมาชิกทุกตัวในเอกภพสัมพัทธ์', cat: 'แคลคูลัสและตรรกศาสตร์', ex: '∀x [x² ≥ 0]' },
+            { sym: '∃', name: 'มีอย่างน้อยหนึ่งตัว (There Exists)', mean: 'ตัวบ่งปริมาณ หมายถึง มีสมาชิกอย่างน้อยหนึ่งตัว', cat: 'แคลคูลัสและตรรกศาสตร์', ex: '∃x [x + 2 = 5]' },
+            { sym: '∧', name: 'และ (Logical AND)', mean: 'ตัวเชื่อมประพจน์ เป็นจริงเมื่อทั้งสองข้างเป็นจริง', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'P ∧ Q' },
+            { sym: '∨', name: 'หรือ (Logical OR)', mean: 'ตัวเชื่อมประพจน์ เป็นจริงเมื่อมีฝ่ายใดฝ่ายหนึ่งเป็นจริง', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'P ∨ Q' },
+            { sym: '⇒', name: 'ถ้า...แล้ว... (Implies)', mean: 'ถ้าประพจน์หน้าเป็นจริง แล้วประพจน์หลังต้องเป็นจริง', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'P ⇒ Q' },
+            { sym: '⇔', name: 'ก็ต่อเมื่อ (If and Only If)', mean: 'สมกรูเอนท์ทางตรรกศาสตร์ มีค่าความจริงเหมือนกัน', cat: 'แคลคูลัสและตรรกศาสตร์', ex: 'P ⇔ Q' },
+
+            // Matrices & Vectors
+            { sym: 'det(A)', name: 'ดีเทอร์มิแนนต์ (Determinant)', mean: 'สเกลาร์ค่าเฉพาะของเมทริกซ์จัตุรัส', cat: 'เมทริกซ์และเวกเตอร์', ex: 'det([1 0; 0 1]) = 1' },
+            { sym: 'A⁻¹', name: 'เมทริกซ์ผกผัน (Inverse Matrix)', mean: 'เมทริกซ์ที่คูณกับ A แล้วได้เมทริกซ์เอกลักษณ์ (A A⁻¹ = I)', cat: 'เมทริกซ์และเวกเตอร์', ex: 'A × A⁻¹ = I' },
+            { sym: '•', name: 'ดอตโปรดักต์ (Dot Product)', mean: 'ผลคูณแบบสเกลาร์ของสองเวกเตอร์', cat: 'เมทริกซ์และเวกเตอร์', ex: 'u • v = |u||v|cosθ' },
+            { sym: '×', name: 'ครอสโปรดักต์ (Cross Product)', mean: 'ผลคูณแบบเวกเตอร์ของสองเวกเตอร์ ได้เวกเตอร์ที่ตั้งฉาก', cat: 'เมทริกซ์และเวกเตอร์', ex: 'u × v' },
+
+            // Physics Constants & Variables
+            { sym: 'c', name: 'ความเร็วแสงในสุญญากาศ', mean: 'ค่าคงที่ฟิสิกส์ ≈ 2.998 × 10⁸ m/s (ประมาณ 3 × 10⁸ m/s)', cat: 'ค่าคงที่ฟิสิกส์', ex: 'E = mc²' },
+            { sym: 'g', name: 'ความเร่งเนื่องจากแรงโน้มถ่วง', mean: 'ความเร่งของวัตถุที่ตกอิสระบนโลก ≈ 9.80665 m/s² (หรือ 10 m/s²)', cat: 'ค่าคงที่ฟิสิกส์', ex: 'W = mg' },
+            { sym: 'G', name: 'ค่าคงที่โน้มถ่วงสากล', mean: 'ค่าคงที่ของนิวตัน ≈ 6.674 × 10⁻¹¹ N·m²/kg²', cat: 'ค่าคงที่ฟิสิกส์', ex: 'F = G(m1 m2)/r²' },
+            { sym: 'h', name: 'ค่าคงที่ของพลังค์ (Planck Constant)', mean: 'ค่าคงที่ทางควอนตัม ≈ 6.626 × 10⁻³⁴ J·s', cat: 'ค่าคงที่ฟิสิกส์', ex: 'E = hf' },
+            { sym: 'N_A', name: 'เลขอาโวกาโดร (Avogadro Constant)', mean: 'จำนวนอนุภาคในสาร 1 โมล = 6.022 × 10²³ mol⁻¹', cat: 'ค่าคงที่ฟิสิกส์', ex: 'N = n × N_A' },
+            { sym: 'R', name: 'ค่าคงที่แก๊สสากล (Gas Constant)', mean: 'ค่าคงที่ของแก๊ส = 8.314 J/(mol·K) หรือ 0.0821 L·atm/(mol·K)', cat: 'ค่าคงที่ฟิสิกส์', ex: 'PV = nRT' },
+            { sym: 'e', name: 'ประจุพื้นฐานของอิเล็กตรอน', mean: 'ประจุไฟฟ้าของอิเล็กตรอน 1 ตัว = 1.602 × 10⁻¹⁹ C', cat: 'ค่าคงที่ฟิสิกส์', ex: 'q = ne' },
+
+            // Chemical Symbols
+            { sym: 'pH', name: 'ดรรชนีความเป็นกรด-เบส', mean: 'ค่าแสดงความเข้มข้นของ H⁺ ในสารละลาย (-log[H⁺])', cat: 'สัญลักษณ์ทางเคมี', ex: 'pH 7 = สะอาดเป็นกลาง, pH < 7 = กรด' },
+            { sym: 'pOH', name: 'ดรรชนีความเป็นเบส', mean: 'ค่าแสดงความเข้มข้นของ OH⁻ ในสารละลาย (-log[OH⁻])', cat: 'สัญลักษณ์ทางเคมี', ex: 'pH + pOH = 14' },
+            { sym: 'ΔH', name: 'เอนทัลปีของปฏิกิริยา (Enthalpy Change)', mean: 'ความร้อนที่ดูดหรือคายออกในปฏิกิริยาเคมี', cat: 'สัญลักษณ์ทางเคมี', ex: 'ΔH < 0 (คายความร้อน), ΔH > 0 (ดูดความร้อน)' },
+            { sym: 'K_eq', name: 'ค่าคงที่สมดุลเคมี', mean: 'อัตราส่วนสารผลิตภัณฑ์ต่อสารตั้งต้น ณ จุดสมดุล', cat: 'สัญลักษณ์ทางเคมี', ex: 'Kc, Kp' },
+            { sym: 'antilog', name: 'แอนติลอการิทึม (Antilogarithm)', mean: 'ฟังก์ชันย้อนกลับของ log เช่น antilog(x) = 10^x', cat: 'สัญลักษณ์ทางเคมี', ex: '[H⁺] = antilog(-pH) = 10^(-pH)' },
+
+            // Greek Alphabet
+            { sym: 'α', name: 'อัลฟา (Alpha)', mean: 'ใช้แทนมุม, รังสีอัลฟา, หรือความเร่งเชิงมุม', cat: 'อักษรกรีก', ex: 'รังสี α (นิวเคลียสฮีเลียม)' },
+            { sym: 'β', name: 'เบตา (Beta)', mean: 'ใช้แทนมุม, รังสีเบตา (อิเล็กตรอน), ความดังเสียง', cat: 'อักษรกรีก', ex: 'ระดับเสียง β = 10 log(I/I₀)' },
+            { sym: 'γ', name: 'แกมมา (Gamma)', mean: 'ใช้แทนรังสีแกมมา (คลื่นแม่เหล็กไฟฟ้าพลังงานสูง)', cat: 'อักษรกรีก', ex: 'รังสี γ' },
+            { sym: 'θ', name: 'ธีตา (Theta)', mean: 'ใช้แทนขนาดของมุมทางเรขาคณิตและตรีโกณมิติ', cat: 'อักษรกรีก', ex: 'sin(θ)' },
+            { sym: 'λ', name: 'แลมบ์ดา (Lambda)', mean: 'ใช้แทนความยาวคลื่น หรือค่าคงที่การสลายตัวนิวเคลียร์', cat: 'อักษรกรีก', ex: 'v = fλ' },
+            { sym: 'μ', name: 'มิว (Mu)', mean: 'ใช้แทนสัมประสิทธิ์ความเสียดทาน หรือคำนำหน้าไมโคร (10⁻⁶)', cat: 'อักษรกรีก', ex: 'f = μN, 1 μm = 10⁻⁶ m' },
+            { sym: 'ρ', name: 'โร (Rho)', mean: 'ใช้แทนความหนาแน่นของสาร (มวล/ปริมาตร) หรือความต้านทานไฟฟ้าจำเพาะ', cat: 'อักษรกรีก', ex: 'ρ = m / V' },
+            { sym: 'σ', name: 'ซิกมาตัวเล็ก (Sigma)', mean: 'ใช้แทนส่วนเบี่ยงเบนมาตรฐาน หรือความเค้น (Stress)', cat: 'อักษรกรีก', ex: 'σ = F / A' },
+            { sym: 'τ', name: 'ทอร์ก (Torque / Tau)', mean: 'แรงบิดที่ทำให้วัตถุหมุนรอบแกน', cat: 'อักษรกรีก', ex: 'τ = r × F' },
+            { sym: 'Ω', name: 'โอเมก้าตัวใหญ่ (Omega)', name: 'หน่วยความต้านทานไฟฟ้า (โอห์ม)', cat: 'อักษรกรีก', ex: 'R = 10 Ω' },
+            { sym: 'ω', name: 'โอเมก้าตัวเล็ก (Omega)', mean: 'ความเร็วเชิงมุม (Angular velocity)', cat: 'อักษรกรีก', ex: 'ω = 2πf' }
         ];
 
-        const ALL_FORMULAS = [...MATH_FORMULAS, ...CHEM_FORMULAS, ...PHYSICS_FORMULAS];
-
-        function calculateExponent() {
-            const base = parseFloat(document.getElementById('calcBase').value) || 0;
-            const exp = parseFloat(document.getElementById('calcExp').value) || 0;
-            const powVal = Math.pow(base, exp);
-            const rootVal = exp !== 0 ? Math.pow(base, 1 / exp) : 0;
-            
-            document.getElementById('calcExpResult').innerHTML = `
-                ผลลัพธ์: <br>
-                • ${base}<sup>${exp}</sup> = <strong>${powVal.toLocaleString(undefined, {maximumFractionDigits: 6})}</strong><br>
-                • รากที่ ${exp} ของ ${base} (<sup>${exp}</sup>√${base}) = <strong>${rootVal.toLocaleString(undefined, {maximumFractionDigits: 6})}</strong>
-            `;
-        }
-
-        function calcLog() {
-            const val = parseFloat(document.getElementById('calcLogInput').value);
-            if (val <= 0) {
-                document.getElementById('calcLogResult').innerHTML = '<span class="text-red-500">❌ ค่า X ต้องมากกว่า 0</span>';
-                return;
-            }
-            const res = Math.log10(val);
-            const lnRes = Math.log(val);
-            document.getElementById('calcLogResult').innerHTML = `
-                • log₁₀(${val}) = <strong>${res.toFixed(6)}</strong><br>
-                • ln(${val}) = <strong>${lnRes.toFixed(6)}</strong>
-            `;
-        }
-
-        function calcAntilog() {
-            const val = parseFloat(document.getElementById('calcLogInput').value);
-            const res = Math.pow(10, val);
-            document.getElementById('calcLogResult').innerHTML = `
-                • Antilog(${val}) = 10<sup>${val}</sup> = <strong>${res.toLocaleString(undefined, {maximumFractionDigits: 6})}</strong>
-            `;
-        }
-
-        function populateTables() {
-            // Populate Powers table
-            const pBody = document.getElementById('powersTableBody');
-            let pHTML = '';
-            for (let n = 1; n <= 15; n++) {
-                pHTML += `
-                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                        <td class="p-2 font-bold text-sky-600 dark:text-sky-400">${n}</td>
-                        <td class="p-2">${n*n}</td>
-                        <td class="p-2">${n*n*n}</td>
-                        <td class="p-2">${Math.pow(2, n)}</td>
-                        <td class="p-2">${Math.pow(3, n)}</td>
-                        <td class="p-2">${Math.pow(5, n)}</td>
-                        <td class="p-2">${Math.pow(10, n).toLocaleString()}</td>
-                    </tr>
-                `;
-            }
-            pBody.innerHTML = pHTML;
-
-            // Populate Log table
-            const lBody = document.getElementById('logTableBody');
-            let lHTML = '';
-            for (let i = 10; i <= 55; i += 3) {
-                const x1 = (i / 10).toFixed(1);
-                const log1 = Math.log10(x1).toFixed(4);
-                const x2 = ((i + 45) / 10).toFixed(1);
-                const log2 = Math.log10(x2).toFixed(4);
-
-                lHTML += `
-                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                        <td class="p-2 font-bold text-indigo-600 dark:text-indigo-400">${x1}</td>
-                        <td class="p-2">${log1}</td>
-                        <td class="p-2 font-bold text-indigo-600 dark:text-indigo-400">${x2}</td>
-                        <td class="p-2">${log2}</td>
-                    </tr>
-                `;
-            }
-            lBody.innerHTML = lHTML;
-        }
-
-        function renderFormulas() {
-            const grid = document.getElementById('formulasGrid');
-            const emptyState = document.getElementById('emptyFormulas');
-
-            let filtered = ALL_FORMULAS.filter(item => {
-                // Category Filter
-                if (state.activeTab === 'math' && item.subject !== 'math') return false;
-                if (state.activeTab === 'chem' && item.subject !== 'chem') return false;
-                if (state.activeTab === 'physics' && item.subject !== 'physics') return false;
-                if (state.activeTab === 'bookmarks' && !state.bookmarks.includes(item.id)) return false;
-
-                // Grade Filter
-                if (state.gradeFilter !== 'all' && item.grade !== state.gradeFilter) return false;
-
-                // Search Query Filter
-                if (state.searchQuery.trim() !== '') {
-                    const q = state.searchQuery.toLowerCase();
-                    const matchTitle = item.title.toLowerCase().includes(q);
-                    const matchTopic = item.topic.toLowerCase().includes(q);
-                    const matchFormula = item.formula.toLowerCase().includes(q);
-                    const matchVars = item.vars.some(v => v.name.toLowerCase().includes(q) || v.desc.toLowerCase().includes(q));
-                    return matchTitle || matchTopic || matchFormula || matchVars;
-                }
-
-                return true;
-            });
-
-            document.getElementById('totalCountBadge').textContent = `${filtered.length} รายการ`;
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                if (state.activeTab === 'bookmarks') {
-                    emptyState.classList.add('hidden');
-                    document.getElementById('bookmarksEmpty').classList.remove('hidden');
+        function navigateTo(pageId) {
+            currentTab = pageId;
+            const pages = ['home', 'math', 'physics', 'chemistry', 'symbols'];
+            pages.forEach(p => {
+                const el = document.getElementById(`page-${p}`);
+                const navBtn = document.getElementById(`nav-${p}`);
+                if (p === pageId) {
+                    el.classList.remove('hidden');
+                    if (navBtn) {
+                        navBtn.className = "nav-btn px-3 py-2 rounded-lg text-sm font-medium transition-all text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50 font-bold";
+                    }
                 } else {
-                    document.getElementById('bookmarksEmpty').classList.add('hidden');
+                    el.classList.add('hidden');
+                    if (navBtn) {
+                        navBtn.className = "nav-btn px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+                    }
                 }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('f4us_theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+                updateThemeIcon(true);
+            } else {
+                document.documentElement.classList.remove('dark');
+                updateThemeIcon(false);
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('f4us_theme', isDark ? 'dark' : 'light');
+            updateThemeIcon(isDark);
+            showToast(isDark ? 'เปลี่ยนเป็นโหมดกลางคืน (Dark Mode)' : 'เปลี่ยนเป็นโหมดสว่าง (Light Mode)');
+        }
+
+        function updateThemeIcon(isDark) {
+            const icon = document.getElementById('theme-icon');
+            if (isDark) {
+                icon.className = 'fa-solid fa-sun text-lg text-amber-400';
+            } else {
+                icon.className = 'fa-solid fa-moon text-lg text-slate-600';
+            }
+        }
+
+        // Online/Offline Detection
+        function initNetworkStatus() {
+            const updateStatus = () => {
+                const badge = document.getElementById('status-badge');
+                const text = document.getElementById('status-text');
+                if (navigator.onLine) {
+                    badge.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800";
+                    text.textContent = 'ออนไลน์';
+                } else {
+                    badge.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-950/80 dark:text-amber-400 border border-amber-200 dark:border-amber-800";
+                    text.textContent = 'ออฟไลน์ (ใช้งานได้ปกติ)';
+                }
+            };
+            window.addEventListener('online', updateStatus);
+            window.addEventListener('offline', updateStatus);
+            updateStatus();
+        }
+
+        function handleGlobalSearch(query) {
+            const q = query.trim().toLowerCase();
+            const container = document.getElementById('search-results-container');
+            const list = document.getElementById('search-results-list');
+            const countBadge = document.getElementById('search-count');
+            const clearBtn = document.getElementById('clear-search-btn');
+
+            if (!q) {
+                container.classList.add('hidden');
+                clearBtn.classList.add('hidden');
                 return;
             }
 
-            emptyState.classList.add('hidden');
-            document.getElementById('bookmarksEmpty').classList.add('hidden');
+            clearBtn.classList.remove('hidden');
+            container.classList.remove('hidden');
 
-            grid.innerHTML = filtered.map(item => {
-                const isBookmarked = state.bookmarks.includes(item.id);
-                const subjectBadge = item.subject === 'math' ? '📐 คณิต' : (item.subject === 'chem' ? '🧪 เคมี' : '⚡ ฟิสิกส์');
-                const subjectColor = item.subject === 'math' ? 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border-blue-200 dark:border-blue-800' :
-                                    (item.subject === 'chem' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' :
-                                    'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border-amber-200 dark:border-amber-800');
+            const mathHits = mathData.filter(d => d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.formula.toLowerCase().includes(q));
+            const physHits = physicsData.filter(d => d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.formula.toLowerCase().includes(q));
+            const chemHits = chemData.filter(d => d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.formula.toLowerCase().includes(q));
+            const symHits = symbolsData.filter(s => s.name.toLowerCase().includes(q) || s.sym.toLowerCase().includes(q) || s.mean.toLowerCase().includes(q));
 
-                return `
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4">
-                        <div>
-                            <!-- Card Header Badges -->
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="px-2.5 py-0.5 rounded-md text-xs font-semibold border ${subjectColor}">
-                                        ${subjectBadge}
-                                    </span>
-                                    <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 uppercase">
-                                        ${item.grade.toUpperCase()}
-                                    </span>
-                                </div>
-                                
-                                <button onclick="toggleBookmark('${item.id}')" class="text-lg p-1 hover:scale-125 transition" title="${isBookmarked ? 'ยกเลิกการบันทึก' : 'บันทึกสูตร'}">
-                                    ${isBookmarked ? '⭐' : '☆'}
-                                </button>
-                            </div>
+            const total = mathHits.length + physHits.length + chemHits.length + symHits.length;
+            countBadge.textContent = `${total} รายการ`;
 
-                            <h3 class="font-bold text-base text-slate-900 dark:text-slate-100">
-                                ${item.title}
-                            </h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                                บทเรียน: ${item.topic}
-                            </p>
+            if (total === 0) {
+                list.innerHTML = `<div class="col-span-full py-8 text-center text-slate-400 text-sm">ไม่พบข้อมูลที่ตรงกับคำค้นหา "${query}"</div>`;
+                return;
+            }
 
-                            <!-- Formula Expression Box -->
-                            <div class="mt-3 p-3.5 bg-slate-50 dark:bg-slate-900/80 rounded-xl border border-slate-200/80 dark:border-slate-700/80 text-center relative group">
-                                <div class="font-mono font-bold text-base sm:text-lg text-sky-700 dark:text-sky-300 tracking-wide overflow-x-auto py-1">
-                                    ${item.formula}
-                                </div>
-                                <button onclick="copyToClipboard('${item.formula}')" class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs px-2 py-1 rounded shadow text-slate-600 dark:text-slate-300 transition">
-                                    📋 คัดลอก
-                                </button>
-                            </div>
-
-                            <!-- Variables List -->
-                            <div class="mt-3 space-y-1 text-xs">
-                                <span class="font-semibold text-slate-500 dark:text-slate-400">ความหมายสัญลักษณ์ตัวแปร:</span>
-                                <ul class="space-y-1 text-slate-600 dark:text-slate-300 pl-1">
-                                    ${item.vars.map(v => `
-                                        <li class="flex items-start gap-1.5">
-                                            <span class="font-mono font-bold text-sky-600 dark:text-sky-400 whitespace-nowrap">• ${v.name}:</span>
-                                            <span>${v.desc}</span>
-                                        </li>
-                                    `).join('')}
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Exam Tip Box -->
-                        ${item.tip ? `
-                            <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 text-xs text-amber-800 dark:text-amber-300 bg-amber-50/60 dark:bg-amber-950/30 p-2.5 rounded-lg border border-amber-200/50 dark:border-amber-800/40">
-                                <span class="font-bold">💡 เคล็ดลับ/ข้อสอบ:</span> ${item.tip}
-                            </div>
-                        ` : ''}
+            let html = '';
+            mathHits.forEach(item => html += renderQuickResultCard(item, 'คณิตศาสตร์', 'blue', 'math'));
+            physHits.forEach(item => html += renderQuickResultCard(item, 'ฟิสิกส์', 'purple', 'physics'));
+            chemHits.forEach(item => html += renderQuickResultCard(item, 'เคมี', 'emerald', 'chemistry'));
+            symHits.forEach(item => {
+                html += `
+                <div onclick="navigateTo('symbols'); filterSymbols('${item.sym}')" class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-amber-500 cursor-pointer transition-all">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xl font-bold text-amber-600 dark:text-amber-400 font-mono">${escapeHtml(item.sym)}</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-semibold">สัญลักษณ์</span>
                     </div>
-                `;
-            }).join('');
-        }
-
-        function renderSymbols() {
-            const grid = document.getElementById('symbolsGrid');
-            const q = state.searchQuery.toLowerCase();
-
-            const filtered = SYMBOLS_DATA.filter(item => {
-                if (state.symbolFilter !== 'all' && item.level !== state.symbolFilter) return false;
-                if (q !== '') {
-                    return item.sym.toLowerCase().includes(q) || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
-                }
-                return true;
+                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-100">${escapeHtml(item.name)}</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">${escapeHtml(item.mean)}</p>
+                </div>`;
             });
 
-            grid.innerHTML = filtered.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 shadow-sm hover:border-sky-400 transition space-y-2">
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold font-mono text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 px-3 py-1 rounded-lg border border-sky-200 dark:border-sky-800">
-                            ${item.sym}
-                        </span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 uppercase">
-                            ${item.level}
-                        </span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-100">${item.name}</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">${item.desc}</p>
-                    </div>
-                    <div class="text-xs bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800 font-mono text-slate-500">
-                        ตัวอย่าง: <span class="text-slate-800 dark:text-slate-200 font-semibold">${item.eg}</span>
-                    </div>
+            list.innerHTML = html;
+        }
+
+        function clearGlobalSearch() {
+            document.getElementById('global-search').value = '';
+            document.getElementById('search-results-container').classList.add('hidden');
+            document.getElementById('clear-search-btn').classList.add('hidden');
+        }
+
+        function renderQuickResultCard(item, subjectLabel, color, targetPage) {
+            return `
+            <div onclick="navigateTo('${targetPage}')" class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-${color}-500 cursor-pointer transition-all">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-${color}-600 dark:text-${color}-400">${item.title}</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-${color}-100 text-${color}-800 dark:bg-${color}-950 dark:text-${color}-300 font-semibold">${subjectLabel}</span>
                 </div>
-            `).join('');
-        }
-
-        function renderTricks() {
-            const grid = document.getElementById('tricksGrid');
-            grid.innerHTML = TRICKS_DATA.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm space-y-3">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-bold text-base text-slate-900 dark:text-slate-100">${item.title}</h3>
-                        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-                            ${item.category}
-                        </span>
-                    </div>
-                    <div>${item.content}</div>
+                <div class="font-mono text-xs text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 p-2 rounded-lg my-2 border border-slate-200 dark:border-slate-700 font-semibold">
+                    ${escapeHtml(item.formula)}
                 </div>
-            `).join('');
+                <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${escapeHtml(item.desc)}</p>
+            </div>`;
         }
 
-        function setActiveTab(tab) {
-            state.activeTab = tab;
-            
-            // Update Tab UI
-            document.querySelectorAll('.nav-tab').forEach(btn => {
-                btn.classList.remove('bg-sky-600', 'text-white', 'shadow-md', 'dark:bg-sky-500');
-                btn.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+        function switchCalcTab(tab) {
+            document.querySelectorAll('.calc-tab-btn').forEach(btn => {
+                btn.className = "calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors";
             });
+            document.querySelectorAll('.calc-panel').forEach(p => p.classList.add('hidden'));
 
-            const activeBtn = document.getElementById(`tab-${tab}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
-                activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow-md', 'dark:bg-sky-500');
-            }
+            const activeBtn = document.getElementById(`calc-tab-${tab}`);
+            const activePanel = document.getElementById(`calc-panel-${tab}`);
 
-            // Hide/Show Views
-            const formulasView = document.getElementById('formulasView');
-            const symbolsView = document.getElementById('symbolsView');
-            const tablesView = document.getElementById('tablesView');
-            const tricksView = document.getElementById('tricksView');
-            const gradeFilterBar = document.getElementById('gradeFilterBar');
-
-            formulasView.classList.add('hidden');
-            symbolsView.classList.add('hidden');
-            tablesView.classList.add('hidden');
-            tricksView.classList.add('hidden');
-            gradeFilterBar.classList.remove('hidden');
-
-            if (['all', 'math', 'chem', 'physics', 'bookmarks'].includes(tab)) {
-                formulasView.classList.remove('hidden');
-                let title = 'สูตรทั้งหมด (ม.1 - ม.6)';
-                if (tab === 'math') title = '📐 สูตรคณิตศาสตร์ (ม.1 - ม.6)';
-                if (tab === 'chem') title = '🧪 สูตรเคมี (ม.1 - ม.6)';
-                if (tab === 'physics') title = '⚡ สูตรฟิสิกส์ (ม.1 - ม.6)';
-                if (tab === 'bookmarks') {
-                    title = '⭐ สูตรที่บันทึกไว้';
-                    gradeFilterBar.classList.add('hidden');
-                }
-                document.getElementById('sectionTitle').textContent = title;
-                renderFormulas();
-            } else if (tab === 'symbols') {
-                symbolsView.classList.remove('hidden');
-                gradeFilterBar.classList.add('hidden');
-                renderSymbols();
-            } else if (tab === 'tables') {
-                tablesView.classList.remove('hidden');
-                gradeFilterBar.classList.add('hidden');
-            } else if (tab === 'tricks') {
-                tricksView.classList.remove('hidden');
-                gradeFilterBar.classList.add('hidden');
-                renderTricks();
+            if (activeBtn && activePanel) {
+                activeBtn.className = "calc-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white shadow-sm transition-colors";
+                activePanel.classList.remove('hidden');
             }
         }
 
-        function setGradeFilter(grade) {
-            state.gradeFilter = grade;
-            document.querySelectorAll('.grade-pill').forEach(btn => {
-                btn.classList.remove('bg-slate-800', 'text-white', 'dark:bg-slate-200', 'dark:text-slate-900');
-                btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-            });
-            const activeBtn = document.getElementById(`grade-${grade}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-                activeBtn.classList.add('bg-slate-800', 'text-white', 'dark:bg-slate-200', 'dark:text-slate-900');
-            }
-            renderFormulas();
-        }
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('quad-a').value);
+            const b = parseFloat(document.getElementById('quad-b').value);
+            const c = parseFloat(document.getElementById('quad-c').value);
+            const resEl = document.getElementById('quad-result');
 
-        function setSymbolFilter(lvl) {
-            state.symbolFilter = lvl;
-            document.querySelectorAll('.sym-filter').forEach(btn => {
-                btn.classList.remove('bg-sky-600', 'text-white');
-                btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-            });
-            const activeBtn = document.getElementById(`sym-${lvl}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-                activeBtn.classList.add('bg-sky-600', 'text-white');
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                resEl.innerHTML = '<span class="text-red-500">กรุณากรอกตัวเลขให้ครบถ้วน</span>';
+                return;
             }
-            renderSymbols();
-        }
+            if (a === 0) {
+                resEl.innerHTML = '<span class="text-red-500">ค่า a ต้องไม่เท่ากับ 0</span>';
+                return;
+            }
 
-        function handleSearch(val) {
-            state.searchQuery = val;
-            document.getElementById('clearSearchBtn').classList.toggle('hidden', val.length === 0);
-            
-            if (state.activeTab === 'symbols') {
-                renderSymbols();
+            const D = b * b - 4 * a * c;
+            let text = `สมการ: ${a}x² + (${b})x + (${c}) = 0<br>`;
+            text += `ค่าดิสคริมิแนนต์ Δ = b² - 4ac = ${D}<br><br>`;
+
+            if (D > 0) {
+                const x1 = (-b + Math.sqrt(D)) / (2 * a);
+                const x2 = (-b - Math.sqrt(D)) / (2 * a);
+                text += `<span class="text-emerald-600 dark:text-emerald-400 font-bold">มี 2 คำตอบจริง:</span><br>x₁ = ${x1.toFixed(4)}<br>x₂ = ${x2.toFixed(4)}`;
+            } else if (D === 0) {
+                const x = -b / (2 * a);
+                text += `<span class="text-emerald-600 dark:text-emerald-400 font-bold">มี 1 คำตอบจริง:</span><br>x = ${x.toFixed(4)}`;
             } else {
-                renderFormulas();
+                const real = (-b / (2 * a)).toFixed(4);
+                const imag = (Math.sqrt(-D) / (2 * a)).toFixed(4);
+                text += `<span class="text-amber-600 dark:text-amber-400 font-bold">คำตอบเป็นจำนวนเชิงซ้อน:</span><br>x = ${real} ± ${imag}i`;
             }
+            resEl.innerHTML = text;
         }
 
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            handleSearch('');
+        function solveMole() {
+            const g = parseFloat(document.getElementById('mole-g').value);
+            const m = parseFloat(document.getElementById('mole-m').value);
+            const resEl = document.getElementById('mole-result');
+
+            if (isNaN(g) || isNaN(m) || m === 0) {
+                resEl.innerHTML = '<span class="text-red-500">กรุณากรอกข้อมูลตัวเลขให้ถูกต้อง</span>';
+                return;
+            }
+
+            const n = g / m;
+            const vSTP = n * 22.4;
+            const N = n * 6.022e23;
+
+            resEl.innerHTML = `
+                <div class="space-y-1">
+                    <p><strong class="text-emerald-600 dark:text-emerald-400">จำนวนโมล (n):</strong> ${n.toFixed(4)} mol</p>
+                    <p><strong>ปริมาตรแก๊สที่ STP:</strong> ${vSTP.toFixed(2)} L</p>
+                    <p><strong>จำนวนอนุภาค (N):</strong> ${N.toExponential(3)} โมเลกุล</p>
+                </div>
+            `;
+        }
+
+        function solveOhm() {
+            const i = parseFloat(document.getElementById('ohm-i').value);
+            const r = parseFloat(document.getElementById('ohm-r').value);
+            const resEl = document.getElementById('ohm-result');
+
+            if (isNaN(i) || isNaN(r)) {
+                resEl.innerHTML = '<span class="text-red-500">กรุณากรอกตัวเลขกระแสและความต้านทาน</span>';
+                return;
+            }
+
+            const v = i * r;
+            const p = v * i;
+
+            resEl.innerHTML = `
+                <div class="space-y-1">
+                    <p><strong class="text-purple-600 dark:text-purple-400">ความต่างศักย์ (V):</strong> ${v.toFixed(2)} โวลต์ (V)</p>
+                    <p><strong>กำลังไฟฟ้า (P):</strong> ${p.toFixed(2)} วัตต์ (W)</p>
+                </div>
+            `;
+        }
+
+        function solvepH() {
+            const h = parseFloat(document.getElementById('ph-h').value);
+            const resEl = document.getElementById('ph-result');
+
+            if (isNaN(h) || h <= 0) {
+                resEl.innerHTML = '<span class="text-red-500">กรุณากรอกค่าความเข้มข้น [H⁺] ที่มากกว่า 0</span>';
+                return;
+            }
+
+            const pH = -Math.log10(h);
+            const pOH = 14 - pH;
+
+            let status = 'สารละลายเป็นกลาง';
+            if (pH < 7) status = 'สารละลายเป็นกรด';
+            else if (pH > 7) status = 'สารละลายเป็นเบส';
+
+            resEl.innerHTML = `
+                <div class="space-y-1">
+                    <p><strong class="text-sky-600 dark:text-sky-400">ค่า pH:</strong> ${pH.toFixed(2)}</p>
+                    <p><strong>ค่า pOH:</strong> ${pOH.toFixed(2)}</p>
+                    <p class="text-xs font-semibold text-slate-500">สถานะ: ${status}</p>
+                </div>
+            `;
         }
 
         function toggleBookmark(id) {
-            const idx = state.bookmarks.indexOf(id);
-            if (idx > -1) {
-                state.bookmarks.splice(idx, 1);
-                showToast('ยกเลิกการบันทึกสูตรแล้ว', 'ℹ️');
+            const index = bookmarks.indexOf(id);
+            if (index > -1) {
+                bookmarks.splice(index, 1);
+                showToast('ยกเลิกการบันทึกสูตรเรียบร้อย');
             } else {
-                state.bookmarks.push(id);
-                showToast('บันทึกสูตรลงรายการโปรดแล้ว', '⭐');
+                bookmarks.push(id);
+                showToast('บันทึกสูตรลงในรายการโปรดแล้ว');
             }
-            localStorage.setItem('f4u_bookmarks', JSON.stringify(state.bookmarks));
-            updateBookmarkCount();
-            renderFormulas();
+            localStorage.setItem('f4us_bookmarks', JSON.stringify(bookmarks));
+            renderMathFormulas();
+            renderPhysicsFormulas();
+            renderChemFormulas();
+            renderBookmarksHome();
         }
 
-        function updateBookmarkCount() {
-            document.getElementById('bookmarkCount').textContent = state.bookmarks.length;
+        function copyFormulaText(text) {
+            // Fallback for copy text
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast(`คัดลอกสูตร "${text}" แล้ว`);
         }
 
-        function copyToClipboard(text) {
-            const tempInput = document.createElement('textarea');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showToast('คัดลอกสูตรเรียบร้อยแล้ว!', '📋');
-        }
-
-        function showToast(msg, icon = '✅') {
+        function showToast(message) {
             const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').textContent = msg;
-            document.getElementById('toastIcon').textContent = icon;
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = message;
             toast.classList.remove('translate-y-20', 'opacity-0');
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 2500);
         }
 
-        function initTheme() {
-            if (state.theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                document.getElementById('themeIcon').textContent = '☀️';
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('themeIcon').textContent = '🌙';
-            }
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
         }
 
-        function toggleTheme() {
-            state.theme = state.theme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('f4u_theme', state.theme);
-            initTheme();
+        function renderFormulaCard(item, subjectColor) {
+            const isBookmarked = bookmarks.includes(item.id);
+            const starClass = isBookmarked ? 'fa-solid text-amber-400' : 'fa-regular text-slate-400';
+
+            const varsList = item.vars.map(v => `<li class="flex items-start"><span class="font-mono font-bold text-slate-800 dark:text-slate-200 w-16 shrink-0">${v.symbol}:</span> <span class="text-slate-600 dark:text-slate-400">${v.name}</span></li>`).join('');
+
+            return `
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div>
+                    <!-- Top Badge Bar -->
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-${subjectColor}-100 text-${subjectColor}-800 dark:bg-${subjectColor}-950 dark:text-${subjectColor}-300">
+                                ${escapeHtml(item.category)}
+                            </span>
+                            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">
+                                ${escapeHtml(item.level)}
+                            </span>
+                        </div>
+                        <button onclick="toggleBookmark('${item.id}')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" title="บันทึกเป็นสูตรโปรด">
+                            <i class="fa-star ${starClass} text-lg"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(item.desc)}</p>
+
+                    <!-- Formula Display Box -->
+                    <div class="formula-box my-4 p-4 rounded-xl border border-sky-100 dark:border-slate-700 relative group">
+                        <div class="font-mono text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 text-center tracking-wide overflow-x-auto py-1">
+                            ${escapeHtml(item.displayFormula || item.formula)}
+                        </div>
+                        <button onclick="copyFormulaText('${item.formula.replace(/'/g, "\\'")}')" class="absolute right-2 top-2 opacity-80 sm:opacity-0 group-hover:opacity-100 p-1.5 rounded-md bg-white/80 dark:bg-slate-800/80 text-xs text-slate-600 dark:text-slate-300 hover:bg-white transition-all" title="คัดลอกข้อความสูตร">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Variable Legends -->
+                    <div class="text-xs space-y-1.5 my-3 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl">
+                        <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">คำอธิบายตัวแปร:</span>
+                        <ul class="space-y-1">
+                            ${varsList}
+                        </ul>
+                    </div>
+
+                    <!-- Example Solution Box -->
+                    <div class="mt-4 border-t border-slate-100 dark:border-slate-700/60 pt-3 text-xs">
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">
+                            <i class="fa-solid fa-lightbulb mr-1"></i>ตัวอย่างโจทย์และวิธีทำ:
+                        </span>
+                        <p class="font-medium text-slate-700 dark:text-slate-300 mb-1">${escapeHtml(item.exampleProblem)}</p>
+                        <pre class="bg-slate-100 dark:bg-slate-900 p-3 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 font-sans whitespace-pre-wrap leading-relaxed">${escapeHtml(item.exampleSolution)}</pre>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        // Render Math Page
+        function renderMathFormulas() {
+            const grid = document.getElementById('math-formulas-grid');
+            const searchText = document.getElementById('math-filter-text').value.toLowerCase();
+            const filtered = mathData.filter(d => {
+                const matchCat = mathCategory === 'all' || d.category === mathCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full py-12 text-center text-slate-400">ไม่พบสูตรคณิตศาสตร์ในหมวดหมู่นี้</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => renderFormulaCard(item, 'blue')).join('');
+        }
+
+        function setMathCategory(cat) {
+            mathCategory = cat;
+            document.querySelectorAll('.math-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "math-cat-btn px-3 py-1.5 rounded-full font-medium bg-blue-600 text-white shadow-sm";
+                } else {
+                    btn.className = "math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300";
+                }
+            });
+            renderMathFormulas();
+        }
+
+        function filterMathFormulas() {
+            renderMathFormulas();
+        }
+
+        // Render Physics Page
+        function renderPhysicsFormulas() {
+            const grid = document.getElementById('physics-formulas-grid');
+            const searchText = document.getElementById('physics-filter-text').value.toLowerCase();
+            const filtered = physicsData.filter(d => {
+                const matchCat = physicsCategory === 'all' || d.category === physicsCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full py-12 text-center text-slate-400">ไม่พบสูตรฟิสิกส์ในหมวดหมู่นี้</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => renderFormulaCard(item, 'purple')).join('');
+        }
+
+        function setPhysicsCategory(cat) {
+            physicsCategory = cat;
+            document.querySelectorAll('.physics-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-purple-600 text-white shadow-sm";
+                } else {
+                    btn.className = "physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300";
+                }
+            });
+            renderPhysicsFormulas();
+        }
+
+        function filterPhysicsFormulas() {
+            renderPhysicsFormulas();
+        }
+
+        // Render Chemistry Page
+        function renderChemFormulas() {
+            const grid = document.getElementById('chem-formulas-grid');
+            const searchText = document.getElementById('chem-filter-text').value.toLowerCase();
+            const filtered = chemData.filter(d => {
+                const matchCat = chemCategory === 'all' || d.category === chemCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full py-12 text-center text-slate-400">ไม่พบสูตรเคมีในหมวดหมู่นี้</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => renderFormulaCard(item, 'emerald')).join('');
+        }
+
+        function setChemCategory(cat) {
+            chemCategory = cat;
+            document.querySelectorAll('.chem-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-emerald-600 text-white shadow-sm";
+                } else {
+                    btn.className = "chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300";
+                }
+            });
+            renderChemFormulas();
+        }
+
+        function filterChemFormulas() {
+            renderChemFormulas();
+        }
+
+        // Render Symbol Dictionary
+        function renderSymbols() {
+            const grid = document.getElementById('symbols-grid');
+            const query = (document.getElementById('symbol-search-input').value || '').toLowerCase().trim();
+
+            const filtered = symbolsData.filter(s => {
+                const matchCat = symbolCategory === 'all' || s.cat === symbolCategory;
+                const matchQ = s.sym.toLowerCase().includes(query) || s.name.toLowerCase().includes(query) || s.mean.toLowerCase().includes(query);
+                return matchCat && matchQ;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full py-12 text-center text-slate-400">ไม่พบสัญลักษณ์ที่ตรงกับคำค้นหา</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(s => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl font-bold font-mono text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 rounded-xl border border-amber-200 dark:border-amber-800">
+                                ${escapeHtml(s.sym)}
+                            </span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 font-semibold">
+                                ${escapeHtml(s.cat)}
+                            </span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white mt-1">${escapeHtml(s.name)}</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">${escapeHtml(s.mean)}</p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700/60">
+                        <span class="text-[10px] font-bold text-slate-400 block uppercase">ตัวอย่างการใช้งาน</span>
+                        <code class="text-xs text-indigo-600 dark:text-indigo-400 font-mono block mt-0.5">${escapeHtml(s.ex)}</code>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setSymbolCategory(cat) {
+            symbolCategory = cat;
+            document.querySelectorAll('.symbol-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-amber-600 text-white shadow-sm";
+                } else {
+                    btn.className = "symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300";
+                }
+            });
+            renderSymbols();
+        }
+
+        function filterSymbols(preset) {
+            if (preset !== undefined) {
+                document.getElementById('symbol-search-input').value = preset;
+            }
+            renderSymbols();
+        }
+
+        // Render Bookmarks on Home
+        function renderBookmarksHome() {
+            const container = document.getElementById('bookmarks-container-home');
+            const badge = document.getElementById('bookmark-count-badge');
+            badge.textContent = `${bookmarks.length} สูตร`;
+
+            if (bookmarks.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-8 text-center text-slate-400 text-sm">
+                        <i class="fa-regular fa-star text-2xl mb-2 block text-slate-300"></i>
+                        ยังไม่มีสูตรที่บันทึกไว้ กดปุ่มดาว ⭐ บนสูตรที่ต้องการเพื่อบันทึกไว้ดูภายหลัง
+                    </div>`;
+                return;
+            }
+
+            const allFormulas = [...mathData, ...physicsData, ...chemData];
+            const savedItems = allFormulas.filter(item => bookmarks.includes(item.id));
+
+            container.innerHTML = savedItems.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-800 dark:text-slate-100">${escapeHtml(item.title)}</span>
+                            <button onclick="toggleBookmark('${item.id}')" class="text-amber-400 hover:text-slate-400" title="ลบออกจากรายการโปรด">
+                                <i class="fa-solid fa-star"></i>
+                            </button>
+                        </div>
+                        <div class="font-mono text-xs text-sky-600 dark:text-sky-400 mt-2 font-bold bg-white dark:bg-slate-800 p-2 rounded border border-slate-200 dark:border-slate-700">
+                            ${escapeHtml(item.formula)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function registerOfflineServiceWorker() {
             if ('serviceWorker' in navigator) {
                 const swCode = `
-                    const CACHE_NAME = 'f4u-v1';
+                    const CACHE_NAME = 'f4us-v1';
                     self.addEventListener('install', e => {
-                        self.skipWaiting();
-                    });
-                    self.addEventListener('activate', e => {
-                        self.clients.claim();
-                    });
-                    self.addEventListener('fetch', e => {
-                        e.respondWith(
-                            caches.match(e.request).then(response => {
-                                return response || fetch(e.request).catch(() => caches.match('/'));
+                        e.waitUntil(
+                            caches.open(CACHE_NAME).then(cache => {
+                                return cache.addAll(['./']);
                             })
                         );
                     });
+                    self.addEventListener('fetch', e => {
+                        e.respondWith(
+                            caches.match(e.request).then(response => response || fetch(e.request))
+                        );
+                    });
                 `;
-                const blob = new Blob([swCode], { type: 'text/javascript' });
+                const blob = new Blob([swCode], { type: 'application/javascript' });
                 const swUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(swUrl).catch(err => console.log('SW Note:', err));
+                navigator.serviceWorker.register(swUrl).catch(() => {
+                    // Cache registration silently managed offline
+                });
             }
         }
 
-        // Initialize App on DOM Load
-        window.onload = function() {
+        // Initialize App State
+        window.addEventListener('DOMContentLoaded', () => {
             initTheme();
-            populateTables();
-            calculateExponent();
-            updateBookmarkCount();
-            setActiveTab('all');
+            initNetworkStatus();
+            renderMathFormulas();
+            renderPhysicsFormulas();
+            renderChemFormulas();
+            renderSymbols();
+            renderBookmarksHome();
+            solveQuadratic();
+            solveMole();
+            solveOhm();
+            solvepH();
             registerOfflineServiceWorker();
-        };
+        });
     </script>
 </body>
 </html>
