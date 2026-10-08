@@ -448,126 +448,127 @@
 
         // Global Data Sets
         const mathData = [
-            {
-                id: 'm1',
-                title: 'พีทาโกรัส (Pythagorean Theorem)',
-                category: 'เรขาคณิต',
-                level: 'ม.2',
-                formula: 'c^2 = a^2 + b^2',
-                displayFormula: 'c² = a² + b²',
-                desc: 'ใช้คำนวณความยาวด้านของสามเหลี่ยมมุมฉาก เมื่อทราบความยาวด้านสองด้าน',
-                vars: [
-                    { symbol: 'c', name: 'ความยาวด้านตรงข้ามมุมฉาก' },
-                    { symbol: 'a, b', name: 'ความยาวด้านประกอบมุมฉากทั้งสองด้าน' }
-                ],
-                exampleProblem: 'สามเหลี่ยมมุมฉากมีด้านประกอบมุมฉากยาว 3 ซม. และ 4 ซม. จงหาความยาวด้านตรงข้ามมุมฉาก (c)',
-                exampleSolution: 'จากสูตร c² = a² + b²\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 ซม.'
-            },
-            {
-                id: 'm2',
-                title: 'สมการกำลังสอง (Quadratic Formula)',
-                category: 'พีชคณิต',
-                level: 'ม.3',
-                formula: 'x = (-b ± √(b^2 - 4ac)) / (2a)',
-                displayFormula: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
-                displayMath: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
-                desc: 'สูตรหาคำตอบของสมการกำลังสองรูปทั่วไป ax² + bx + c = 0',
-                vars: [
-                    { symbol: 'a', name: 'สัมประสิทธิ์หน้า x² (a ≠ 0)' },
-                    { symbol: 'b', name: 'สัมประสิทธิ์หน้า x' },
-                    { symbol: 'c', name: 'ค่าคงตัว' }
-                ],
-                exampleProblem: 'จงหาคำตอบของสมการ x² - 5x + 6 = 0',
-                exampleSolution: 'a = 1, b = -5, c = 6\nx = [-(-5) ± √((-5)² - 4(1)(6))] / 2(1)\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1] / 2\nดังนั้น x = 3 หรือ x = 2'
-            },
-            {
-                id: 'm3',
-                title: 'เอกลักษณ์ตรีโกณมิติพื้นฐาน',
-                category: 'ตรีโกณมิติ',
-                level: 'ม.5',
-                formula: 'sin^2(θ) + cos^2(θ) = 1',
-                displayFormula: 'sin²(θ) + cos²(θ) = 1',
-                desc: 'เอกลักษณ์สำคัญที่เชื่อมโยงระหว่างค่า sine และ cosine ของมุมเดียวกัน',
-                vars: [
-                    { symbol: 'θ', name: 'ขนาดของมุม (เรเดียน หรือ องศา)' }
-                ],
-                exampleProblem: 'ถ้า sin(θ) = 3/5 จงหาค่า cos(θ) เมื่อ θ เป็นมุมแหลม',
-                exampleSolution: 'จาก sin²(θ) + cos²(θ) = 1\n(3/5)² + cos²(θ) = 1\n9/25 + cos²(θ) = 1\ncos²(θ) = 16/25 => cos(θ) = 4/5'
-            },
-            {
-                id: 'm4',
-                title: 'สมการวงกลม (Circle Equation)',
-                category: 'ภาคตัดกรวย',
-                level: 'ม.4',
-                formula: '(x - h)^2 + (y - k)^2 = r^2',
-                displayFormula: '(x - h)² + (y - k)² = r²',
-                desc: 'สมการมาตรฐานของวงกลมที่มีจุดศูนย์กลางอยู่ที่ (h, k) และรัศมี r',
-                vars: [
-                    { symbol: '(h, k)', name: 'พิกัดจุดศูนย์กลางวงกลม' },
-                    { symbol: 'r', name: 'ความยาวรัศมีของวงกลม' }
-                ],
-                exampleProblem: 'จงหาสมการวงกลมที่มีจุดศูนย์กลางอยู่ที่ (2, -3) และรัศมียาว 5 หน่วย',
-                exampleSolution: 'แทนค่า h = 2, k = -3, r = 5 ในสูตร\n(x - 2)² + (y - (-3))² = 5²\n(x - 2)² + (y + 3)² = 25'
-            },
-            {
-                id: 'm5',
-                title: 'สมบัติลอการิทึม (Logarithm Rules)',
-                category: 'ลอการิทึม',
-                level: 'ม.4',
-                formula: 'log_a(x * y) = log_a(x) + log_a(y)',
-                displayFormula: 'logₐ(x · y) = logₐ(x) + logₐ(y)',
-                desc: 'ลอการิทึมของผลคูณเท่ากับผลบวกของลอการิทึมแต่ละตัว',
-                vars: [
-                    { symbol: 'a', name: 'ฐานของลอการิทึม (a > 0, a ≠ 1)' },
-                    { symbol: 'x, y', name: 'จำนวนจริงบวก' }
-                ],
-                exampleProblem: 'จงหาค่าของ log₂ (4 × 8)',
-                exampleSolution: 'วิธีที่ 1: log₂ (32) = 5\nวิธีที่ 2: log₂ (4) + log₂ (8) = 2 + 3 = 5'
-            },
-            {
-                id: 'm6',
-                title: 'ดีเทอร์มิแนนต์เมทริกซ์ 2x2 (Determinant 2x2)',
-                category: 'เมทริกซ์',
-                level: 'ม.5',
-                formula: 'det(A) = ad - bc',
-                displayFormula: 'det([a  b; c  d]) = ad - bc',
-                desc: 'การหาค่าดีเทอร์มิแนนต์ของเมทริกซ์ขนาด 2x2',
-                vars: [
-                    { symbol: 'a,b,c,d', name: 'สมาชิกในเมทริกซ์แถวและหลัก' }
-                ],
-                exampleProblem: 'จงหา det ของเมทริกซ์ A = [[3, 2], [1, 4]]',
-                exampleSolution: 'det(A) = (3)(4) - (2)(1) = 12 - 2 = 10'
-            },
-            {
-                id: 'm7',
-                title: 'อนุพันธ์ของฟังก์ชันกำลัง (Power Rule Derivative)',
-                category: 'แคลคูลัส',
-                level: 'ม.6',
-                formula: 'd/dx (x^n) = n * x^(n-1)',
-                displayFormula: '\\frac{d}{dx}(x^n) = n \\cdot x^{n-1}',
-                desc: 'กฎพื้นฐานในการหาอนุพันธ์ของฟังก์ชันเลขยกกำลัง',
-                vars: [
-                    { symbol: 'n', name: 'เลขชี้กำลัง (จำนวนจริง)' }
-                ],
-                exampleProblem: 'จงหาอนุพันธ์ d/dx (x⁴ + 3x²)',
-                exampleSolution: 'd/dx (x⁴) + d/dx (3x²)\n= 4x⁴⁻¹ + 3(2x²⁻¹)\n= 4x³ + 6x'
-            },
-            {
-                id: 'm8',
-                title: 'ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)',
-                category: 'สถิติ',
-                level: 'ม.6',
-                formula: 'x_bar = (Σ x) / N',
-                displayFormula: '\\bar{x} = \\frac{\\sum x}{N}',
-                desc: 'การหาค่ากลางของข้อมูลโดยนำผลรวมข้อมูลทั้งหมดหารด้วยจำนวนข้อมูล',
-                vars: [
-                    { symbol: 'x̄', name: 'ค่าเฉลี่ยเลขคณิต' },
-                    { symbol: 'Σx', name: 'ผลรวมของข้อมูลทุกตัว' },
-                    { symbol: 'N', name: 'จำนวนข้อมูลทั้งหมด' }
-                ],
-                exampleProblem: 'คะแนนสอบ 5 คน ได้แก่ 10, 12, 14, 16, 18 จงหาค่าเฉลี่ย',
-                exampleSolution: 'x̄ = (10 + 12 + 14 + 16 + 18) / 5 = 70 / 5 = 14'
-            }
+            [
+    {
+        id: 'm1',
+        title: 'พีทาโกรัส (Pythagorean Theorem)',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'c^2 = a^2 + b^2',
+        displayFormula: 'c² = a² + b²',
+        desc: 'ใช้คำนวณความยาวด้านของสามเหลี่ยมมุมฉาก เมื่อทราบความยาวด้านสองด้าน',
+        vars: [
+            { symbol: 'c', name: 'ความยาวด้านตรงข้ามมุมฉาก' },
+            { symbol: 'a, b', name: 'ความยาวด้านประกอบมุมฉากทั้งสองด้าน' }
+        ],
+        exampleProblem: 'สามเหลี่ยมมุมฉากมีด้านประกอบมุมฉากยาว 3 ซม. และ 4 ซม. จงหาความยาวด้านตรงข้ามมุมฉาก (c)',
+        exampleSolution: 'จากสูตร c² = a² + b²\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 ซม.'
+    },
+    {
+        id: 'm2',
+        title: 'สมการกำลังสอง (Quadratic Formula)',
+        category: 'พีชคณิต',
+        level: 'ม.3',
+        formula: 'x = (-b ± √(b^2 - 4ac)) / (2a)',
+        displayFormula: 'x = (-b ± √(b² - 4ac)) / 2a',
+        desc: 'สูตรหาคำตอบของสมการกำลังสองรูปทั่วไป ax² + bx + c = 0',
+        vars: [
+            { symbol: 'a', name: 'สัมประสิทธิ์หน้า x² (a ≠ 0)' },
+            { symbol: 'b', name: 'สัมประสิทธิ์หน้า x' },
+            { symbol: 'c', name: 'ค่าคงตัว' }
+        ],
+        exampleProblem: 'จงหาคำตอบของสมการ x² - 5x + 6 = 0',
+        exampleSolution: 'a = 1, b = -5, c = 6\nx = [-(-5) ± √((-5)² - 4(1)(6))] / 2(1)\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1] / 2\nดังนั้น x = 3 หรือ x = 2'
+    },
+    {
+        id: 'm3',
+        title: 'เอกลักษณ์ตรีโกณมิติพื้นฐาน',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'sin^2(θ) + cos^2(θ) = 1',
+        displayFormula: 'sin²(θ) + cos²(θ) = 1',
+        desc: 'เอกลักษณ์สำคัญที่เชื่อมโยงระหว่างค่า sine และ cosine ของมุมเดียวกัน',
+        vars: [
+            { symbol: 'θ', name: 'ขนาดของมุม (เรเดียน หรือ องศา)' }
+        ],
+        exampleProblem: 'ถ้า sin(θ) = 3/5 จงหาค่า cos(θ) เมื่อ θ เป็นมุมแหลม',
+        exampleSolution: 'จาก sin²(θ) + cos²(θ) = 1\n(3/5)² + cos²(θ) = 1\n9/25 + cos²(θ) = 1\ncos²(θ) = 16/25 => cos(θ) = 4/5'
+    },
+    {
+        id: 'm4',
+        title: 'สมการวงกลม (Circle Equation)',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(x - h)^2 + (y - k)^2 = r^2',
+        displayFormula: '(x - h)² + (y - k)² = r²',
+        desc: 'สมการมาตรฐานของวงกลมที่มีจุดศูนย์กลางอยู่ที่ (h, k) และรัศมี r',
+        vars: [
+            { symbol: '(h, k)', name: 'พิกัดจุดศูนย์กลางวงกลม' },
+            { symbol: 'r', name: 'ความยาวรัศมีของวงกลม' }
+        ],
+        exampleProblem: 'จงหาสมการวงกลมที่มีจุดศูนย์กลางอยู่ที่ (2, -3) และรัศมียาว 5 หน่วย',
+        exampleSolution: 'แทนค่า h = 2, k = -3, r = 5 ในสูตร\n(x - 2)² + (y - (-3))² = 5²\n(x - 2)² + (y + 3)² = 25'
+    },
+    {
+        id: 'm5',
+        title: 'สมบัติลอการิทึม (Logarithm Rules)',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(x * y) = log_a(x) + log_a(y)',
+        displayFormula: 'logₐ(x · y) = logₐ(x) + logₐ(y)',
+        desc: 'ลอการิทึมของผลคูณเท่ากับผลบวกของลอการิทึมแต่ละตัว',
+        vars: [
+            { symbol: 'a', name: 'ฐานของลอการิทึม (a > 0, a ≠ 1)' },
+            { symbol: 'x, y', name: 'จำนวนจริงบวก' }
+        ],
+        exampleProblem: 'จงหาค่าของ log₂ (4 × 8)',
+        exampleSolution: 'วิธีที่ 1: log₂ (32) = 5\nวิธีที่ 2: log₂ (4) + log₂ (8) = 2 + 3 = 5'
+    },
+    {
+        id: 'm6',
+        title: 'ดีเทอร์มิแนนต์เมทริกซ์ 2x2 (Determinant 2x2)',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'det(A) = ad - bc',
+        displayFormula: 'det([a  b; c  d]) = ad - bc',
+        desc: 'การหาค่าดีเทอร์มิแนนต์ของเมทริกซ์ขนาด 2x2',
+        vars: [
+            { symbol: 'a,b,c,d', name: 'สมาชิกในเมทริกซ์แถวและหลัก' }
+        ],
+        exampleProblem: 'จงหา det ของเมทริกซ์ A = [[3, 2], [1, 4]]',
+        exampleSolution: 'det(A) = (3)(4) - (2)(1) = 12 - 2 = 10'
+    },
+    {
+        id: 'm7',
+        title: 'อนุพันธ์ของฟังก์ชันกำลัง (Power Rule Derivative)',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: 'd/dx (x^n) = n * x^(n-1)',
+        displayFormula: 'd/dx(xⁿ) = n · xⁿ⁻¹',
+        desc: 'กฎพื้นฐานในการหาอนุพันธ์ของฟังก์ชันเลขยกกำลัง',
+        vars: [
+            { symbol: 'n', name: 'เลขชี้กำลัง (จำนวนจริง)' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ d/dx (x⁴ + 3x²)',
+        exampleSolution: 'd/dx (x⁴) + d/dx (3x²)\n= 4x⁴⁻¹ + 3(2x²⁻¹)\n= 4x³ + 6x'
+    },
+    {
+        id: 'm8',
+        title: 'ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 'x_bar = (Σ x) / N',
+        displayFormula: 'x̄ = (Σx) / N',
+        desc: 'การหาค่ากลางของข้อมูลโดยนำผลรวมข้อมูลทั้งหมดหารด้วยจำนวนข้อมูล',
+        vars: [
+            { symbol: 'x̄', name: 'ค่าเฉลี่ยเลขคณิต' },
+            { symbol: 'Σx', name: 'ผลรวมของข้อมูลทุกตัว' },
+            { symbol: 'N', name: 'จำนวนข้อมูลทั้งหมด' }
+        ],
+        exampleProblem: 'คะแนนสอบ 5 คน ได้แก่ 10, 12, 14, 16, 18 จงหาค่าเฉลี่ย',
+        exampleSolution: 'x̄ = (10 + 12 + 14 + 16 + 18) / 5 = 70 / 5 = 14'
+    }
+]
         ];
 
         const physicsData = [
