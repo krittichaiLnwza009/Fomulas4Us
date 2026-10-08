@@ -446,131 +446,1297 @@
         let symbolCategory = 'all';
         let bookmarks = JSON.parse(localStorage.getItem('f4us_bookmarks') || '[]');
 
+
+        
         // Global Data Sets
-        const mathData = [
-            [
+        ```javascript
+const mathData = [[
+    // =========================================================
+    // หมวด 1: เรขาคณิต + พื้นที่ — 30 สูตร
+    // =========================================================
     {
-        id: 'm1',
-        title: 'พีทาโกรัส (Pythagorean Theorem)',
+        id: 'm1.1',
+        title: 'ทฤษฎีบทพีทาโกรัส',
         category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'c^2 = a^2 + b^2',
         displayFormula: 'c² = a² + b²',
-        desc: 'ใช้คำนวณความยาวด้านของสามเหลี่ยมมุมฉาก เมื่อทราบความยาวด้านสองด้าน',
+        desc: 'ใช้หาด้านของสามเหลี่ยมมุมฉากเมื่อทราบอีกสองด้าน',
         vars: [
-            { symbol: 'c', name: 'ความยาวด้านตรงข้ามมุมฉาก' },
-            { symbol: 'a, b', name: 'ความยาวด้านประกอบมุมฉากทั้งสองด้าน' }
+            { symbol: 'c', name: 'ด้านตรงข้ามมุมฉาก' },
+            { symbol: 'a, b', name: 'ด้านประกอบมุมฉาก' }
         ],
-        exampleProblem: 'สามเหลี่ยมมุมฉากมีด้านประกอบมุมฉากยาว 3 ซม. และ 4 ซม. จงหาความยาวด้านตรงข้ามมุมฉาก (c)',
-        exampleSolution: 'จากสูตร c² = a² + b²\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 ซม.'
+        exampleProblem: 'สามเหลี่ยมมุมฉากมีด้าน 3 ซม. และ 4 ซม. จงหาด้านตรงข้ามมุมฉาก',
+        exampleSolution: 'c² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 ซม.'
     },
     {
-        id: 'm2',
-        title: 'สมการกำลังสอง (Quadratic Formula)',
+        id: 'm1.2',
+        title: 'พื้นที่สี่เหลี่ยมผืนผ้า',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'A = lw',
+        displayFormula: 'A = กว้าง × ยาว',
+        desc: 'ใช้หาพื้นที่ของสี่เหลี่ยมผืนผ้า',
+        vars: [
+            { symbol: 'A', name: 'พื้นที่' },
+            { symbol: 'l', name: 'ความยาว' },
+            { symbol: 'w', name: 'ความกว้าง' }
+        ],
+        exampleProblem: 'สี่เหลี่ยมผืนผ้ายาว 8 ซม. กว้าง 5 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = 8 × 5 = 40 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.3',
+        title: 'พื้นที่สี่เหลี่ยมจัตุรัส',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'A = s^2',
+        displayFormula: 'A = s²',
+        desc: 'ใช้หาพื้นที่ของสี่เหลี่ยมจัตุรัส',
+        vars: [
+            { symbol: 'A', name: 'พื้นที่' },
+            { symbol: 's', name: 'ความยาวด้าน' }
+        ],
+        exampleProblem: 'สี่เหลี่ยมจัตุรัสมีด้านยาว 6 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = 6² = 36 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.4',
+        title: 'พื้นที่สามเหลี่ยม',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'A = (1/2)bh',
+        displayFormula: 'A = ½bh',
+        desc: 'ใช้หาพื้นที่สามเหลี่ยม',
+        vars: [
+            { symbol: 'b', name: 'ความยาวฐาน' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'สามเหลี่ยมมีฐาน 10 ซม. และสูง 6 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = ½ × 10 × 6 = 30 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.5',
+        title: 'พื้นที่สี่เหลี่ยมด้านขนาน',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'A = bh',
+        displayFormula: 'A = bh',
+        desc: 'ใช้หาพื้นที่สี่เหลี่ยมด้านขนาน',
+        vars: [
+            { symbol: 'b', name: 'ฐาน' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'ฐานยาว 12 ซม. สูง 5 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = 12 × 5 = 60 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.6',
+        title: 'พื้นที่สี่เหลี่ยมคางหมู',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'A = (1/2)(a+b)h',
+        displayFormula: 'A = ½(a + b)h',
+        desc: 'ใช้หาพื้นที่สี่เหลี่ยมคางหมู',
+        vars: [
+            { symbol: 'a, b', name: 'ความยาวด้านคู่ขนาน' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'ด้านคู่ขนานยาว 8 และ 12 ซม. สูง 5 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = ½(8 + 12)(5) = 50 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.7',
+        title: 'พื้นที่สี่เหลี่ยมขนมเปียกปูน',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'A = (1/2)d1*d2',
+        displayFormula: 'A = ½d₁d₂',
+        desc: 'ใช้หาพื้นที่สี่เหลี่ยมขนมเปียกปูนจากเส้นทแยงมุม',
+        vars: [
+            { symbol: 'd₁, d₂', name: 'ความยาวเส้นทแยงมุม' }
+        ],
+        exampleProblem: 'เส้นทแยงมุมยาว 8 และ 6 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = ½ × 8 × 6 = 24 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.8',
+        title: 'เส้นรอบรูปสี่เหลี่ยมผืนผ้า',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'P = 2(l+w)',
+        displayFormula: 'P = 2(l + w)',
+        desc: 'ใช้หาเส้นรอบรูปของสี่เหลี่ยมผืนผ้า',
+        vars: [
+            { symbol: 'l', name: 'ความยาว' },
+            { symbol: 'w', name: 'ความกว้าง' }
+        ],
+        exampleProblem: 'ยาว 8 ซม. กว้าง 5 ซม. จงหาเส้นรอบรูป',
+        exampleSolution: 'P = 2(8 + 5) = 26 ซม.'
+    },
+    {
+        id: 'm1.9',
+        title: 'เส้นรอบรูปสี่เหลี่ยมจัตุรัส',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'P = 4s',
+        displayFormula: 'P = 4s',
+        desc: 'ใช้หาเส้นรอบรูปสี่เหลี่ยมจัตุรัส',
+        vars: [
+            { symbol: 's', name: 'ความยาวด้าน' }
+        ],
+        exampleProblem: 'สี่เหลี่ยมจัตุรัสด้านละ 7 ซม. จงหาเส้นรอบรูป',
+        exampleSolution: 'P = 4 × 7 = 28 ซม.'
+    },
+    {
+        id: 'm1.10',
+        title: 'เส้นรอบวงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'C = 2*pi*r',
+        displayFormula: 'C = 2πr',
+        desc: 'ใช้หาเส้นรอบวงของวงกลม',
+        vars: [
+            { symbol: 'C', name: 'เส้นรอบวง' },
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'วงกลมมีรัศมี 7 ซม. จงหาเส้นรอบวง',
+        exampleSolution: 'C = 2π(7) = 14π ซม.'
+    },
+    {
+        id: 'm1.11',
+        title: 'พื้นที่วงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'A = pi*r^2',
+        displayFormula: 'A = πr²',
+        desc: 'ใช้หาพื้นที่วงกลม',
+        vars: [
+            { symbol: 'A', name: 'พื้นที่' },
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'วงกลมมีรัศมี 7 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = π(7²) = 49π ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.12',
+        title: 'เส้นผ่านศูนย์กลางวงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'd = 2r',
+        displayFormula: 'd = 2r',
+        desc: 'หาความยาวเส้นผ่านศูนย์กลางจากรัศมี',
+        vars: [
+            { symbol: 'd', name: 'เส้นผ่านศูนย์กลาง' },
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'วงกลมมีรัศมี 5 ซม. จงหาเส้นผ่านศูนย์กลาง',
+        exampleSolution: 'd = 2(5) = 10 ซม.'
+    },
+    {
+        id: 'm1.13',
+        title: 'พื้นที่ภาคของวงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'A = (theta/360)*pi*r^2',
+        displayFormula: 'A = (θ/360°)πr²',
+        desc: 'ใช้หาพื้นที่ภาคของวงกลมเมื่อทราบมุมที่จุดศูนย์กลาง',
+        vars: [
+            { symbol: 'θ', name: 'มุมที่จุดศูนย์กลาง' },
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'ภาคของวงกลมมีมุม 90° และรัศมี 4 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = (90/360)π(4²) = 4π ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.14',
+        title: 'ความยาวส่วนโค้ง',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'L = (theta/360)*2*pi*r',
+        displayFormula: 'L = (θ/360°)2πr',
+        desc: 'ใช้หาความยาวส่วนโค้งของวงกลม',
+        vars: [
+            { symbol: 'θ', name: 'มุมที่จุดศูนย์กลาง' },
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'รัศมี 6 ซม. และมุม 60° จงหาความยาวส่วนโค้ง',
+        exampleSolution: 'L = (60/360)(2π)(6) = 2π ซม.'
+    },
+    {
+        id: 'm1.15',
+        title: 'ผลบวกมุมภายในสามเหลี่ยม',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'A + B + C = 180',
+        displayFormula: 'A + B + C = 180°',
+        desc: 'ผลบวกของมุมภายในสามเหลี่ยมเท่ากับ 180 องศา',
+        vars: [
+            { symbol: 'A, B, C', name: 'มุมภายในทั้งสามมุม' }
+        ],
+        exampleProblem: 'สามเหลี่ยมมีมุม 50° และ 60° จงหามุมที่เหลือ',
+        exampleSolution: 'C = 180 - 50 - 60 = 70°'
+    },
+    {
+        id: 'm1.16',
+        title: 'ผลบวกมุมภายในสี่เหลี่ยม',
+        category: 'เรขาคณิต',
+        level: 'ม.1',
+        formula: 'A+B+C+D = 360',
+        displayFormula: 'A + B + C + D = 360°',
+        desc: 'ผลบวกมุมภายในรูปสี่เหลี่ยมเท่ากับ 360 องศา',
+        vars: [
+            { symbol: 'A,B,C,D', name: 'มุมภายในทั้งสี่มุม' }
+        ],
+        exampleProblem: 'รูปสี่เหลี่ยมมีมุม 80°, 90°, 100° จงหามุมที่เหลือ',
+        exampleSolution: 'D = 360 - 80 - 90 - 100 = 90°'
+    },
+    {
+        id: 'm1.17',
+        title: 'พื้นที่รูปว่าว',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'A = (1/2)d1*d2',
+        displayFormula: 'A = ½d₁d₂',
+        desc: 'ใช้หาพื้นที่รูปว่าวจากเส้นทแยงมุม',
+        vars: [
+            { symbol: 'd₁, d₂', name: 'เส้นทแยงมุม' }
+        ],
+        exampleProblem: 'เส้นทแยงมุมยาว 10 และ 6 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = ½(10)(6) = 30 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.18',
+        title: 'พื้นที่รูปหลายเหลี่ยมด้านเท่า',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'A = (1/2)Pa',
+        displayFormula: 'A = ½Pa',
+        desc: 'ใช้หาพื้นที่รูปหลายเหลี่ยมด้านเท่าเมื่อทราบเส้นรอบรูปและอะพอเทม',
+        vars: [
+            { symbol: 'P', name: 'เส้นรอบรูป' },
+            { symbol: 'a', name: 'อะพอเทม' }
+        ],
+        exampleProblem: 'รูปหลายเหลี่ยมมีเส้นรอบรูป 30 ซม. และอะพอเทม 4 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = ½(30)(4) = 60 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.19',
+        title: 'ปริมาตรทรงสี่เหลี่ยมมุมฉาก',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'V = lwh',
+        displayFormula: 'V = lwh',
+        desc: 'ใช้หาปริมาตรทรงสี่เหลี่ยมมุมฉาก',
+        vars: [
+            { symbol: 'l', name: 'ความยาว' },
+            { symbol: 'w', name: 'ความกว้าง' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'กล่องยาว 5 กว้าง 3 สูง 2 ซม. จงหาปริมาตร',
+        exampleSolution: 'V = 5 × 3 × 2 = 30 ลูกบาศก์เซนติเมตร'
+    },
+    {
+        id: 'm1.20',
+        title: 'ปริมาตรลูกบาศก์',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'V = s^3',
+        displayFormula: 'V = s³',
+        desc: 'ใช้หาปริมาตรลูกบาศก์',
+        vars: [
+            { symbol: 's', name: 'ความยาวด้าน' }
+        ],
+        exampleProblem: 'ลูกบาศก์มีด้านยาว 4 ซม. จงหาปริมาตร',
+        exampleSolution: 'V = 4³ = 64 ลูกบาศก์เซนติเมตร'
+    },
+    {
+        id: 'm1.21',
+        title: 'พื้นที่ผิวลูกบาศก์',
+        category: 'เรขาคณิต',
+        level: 'ม.2',
+        formula: 'SA = 6s^2',
+        displayFormula: 'SA = 6s²',
+        desc: 'ใช้หาพื้นที่ผิวทั้งหมดของลูกบาศก์',
+        vars: [
+            { symbol: 's', name: 'ความยาวด้าน' }
+        ],
+        exampleProblem: 'ลูกบาศก์มีด้านยาว 3 ซม. จงหาพื้นที่ผิว',
+        exampleSolution: 'SA = 6(3²) = 54 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.22',
+        title: 'ปริมาตรทรงกระบอก',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'V = pi*r^2*h',
+        displayFormula: 'V = πr²h',
+        desc: 'ใช้หาปริมาตรทรงกระบอก',
+        vars: [
+            { symbol: 'r', name: 'รัศมีฐาน' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'ทรงกระบอกมีรัศมี 3 ซม. สูง 5 ซม. จงหาปริมาตร',
+        exampleSolution: 'V = π(3²)(5) = 45π ลูกบาศก์เซนติเมตร'
+    },
+    {
+        id: 'm1.23',
+        title: 'พื้นที่ผิวทรงกระบอก',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'SA = 2*pi*r*(r+h)',
+        displayFormula: 'SA = 2πr(r + h)',
+        desc: 'ใช้หาพื้นที่ผิวทั้งหมดของทรงกระบอก',
+        vars: [
+            { symbol: 'r', name: 'รัศมี' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'ทรงกระบอกรัศมี 2 ซม. สูง 5 ซม. จงหาพื้นที่ผิว',
+        exampleSolution: 'SA = 2π(2)(2 + 5) = 28π ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.24',
+        title: 'ปริมาตรกรวย',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'V = (1/3)*pi*r^2*h',
+        displayFormula: 'V = ⅓πr²h',
+        desc: 'ใช้หาปริมาตรกรวย',
+        vars: [
+            { symbol: 'r', name: 'รัศมีฐาน' },
+            { symbol: 'h', name: 'ความสูง' }
+        ],
+        exampleProblem: 'กรวยมีรัศมี 3 ซม. สูง 4 ซม. จงหาปริมาตร',
+        exampleSolution: 'V = ⅓π(3²)(4) = 12π ลูกบาศก์เซนติเมตร'
+    },
+    {
+        id: 'm1.25',
+        title: 'ปริมาตรทรงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'V = (4/3)*pi*r^3',
+        displayFormula: 'V = ⁴⁄₃πr³',
+        desc: 'ใช้หาปริมาตรทรงกลม',
+        vars: [
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'ทรงกลมมีรัศมี 3 ซม. จงหาปริมาตร',
+        exampleSolution: 'V = ⁴⁄₃π(3³) = 36π ลูกบาศก์เซนติเมตร'
+    },
+    {
+        id: 'm1.26',
+        title: 'พื้นที่ผิวทรงกลม',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'SA = 4*pi*r^2',
+        displayFormula: 'SA = 4πr²',
+        desc: 'ใช้หาพื้นที่ผิวทรงกลม',
+        vars: [
+            { symbol: 'r', name: 'รัศมี' }
+        ],
+        exampleProblem: 'ทรงกลมมีรัศมี 5 ซม. จงหาพื้นที่ผิว',
+        exampleSolution: 'SA = 4π(5²) = 100π ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.27',
+        title: 'พื้นที่สามเหลี่ยมด้านเท่า',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'A = (sqrt(3)/4)s^2',
+        displayFormula: 'A = (√3/4)s²',
+        desc: 'ใช้หาพื้นที่สามเหลี่ยมด้านเท่า',
+        vars: [
+            { symbol: 's', name: 'ความยาวด้าน' }
+        ],
+        exampleProblem: 'สามเหลี่ยมด้านเท่ามีด้านยาว 4 ซม. จงหาพื้นที่',
+        exampleSolution: 'A = (√3/4)(4²) = 4√3 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.28',
+        title: 'พื้นที่จากสูตรเฮรอน',
+        category: 'เรขาคณิต',
+        level: 'ม.4',
+        formula: 'A = sqrt(s(s-a)(s-b)(s-c))',
+        displayFormula: 'A = √[s(s-a)(s-b)(s-c)]',
+        desc: 'ใช้หาพื้นที่สามเหลี่ยมเมื่อทราบความยาวทั้งสามด้าน',
+        vars: [
+            { symbol: 's', name: 'กึ่งหนึ่งของเส้นรอบรูป' },
+            { symbol: 'a,b,c', name: 'ความยาวด้านทั้งสาม' }
+        ],
+        exampleProblem: 'สามเหลี่ยมมีด้าน 3, 4 และ 5 ซม. จงหาพื้นที่',
+        exampleSolution: 's = (3+4+5)/2 = 6\nA = √[6(3)(2)(1)] = 6 ตารางเซนติเมตร'
+    },
+    {
+        id: 'm1.29',
+        title: 'ระยะห่างระหว่างจุดสองจุด',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'd = sqrt((x2-x1)^2 + (y2-y1)^2)',
+        displayFormula: 'd = √[(x₂-x₁)² + (y₂-y₁)²]',
+        desc: 'ใช้หาระยะห่างระหว่างจุดสองจุดบนระนาบพิกัด',
+        vars: [
+            { symbol: '(x₁,y₁),(x₂,y₂)', name: 'พิกัดของจุดสองจุด' }
+        ],
+        exampleProblem: 'จงหาระยะห่างระหว่าง (1,2) และ (4,6)',
+        exampleSolution: 'd = √[(4-1)² + (6-2)²] = √25 = 5'
+    },
+    {
+        id: 'm1.30',
+        title: 'จุดกึ่งกลางของส่วนของเส้นตรง',
+        category: 'เรขาคณิต',
+        level: 'ม.3',
+        formula: 'M = ((x1+x2)/2,(y1+y2)/2)',
+        displayFormula: 'M = ((x₁+x₂)/2, (y₁+y₂)/2)',
+        desc: 'ใช้หาจุดกึ่งกลางระหว่างจุดสองจุด',
+        vars: [
+            { symbol: '(x₁,y₁),(x₂,y₂)', name: 'พิกัดของจุดปลายทั้งสอง' }
+        ],
+        exampleProblem: 'จงหาจุดกึ่งกลางระหว่าง (2,4) และ (6,8)',
+        exampleSolution: 'M = ((2+6)/2,(4+8)/2) = (4,6)'
+    },
+
+    // =========================================================
+    // หมวด 2: พีชคณิต — 8 สูตร
+    // =========================================================
+    {
+        id: 'm2.1',
+        title: 'สูตรกำลังสองสมบูรณ์ผลบวก',
         category: 'พีชคณิต',
         level: 'ม.3',
-        formula: 'x = (-b ± √(b^2 - 4ac)) / (2a)',
-        displayFormula: 'x = (-b ± √(b² - 4ac)) / 2a',
-        desc: 'สูตรหาคำตอบของสมการกำลังสองรูปทั่วไป ax² + bx + c = 0',
+        formula: '(a+b)^2 = a^2 + 2ab + b^2',
+        displayFormula: '(a+b)² = a² + 2ab + b²',
+        desc: 'สูตรสำหรับกระจายกำลังสองของผลบวก',
         vars: [
-            { symbol: 'a', name: 'สัมประสิทธิ์หน้า x² (a ≠ 0)' },
-            { symbol: 'b', name: 'สัมประสิทธิ์หน้า x' },
-            { symbol: 'c', name: 'ค่าคงตัว' }
+            { symbol: 'a,b', name: 'จำนวนหรือพจน์ใด ๆ' }
         ],
-        exampleProblem: 'จงหาคำตอบของสมการ x² - 5x + 6 = 0',
-        exampleSolution: 'a = 1, b = -5, c = 6\nx = [-(-5) ± √((-5)² - 4(1)(6))] / 2(1)\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1] / 2\nดังนั้น x = 3 หรือ x = 2'
+        exampleProblem: 'จงกระจาย (x + 3)²',
+        exampleSolution: '(x+3)² = x² + 6x + 9'
     },
     {
-        id: 'm3',
+        id: 'm2.2',
+        title: 'สูตรกำลังสองสมบูรณ์ผลต่าง',
+        category: 'พีชคณิต',
+        level: 'ม.3',
+        formula: '(a-b)^2 = a^2 - 2ab + b^2',
+        displayFormula: '(a-b)² = a² - 2ab + b²',
+        desc: 'สูตรสำหรับกระจายกำลังสองของผลต่าง',
+        vars: [
+            { symbol: 'a,b', name: 'จำนวนหรือพจน์ใด ๆ' }
+        ],
+        exampleProblem: 'จงกระจาย (x - 4)²',
+        exampleSolution: '(x-4)² = x² - 8x + 16'
+    },
+    {
+        id: 'm2.3',
+        title: 'ผลต่างกำลังสอง',
+        category: 'พีชคณิต',
+        level: 'ม.3',
+        formula: 'a^2 - b^2 = (a-b)(a+b)',
+        displayFormula: 'a² - b² = (a-b)(a+b)',
+        desc: 'ใช้แยกตัวประกอบผลต่างกำลังสอง',
+        vars: [
+            { symbol: 'a,b', name: 'พจน์สองพจน์' }
+        ],
+        exampleProblem: 'จงแยกตัวประกอบ x² - 25',
+        exampleSolution: 'x² - 25 = (x-5)(x+5)'
+    },
+    {
+        id: 'm2.4',
+        title: 'สมการกำลังสอง',
+        category: 'พีชคณิต',
+        level: 'ม.3',
+        formula: 'x = (-b ± sqrt(b^2-4ac))/(2a)',
+        displayFormula: 'x = (-b ± √(b² - 4ac)) / 2a',
+        desc: 'สูตรหาคำตอบของสมการ ax² + bx + c = 0',
+        vars: [
+            { symbol: 'a', name: 'สัมประสิทธิ์ของ x²' },
+            { symbol: 'b', name: 'สัมประสิทธิ์ของ x' },
+            { symbol: 'c', name: 'ค่าคงตัว' }
+        ],
+        exampleProblem: 'จงแก้ x² - 5x + 6 = 0',
+        exampleSolution: 'x = [5 ± √(25-24)]/2 = 3 หรือ 2'
+    },
+    {
+        id: 'm2.5',
+        title: 'ผลบวกและผลคูณรากสมการกำลังสอง',
+        category: 'พีชคณิต',
+        level: 'ม.4',
+        formula: 'alpha+beta = -b/a, alpha*beta = c/a',
+        displayFormula: 'α + β = -b/a, αβ = c/a',
+        desc: 'ความสัมพันธ์ระหว่างรากของสมการกำลังสองกับสัมประสิทธิ์',
+        vars: [
+            { symbol: 'α,β', name: 'รากของสมการ' }
+        ],
+        exampleProblem: 'ถ้า x² - 7x + 12 = 0 จงหาผลบวกราก',
+        exampleSolution: 'α + β = -(-7)/1 = 7'
+    },
+    {
+        id: 'm2.6',
+        title: 'ทฤษฎีบททวินาม',
+        category: 'พีชคณิต',
+        level: 'ม.5',
+        formula: '(a+b)^n = sum C(n,k)a^(n-k)b^k',
+        displayFormula: '(a+b)ⁿ = Σ C(n,k)aⁿ⁻ᵏbᵏ',
+        desc: 'ใช้กระจายกำลังของผลบวกสองพจน์',
+        vars: [
+            { symbol: 'n', name: 'จำนวนเต็มไม่ลบ' },
+            { symbol: 'k', name: 'ลำดับพจน์' }
+        ],
+        exampleProblem: 'จงหาสองพจน์แรกของ (x+1)^3',
+        exampleSolution: '(x+1)³ = x³ + 3x² + 3x + 1'
+    },
+    {
+        id: 'm2.7',
+        title: 'ลำดับเลขคณิต',
+        category: 'พีชคณิต',
+        level: 'ม.4',
+        formula: 'a_n = a_1 + (n-1)d',
+        displayFormula: 'aₙ = a₁ + (n-1)d',
+        desc: 'ใช้หาพจน์ที่ n ของลำดับเลขคณิต',
+        vars: [
+            { symbol: 'a₁', name: 'พจน์แรก' },
+            { symbol: 'd', name: 'ผลต่างร่วม' },
+            { symbol: 'n', name: 'ลำดับพจน์' }
+        ],
+        exampleProblem: 'ลำดับ 3, 7, 11,... จงหาพจน์ที่ 10',
+        exampleSolution: 'a₁=3, d=4\n a₁₀ = 3 + 9(4) = 39'
+    },
+    {
+        id: 'm2.8',
+        title: 'ผลบวกลำดับเลขคณิต',
+        category: 'พีชคณิต',
+        level: 'ม.4',
+        formula: 'S_n = n/2 * (2a_1 + (n-1)d)',
+        displayFormula: 'Sₙ = n/2 [2a₁ + (n-1)d]',
+        desc: 'ใช้หาผลบวก n พจน์แรกของลำดับเลขคณิต',
+        vars: [
+            { symbol: 'n', name: 'จำนวนพจน์' },
+            { symbol: 'a₁', name: 'พจน์แรก' },
+            { symbol: 'd', name: 'ผลต่างร่วม' }
+        ],
+        exampleProblem: 'จงหาผลบวก 10 พจน์แรกของ 3,7,11,...',
+        exampleSolution: 'S₁₀ = 10/2[2(3)+9(4)] = 210'
+    },
+
+    // =========================================================
+    // หมวด 3: ตรีโกณมิติ — 8 สูตร
+    // =========================================================
+    {
+        id: 'm3.1',
         title: 'เอกลักษณ์ตรีโกณมิติพื้นฐาน',
         category: 'ตรีโกณมิติ',
         level: 'ม.5',
-        formula: 'sin^2(θ) + cos^2(θ) = 1',
+        formula: 'sin^2(theta) + cos^2(theta) = 1',
         displayFormula: 'sin²(θ) + cos²(θ) = 1',
-        desc: 'เอกลักษณ์สำคัญที่เชื่อมโยงระหว่างค่า sine และ cosine ของมุมเดียวกัน',
+        desc: 'ความสัมพันธ์พื้นฐานระหว่าง sine และ cosine',
         vars: [
-            { symbol: 'θ', name: 'ขนาดของมุม (เรเดียน หรือ องศา)' }
+            { symbol: 'θ', name: 'ขนาดของมุม' }
         ],
-        exampleProblem: 'ถ้า sin(θ) = 3/5 จงหาค่า cos(θ) เมื่อ θ เป็นมุมแหลม',
-        exampleSolution: 'จาก sin²(θ) + cos²(θ) = 1\n(3/5)² + cos²(θ) = 1\n9/25 + cos²(θ) = 1\ncos²(θ) = 16/25 => cos(θ) = 4/5'
+        exampleProblem: 'ถ้า sin(θ)=3/5 และ θ เป็นมุมแหลม จงหา cos(θ)',
+        exampleSolution: 'cos²(θ)=1-9/25=16/25\ncos(θ)=4/5'
     },
     {
-        id: 'm4',
-        title: 'สมการวงกลม (Circle Equation)',
+        id: 'm3.2',
+        title: 'แทนเจนต์',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.3',
+        formula: 'tan(theta) = sin(theta)/cos(theta)',
+        displayFormula: 'tan(θ) = sin(θ)/cos(θ)',
+        desc: 'ความสัมพันธ์ระหว่าง tan, sin และ cos',
+        vars: [
+            { symbol: 'θ', name: 'ขนาดของมุม' }
+        ],
+        exampleProblem: 'ถ้า sin(θ)=3/5 และ cos(θ)=4/5 จงหา tan(θ)',
+        exampleSolution: 'tan(θ) = (3/5)/(4/5) = 3/4'
+    },
+    {
+        id: 'm3.3',
+        title: 'ไซน์ของผลบวกมุม',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'sin(A+B) = sin(A)cos(B) + cos(A)sin(B)',
+        displayFormula: 'sin(A+B) = sinA cosB + cosA sinB',
+        desc: 'สูตร sine ของผลบวกสองมุม',
+        vars: [
+            { symbol: 'A,B', name: 'มุมสองมุม' }
+        ],
+        exampleProblem: 'ใช้สูตรเขียน sin(A+B)',
+        exampleSolution: 'sin(A+B) = sinA cosB + cosA sinB'
+    },
+    {
+        id: 'm3.4',
+        title: 'โคไซน์ของผลบวกมุม',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'cos(A+B) = cos(A)cos(B) - sin(A)sin(B)',
+        displayFormula: 'cos(A+B) = cosA cosB - sinA sinB',
+        desc: 'สูตร cosine ของผลบวกสองมุม',
+        vars: [
+            { symbol: 'A,B', name: 'มุมสองมุม' }
+        ],
+        exampleProblem: 'ใช้สูตรเขียน cos(A+B)',
+        exampleSolution: 'cos(A+B) = cosA cosB - sinA sinB'
+    },
+    {
+        id: 'm3.5',
+        title: 'ไซน์ของผลต่างมุม',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'sin(A-B) = sin(A)cos(B) - cos(A)sin(B)',
+        displayFormula: 'sin(A-B) = sinA cosB - cosA sinB',
+        desc: 'สูตร sine ของผลต่างสองมุม',
+        vars: [
+            { symbol: 'A,B', name: 'มุมสองมุม' }
+        ],
+        exampleProblem: 'ใช้สูตรเขียน sin(A-B)',
+        exampleSolution: 'sin(A-B) = sinA cosB - cosA sinB'
+    },
+    {
+        id: 'm3.6',
+        title: 'โคไซน์ของผลต่างมุม',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'cos(A-B) = cos(A)cos(B) + sin(A)sin(B)',
+        displayFormula: 'cos(A-B) = cosA cosB + sinA sinB',
+        desc: 'สูตร cosine ของผลต่างสองมุม',
+        vars: [
+            { symbol: 'A,B', name: 'มุมสองมุม' }
+        ],
+        exampleProblem: 'ใช้สูตรเขียน cos(A-B)',
+        exampleSolution: 'cos(A-B) = cosA cosB + sinA sinB'
+    },
+    {
+        id: 'm3.7',
+        title: 'กฎของไซน์',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'a/sin(A) = b/sin(B) = c/sin(C)',
+        displayFormula: 'a/sinA = b/sinB = c/sinC',
+        desc: 'ใช้หาด้านหรือมุมของสามเหลี่ยมทั่วไป',
+        vars: [
+            { symbol: 'a,b,c', name: 'ความยาวด้าน' },
+            { symbol: 'A,B,C', name: 'มุมตรงข้ามด้าน' }
+        ],
+        exampleProblem: 'ใช้กฎของไซน์หาด้านเมื่อทราบด้านและมุมที่เกี่ยวข้อง',
+        exampleSolution: 'ใช้สัดส่วน a/sinA = b/sinB = c/sinC'
+    },
+    {
+        id: 'm3.8',
+        title: 'กฎของโคไซน์',
+        category: 'ตรีโกณมิติ',
+        level: 'ม.5',
+        formula: 'c^2 = a^2 + b^2 - 2ab*cos(C)',
+        displayFormula: 'c² = a² + b² - 2ab cosC',
+        desc: 'ใช้หาด้านหรือมุมของสามเหลี่ยมทั่วไป',
+        vars: [
+            { symbol: 'a,b,c', name: 'ความยาวด้าน' },
+            { symbol: 'C', name: 'มุมระหว่าง a และ b' }
+        ],
+        exampleProblem: 'จงหาด้าน c เมื่อ a=3, b=4 และ C=90°',
+        exampleSolution: 'c² = 9 + 16 - 2(3)(4)(0) = 25\nc = 5'
+    },
+
+    // =========================================================
+    // หมวด 4: ภาคตัดกรวย — 8 สูตร
+    // =========================================================
+    {
+        id: 'm4.1',
+        title: 'สมการวงกลม',
         category: 'ภาคตัดกรวย',
         level: 'ม.4',
-        formula: '(x - h)^2 + (y - k)^2 = r^2',
-        displayFormula: '(x - h)² + (y - k)² = r²',
-        desc: 'สมการมาตรฐานของวงกลมที่มีจุดศูนย์กลางอยู่ที่ (h, k) และรัศมี r',
+        formula: '(x-h)^2 + (y-k)^2 = r^2',
+        displayFormula: '(x-h)² + (y-k)² = r²',
+        desc: 'สมการมาตรฐานของวงกลม',
         vars: [
-            { symbol: '(h, k)', name: 'พิกัดจุดศูนย์กลางวงกลม' },
-            { symbol: 'r', name: 'ความยาวรัศมีของวงกลม' }
+            { symbol: '(h,k)', name: 'จุดศูนย์กลาง' },
+            { symbol: 'r', name: 'รัศมี' }
         ],
-        exampleProblem: 'จงหาสมการวงกลมที่มีจุดศูนย์กลางอยู่ที่ (2, -3) และรัศมียาว 5 หน่วย',
-        exampleSolution: 'แทนค่า h = 2, k = -3, r = 5 ในสูตร\n(x - 2)² + (y - (-3))² = 5²\n(x - 2)² + (y + 3)² = 25'
+        exampleProblem: 'วงกลมศูนย์กลาง (2,-3) รัศมี 5 จงเขียนสมการ',
+        exampleSolution: '(x-2)² + (y+3)² = 25'
     },
     {
-        id: 'm5',
-        title: 'สมบัติลอการิทึม (Logarithm Rules)',
+        id: 'm4.2',
+        title: 'สมการพาราโบลาแนวนอน',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(y-k)^2 = 4p(x-h)',
+        displayFormula: '(y-k)² = 4p(x-h)',
+        desc: 'สมการมาตรฐานของพาราโบลาที่เปิดซ้ายหรือขวา',
+        vars: [
+            { symbol: '(h,k)', name: 'จุดยอด' },
+            { symbol: 'p', name: 'ระยะจากจุดยอดถึงโฟกัส' }
+        ],
+        exampleProblem: 'เขียนรูปมาตรฐานของพาราโบลา',
+        exampleSolution: 'ใช้รูป (y-k)² = 4p(x-h)'
+    },
+    {
+        id: 'm4.3',
+        title: 'สมการพาราโบลาแนวตั้ง',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(x-h)^2 = 4p(y-k)',
+        displayFormula: '(x-h)² = 4p(y-k)',
+        desc: 'สมการมาตรฐานของพาราโบลาที่เปิดขึ้นหรือลง',
+        vars: [
+            { symbol: '(h,k)', name: 'จุดยอด' },
+            { symbol: 'p', name: 'ระยะจากจุดยอดถึงโฟกัส' }
+        ],
+        exampleProblem: 'เขียนรูปมาตรฐานของพาราโบลา',
+        exampleSolution: 'ใช้รูป (x-h)² = 4p(y-k)'
+    },
+    {
+        id: 'm4.4',
+        title: 'วงรีแกนเอกแนวนอน',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(x-h)^2/a^2 + (y-k)^2/b^2 = 1',
+        displayFormula: '(x-h)²/a² + (y-k)²/b² = 1',
+        desc: 'สมการมาตรฐานวงรีที่แกนเอกอยู่ในแนวนอน',
+        vars: [
+            { symbol: '(h,k)', name: 'จุดศูนย์กลาง' },
+            { symbol: 'a,b', name: 'กึ่งแกนเอกและกึ่งแกนโท' }
+        ],
+        exampleProblem: 'เขียนสมการวงรีจากจุดศูนย์กลางและกึ่งแกน',
+        exampleSolution: 'แทนค่า h, k, a และ b ลงในสมการมาตรฐาน'
+    },
+    {
+        id: 'm4.5',
+        title: 'วงรีแกนเอกแนวตั้ง',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(x-h)^2/b^2 + (y-k)^2/a^2 = 1',
+        displayFormula: '(x-h)²/b² + (y-k)²/a² = 1',
+        desc: 'สมการมาตรฐานวงรีที่แกนเอกอยู่ในแนวตั้ง',
+        vars: [
+            { symbol: '(h,k)', name: 'จุดศูนย์กลาง' },
+            { symbol: 'a,b', name: 'กึ่งแกนเอกและกึ่งแกนโท' }
+        ],
+        exampleProblem: 'เขียนสมการวงรีแกนเอกแนวตั้ง',
+        exampleSolution: 'แทนค่าจุดศูนย์กลางและกึ่งแกนลงในสมการ'
+    },
+    {
+        id: 'm4.6',
+        title: 'สมการไฮเพอร์โบลา',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.4',
+        formula: '(x-h)^2/a^2 - (y-k)^2/b^2 = 1',
+        displayFormula: '(x-h)²/a² - (y-k)²/b² = 1',
+        desc: 'สมการมาตรฐานไฮเพอร์โบลาที่เปิดซ้ายขวา',
+        vars: [
+            { symbol: '(h,k)', name: 'จุดศูนย์กลาง' },
+            { symbol: 'a,b', name: 'พารามิเตอร์ของไฮเพอร์โบลา' }
+        ],
+        exampleProblem: 'เขียนสมการไฮเพอร์โบลามาตรฐาน',
+        exampleSolution: 'ใช้รูป (x-h)²/a² - (y-k)²/b² = 1'
+    },
+    {
+        id: 'm4.7',
+        title: 'ความชันของเส้นตรง',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.3',
+        formula: 'm = (y2-y1)/(x2-x1)',
+        displayFormula: 'm = (y₂-y₁)/(x₂-x₁)',
+        desc: 'ใช้หาความชันของเส้นตรงจากจุดสองจุด',
+        vars: [
+            { symbol: '(x₁,y₁),(x₂,y₂)', name: 'จุดสองจุดบนเส้นตรง' }
+        ],
+        exampleProblem: 'จงหาความชันระหว่าง (1,2) และ (3,8)',
+        exampleSolution: 'm = (8-2)/(3-1) = 3'
+    },
+    {
+        id: 'm4.8',
+        title: 'สมการเส้นตรงแบบจุด-ความชัน',
+        category: 'ภาคตัดกรวย',
+        level: 'ม.3',
+        formula: 'y-y1 = m(x-x1)',
+        displayFormula: 'y-y₁ = m(x-x₁)',
+        desc: 'ใช้สร้างสมการเส้นตรงจากจุดหนึ่งและความชัน',
+        vars: [
+            { symbol: 'm', name: 'ความชัน' },
+            { symbol: '(x₁,y₁)', name: 'จุดบนเส้นตรง' }
+        ],
+        exampleProblem: 'เส้นตรงผ่าน (2,3) และมีความชัน 4 จงหาสมการ',
+        exampleSolution: 'y-3 = 4(x-2)'
+    },
+
+    // =========================================================
+    // หมวด 5: ลอการิทึม — 8 สูตร
+    // =========================================================
+    {
+        id: 'm5.1',
+        title: 'ลอการิทึมของผลคูณ',
         category: 'ลอการิทึม',
         level: 'ม.4',
-        formula: 'log_a(x * y) = log_a(x) + log_a(y)',
-        displayFormula: 'logₐ(x · y) = logₐ(x) + logₐ(y)',
-        desc: 'ลอการิทึมของผลคูณเท่ากับผลบวกของลอการิทึมแต่ละตัว',
+        formula: 'log_a(x*y) = log_a(x) + log_a(y)',
+        displayFormula: 'logₐ(xy) = logₐx + logₐy',
+        desc: 'ลอการิทึมของผลคูณเท่ากับผลบวกของลอการิทึม',
         vars: [
-            { symbol: 'a', name: 'ฐานของลอการิทึม (a > 0, a ≠ 1)' },
-            { symbol: 'x, y', name: 'จำนวนจริงบวก' }
+            { symbol: 'a', name: 'ฐาน โดย a > 0 และ a ≠ 1' },
+            { symbol: 'x,y', name: 'จำนวนจริงบวก' }
         ],
-        exampleProblem: 'จงหาค่าของ log₂ (4 × 8)',
-        exampleSolution: 'วิธีที่ 1: log₂ (32) = 5\nวิธีที่ 2: log₂ (4) + log₂ (8) = 2 + 3 = 5'
+        exampleProblem: 'จงหาค่า log₂(4×8)',
+        exampleSolution: 'log₂4 + log₂8 = 2 + 3 = 5'
     },
     {
-        id: 'm6',
-        title: 'ดีเทอร์มิแนนต์เมทริกซ์ 2x2 (Determinant 2x2)',
+        id: 'm5.2',
+        title: 'ลอการิทึมของผลหาร',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(x/y) = log_a(x) - log_a(y)',
+        displayFormula: 'logₐ(x/y) = logₐx - logₐy',
+        desc: 'ลอการิทึมของผลหารเท่ากับผลต่างของลอการิทึม',
+        vars: [
+            { symbol: 'a', name: 'ฐานของลอการิทึม' },
+            { symbol: 'x,y', name: 'จำนวนจริงบวก' }
+        ],
+        exampleProblem: 'จงหาค่า log₂(8/2)',
+        exampleSolution: 'log₂8 - log₂2 = 3 - 1 = 2'
+    },
+    {
+        id: 'm5.3',
+        title: 'ลอการิทึมของเลขยกกำลัง',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(x^n) = n*log_a(x)',
+        displayFormula: 'logₐ(xⁿ) = n logₐx',
+        desc: 'นำเลขชี้กำลังลงมาเป็นสัมประสิทธิ์',
+        vars: [
+            { symbol: 'n', name: 'เลขชี้กำลัง' }
+        ],
+        exampleProblem: 'จงหาค่า log₂(8²)',
+        exampleSolution: '2log₂8 = 2(3) = 6'
+    },
+    {
+        id: 'm5.4',
+        title: 'ลอการิทึมของ 1',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(1) = 0',
+        displayFormula: 'logₐ(1) = 0',
+        desc: 'ลอการิทึมของ 1 ในฐานใด ๆ ที่ใช้ได้มีค่าเป็นศูนย์',
+        vars: [
+            { symbol: 'a', name: 'ฐาน โดย a > 0 และ a ≠ 1' }
+        ],
+        exampleProblem: 'จงหาค่า log₅(1)',
+        exampleSolution: 'log₅(1) = 0'
+    },
+    {
+        id: 'm5.5',
+        title: 'ลอการิทึมของฐานเดียวกัน',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(a) = 1',
+        displayFormula: 'logₐ(a) = 1',
+        desc: 'ลอการิทึมของฐานตัวเองมีค่าเท่ากับ 1',
+        vars: [
+            { symbol: 'a', name: 'ฐาน โดย a > 0 และ a ≠ 1' }
+        ],
+        exampleProblem: 'จงหาค่า log₇(7)',
+        exampleSolution: 'log₇(7) = 1'
+    },
+    {
+        id: 'm5.6',
+        title: 'การเปลี่ยนฐานลอการิทึม',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(x) = log_b(x)/log_b(a)',
+        displayFormula: 'logₐx = log_bx / log_ba',
+        desc: 'ใช้เปลี่ยนฐานของลอการิทึม',
+        vars: [
+            { symbol: 'a,b', name: 'ฐานของลอการิทึม' }
+        ],
+        exampleProblem: 'เขียน log₂10 ในรูป log ฐาน 10',
+        exampleSolution: 'log₂10 = log(10)/log(2)'
+    },
+    {
+        id: 'm5.7',
+        title: 'ความสัมพันธ์เลขยกกำลังกับลอการิทึม',
+        category: 'ลอการิทึม',
+        level: 'ม.4',
+        formula: 'log_a(x) = y <=> a^y = x',
+        displayFormula: 'logₐ(x) = y ⇔ aʸ = x',
+        desc: 'ความสัมพันธ์พื้นฐานระหว่างเลขยกกำลังและลอการิทึม',
+        vars: [
+            { symbol: 'a', name: 'ฐาน' },
+            { symbol: 'x', name: 'จำนวนจริงบวก' }
+        ],
+        exampleProblem: 'เปลี่ยน log₂8 = 3 ให้อยู่ในรูปเลขยกกำลัง',
+        exampleSolution: '2³ = 8'
+    },
+    {
+        id: 'm5.8',
+        title: 'ลอการิทึมธรรมชาติ',
+        category: 'ลอการิทึม',
+        level: 'ม.5',
+        formula: 'ln(x) = log_e(x)',
+        displayFormula: 'ln(x) = logₑ(x)',
+        desc: 'ลอการิทึมที่มีฐานเป็นจำนวน e',
+        vars: [
+            { symbol: 'e', name: 'ค่าคงที่ประมาณ 2.71828' }
+        ],
+        exampleProblem: 'จงเขียน ln(e³) ในรูปอย่างง่าย',
+        exampleSolution: 'ln(e³) = 3'
+    },
+
+    // =========================================================
+    // หมวด 6: เมทริกซ์ — 8 สูตร
+    // =========================================================
+    {
+        id: 'm6.1',
+        title: 'ดีเทอร์มิแนนต์เมทริกซ์ 2x2',
         category: 'เมทริกซ์',
         level: 'ม.5',
         formula: 'det(A) = ad - bc',
-        displayFormula: 'det([a  b; c  d]) = ad - bc',
-        desc: 'การหาค่าดีเทอร์มิแนนต์ของเมทริกซ์ขนาด 2x2',
+        displayFormula: 'det(A) = ad - bc',
+        desc: 'หาดีเทอร์มิแนนต์ของเมทริกซ์ 2x2',
         vars: [
-            { symbol: 'a,b,c,d', name: 'สมาชิกในเมทริกซ์แถวและหลัก' }
+            { symbol: 'a,b,c,d', name: 'สมาชิกของเมทริกซ์' }
         ],
-        exampleProblem: 'จงหา det ของเมทริกซ์ A = [[3, 2], [1, 4]]',
-        exampleSolution: 'det(A) = (3)(4) - (2)(1) = 12 - 2 = 10'
+        exampleProblem: 'A = [[3,2],[1,4]] จงหา det(A)',
+        exampleSolution: 'det(A) = 3(4)-2(1) = 10'
     },
     {
-        id: 'm7',
-        title: 'อนุพันธ์ของฟังก์ชันกำลัง (Power Rule Derivative)',
+        id: 'm6.2',
+        title: 'การบวกเมทริกซ์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'C_ij = A_ij + B_ij',
+        displayFormula: 'Cᵢⱼ = Aᵢⱼ + Bᵢⱼ',
+        desc: 'นำสมาชิกตำแหน่งเดียวกันของเมทริกซ์มาบวกกัน',
+        vars: [
+            { symbol: 'A,B', name: 'เมทริกซ์ที่มีขนาดเท่ากัน' }
+        ],
+        exampleProblem: 'จงหา A+B จากเมทริกซ์สองตัวที่กำหนด',
+        exampleSolution: 'บวกสมาชิกที่อยู่ตำแหน่งเดียวกัน'
+    },
+    {
+        id: 'm6.3',
+        title: 'การลบเมทริกซ์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'C_ij = A_ij - B_ij',
+        displayFormula: 'Cᵢⱼ = Aᵢⱼ - Bᵢⱼ',
+        desc: 'นำสมาชิกตำแหน่งเดียวกันมาลบกัน',
+        vars: [
+            { symbol: 'A,B', name: 'เมทริกซ์ที่มีขนาดเท่ากัน' }
+        ],
+        exampleProblem: 'จงหา A-B',
+        exampleSolution: 'ลบสมาชิกตำแหน่งเดียวกันของเมทริกซ์'
+    },
+    {
+        id: 'm6.4',
+        title: 'การคูณเมทริกซ์ด้วยสเกลาร์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'B_ij = k*A_ij',
+        displayFormula: 'Bᵢⱼ = kAᵢⱼ',
+        desc: 'คูณสมาชิกทุกตัวของเมทริกซ์ด้วยค่าคงที่',
+        vars: [
+            { symbol: 'k', name: 'สเกลาร์' }
+        ],
+        exampleProblem: 'จงหา 3A',
+        exampleSolution: 'นำสมาชิกทุกตัวของ A คูณด้วย 3'
+    },
+    {
+        id: 'm6.5',
+        title: 'การคูณเมทริกซ์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'C_ij = sum(A_ik*B_kj)',
+        displayFormula: 'Cᵢⱼ = Σ AᵢₖBₖⱼ',
+        desc: 'คูณแถวของเมทริกซ์แรกกับหลักของเมทริกซ์ที่สอง',
+        vars: [
+            { symbol: 'A,B', name: 'เมทริกซ์ที่สามารถคูณกันได้' }
+        ],
+        exampleProblem: 'จงหา AB',
+        exampleSolution: 'คูณสมาชิกแถวของ A กับสมาชิกหลักของ B แล้วหาผลรวม'
+    },
+    {
+        id: 'm6.6',
+        title: 'เมทริกซ์เอกลักษณ์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: 'AI = IA = A',
+        displayFormula: 'AI = IA = A',
+        desc: 'เมทริกซ์เอกลักษณ์ทำหน้าที่คล้ายเลข 1 ในการคูณ',
+        vars: [
+            { symbol: 'I', name: 'เมทริกซ์เอกลักษณ์' }
+        ],
+        exampleProblem: 'จงหา AI',
+        exampleSolution: 'AI = A'
+    },
+    {
+        id: 'm6.7',
+        title: 'เมทริกซ์ผกผัน 2x2',
+        category: 'เมทริกซ์',
+        level: 'ม.6',
+        formula: 'A^-1 = 1/(ad-bc)[[d,-b],[-c,a]]',
+        displayFormula: 'A⁻¹ = 1/(ad-bc) [[d,-b],[-c,a]]',
+        desc: 'ใช้หาเมทริกซ์ผกผันของเมทริกซ์ 2x2',
+        vars: [
+            { symbol: 'ad-bc', name: 'ดีเทอร์มิแนนต์ ต้องไม่เท่ากับศูนย์' }
+        ],
+        exampleProblem: 'จงหาเมทริกซ์ผกผันของ A',
+        exampleSolution: 'หา det(A) ก่อน แล้วใช้สูตรเมทริกซ์ผกผัน'
+    },
+    {
+        id: 'm6.8',
+        title: 'ทรานสโพสเมทริกซ์',
+        category: 'เมทริกซ์',
+        level: 'ม.5',
+        formula: '(A^T)_ij = A_ji',
+        displayFormula: '(Aᵀ)ᵢⱼ = Aⱼᵢ',
+        desc: 'สลับแถวและหลักของเมทริกซ์',
+        vars: [
+            { symbol: 'Aᵀ', name: 'ทรานสโพสของ A' }
+        ],
+        exampleProblem: 'จงหา Aᵀ ของ [[1,2],[3,4]]',
+        exampleSolution: 'Aᵀ = [[1,3],[2,4]]'
+    },
+
+    // =========================================================
+    // หมวด 7: แคลคูลัส — 8 สูตร
+    // =========================================================
+    {
+        id: 'm7.1',
+        title: 'อนุพันธ์ฟังก์ชันกำลัง',
         category: 'แคลคูลัส',
         level: 'ม.6',
-        formula: 'd/dx (x^n) = n * x^(n-1)',
-        displayFormula: 'd/dx(xⁿ) = n · xⁿ⁻¹',
-        desc: 'กฎพื้นฐานในการหาอนุพันธ์ของฟังก์ชันเลขยกกำลัง',
+        formula: 'd/dx(x^n) = n*x^(n-1)',
+        displayFormula: 'd/dx(xⁿ) = nxⁿ⁻¹',
+        desc: 'กฎพื้นฐานสำหรับหาอนุพันธ์ของ x ยกกำลัง n',
         vars: [
-            { symbol: 'n', name: 'เลขชี้กำลัง (จำนวนจริง)' }
+            { symbol: 'n', name: 'เลขชี้กำลัง' }
         ],
-        exampleProblem: 'จงหาอนุพันธ์ d/dx (x⁴ + 3x²)',
-        exampleSolution: 'd/dx (x⁴) + d/dx (3x²)\n= 4x⁴⁻¹ + 3(2x²⁻¹)\n= 4x³ + 6x'
+        exampleProblem: 'จงหาอนุพันธ์ของ x⁴',
+        exampleSolution: 'd/dx(x⁴) = 4x³'
     },
     {
-        id: 'm8',
-        title: 'ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)',
+        id: 'm7.2',
+        title: 'อนุพันธ์ของค่าคงที่',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: 'd/dx(c) = 0',
+        displayFormula: 'd/dx(c) = 0',
+        desc: 'อนุพันธ์ของค่าคงที่มีค่าเป็นศูนย์',
+        vars: [
+            { symbol: 'c', name: 'ค่าคงที่' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ 8',
+        exampleSolution: 'd/dx(8) = 0'
+    },
+    {
+        id: 'm7.3',
+        title: 'กฎผลบวกของอนุพันธ์',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: '(f+g)\\' = f\\' + g\\'',
+        displayFormula: '(f+g)′ = f′ + g′',
+        desc: 'อนุพันธ์ของผลบวกเท่ากับผลบวกของอนุพันธ์',
+        vars: [
+            { symbol: 'f,g', name: 'ฟังก์ชัน' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ x² + x³',
+        exampleSolution: '2x + 3x²'
+    },
+    {
+        id: 'm7.4',
+        title: 'กฎผลคูณ',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: '(fg)\\' = f\\'g + fg\\'',
+        displayFormula: '(fg)′ = f′g + fg′',
+        desc: 'ใช้หาอนุพันธ์ของผลคูณของสองฟังก์ชัน',
+        vars: [
+            { symbol: 'f,g', name: 'ฟังก์ชัน' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ f(x)g(x)',
+        exampleSolution: '(fg)′ = f′g + fg′'
+    },
+    {
+        id: 'm7.5',
+        title: 'กฎผลหาร',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: '(f/g)\\' = (f\\'g-fg\\')/g^2',
+        displayFormula: '(f/g)′ = (f′g - fg′)/g²',
+        desc: 'ใช้หาอนุพันธ์ของฟังก์ชันผลหาร',
+        vars: [
+            { symbol: 'f,g', name: 'ฟังก์ชัน โดย g ≠ 0' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ f/g',
+        exampleSolution: 'ใช้สูตร (f′g - fg′)/g²'
+    },
+    {
+        id: 'm7.6',
+        title: 'กฎลูกโซ่',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: 'd/dx f(g(x)) = f\\'(g(x))*g\\'(x)',
+        displayFormula: 'd/dx[f(g(x))] = f′(g(x))g′(x)',
+        desc: 'ใช้หาอนุพันธ์ของฟังก์ชันประกอบ',
+        vars: [
+            { symbol: 'f,g', name: 'ฟังก์ชันภายนอกและภายใน' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ (3x+1)²',
+        exampleSolution: '2(3x+1)(3) = 18x + 6'
+    },
+    {
+        id: 'm7.7',
+        title: 'อนุพันธ์ของ sin(x)',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: 'd/dx(sin x) = cos x',
+        displayFormula: 'd/dx(sin x) = cos x',
+        desc: 'อนุพันธ์พื้นฐานของ sine',
+        vars: [
+            { symbol: 'x', name: 'ตัวแปร' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ sin(x)',
+        exampleSolution: 'cos(x)'
+    },
+    {
+        id: 'm7.8',
+        title: 'อนุพันธ์ของ cos(x)',
+        category: 'แคลคูลัส',
+        level: 'ม.6',
+        formula: 'd/dx(cos x) = -sin x',
+        displayFormula: 'd/dx(cos x) = -sin x',
+        desc: 'อนุพันธ์พื้นฐานของ cosine',
+        vars: [
+            { symbol: 'x', name: 'ตัวแปร' }
+        ],
+        exampleProblem: 'จงหาอนุพันธ์ของ cos(x)',
+        exampleSolution: '-sin(x)'
+    },
+
+    // =========================================================
+    // หมวด 8: สถิติ — 8 สูตร
+    // =========================================================
+    {
+        id: 'm8.1',
+        title: 'ค่าเฉลี่ยเลขคณิต',
         category: 'สถิติ',
         level: 'ม.6',
-        formula: 'x_bar = (Σ x) / N',
-        displayFormula: 'x̄ = (Σx) / N',
-        desc: 'การหาค่ากลางของข้อมูลโดยนำผลรวมข้อมูลทั้งหมดหารด้วยจำนวนข้อมูล',
+        formula: 'x_bar = sum(x)/N',
+        displayFormula: 'x̄ = Σx/N',
+        desc: 'ผลรวมข้อมูลทั้งหมดหารด้วยจำนวนข้อมูล',
         vars: [
-            { symbol: 'x̄', name: 'ค่าเฉลี่ยเลขคณิต' },
-            { symbol: 'Σx', name: 'ผลรวมของข้อมูลทุกตัว' },
-            { symbol: 'N', name: 'จำนวนข้อมูลทั้งหมด' }
+            { symbol: 'Σx', name: 'ผลรวมข้อมูล' },
+            { symbol: 'N', name: 'จำนวนข้อมูล' }
         ],
-        exampleProblem: 'คะแนนสอบ 5 คน ได้แก่ 10, 12, 14, 16, 18 จงหาค่าเฉลี่ย',
-        exampleSolution: 'x̄ = (10 + 12 + 14 + 16 + 18) / 5 = 70 / 5 = 14'
+        exampleProblem: 'ข้อมูล 10,12,14,16,18 จงหาค่าเฉลี่ย',
+        exampleSolution: 'x̄ = 70/5 = 14'
+    },
+    {
+        id: 'm8.2',
+        title: 'ค่าเฉลี่ยถ่วงน้ำหนัก',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 'x_bar = sum(w*x)/sum(w)',
+        displayFormula: 'x̄ = Σ(wx)/Σw',
+        desc: 'ใช้หาค่าเฉลี่ยเมื่อข้อมูลแต่ละค่ามีน้ำหนักแตกต่างกัน',
+        vars: [
+            { symbol: 'w', name: 'น้ำหนัก' },
+            { symbol: 'x', name: 'ข้อมูล' }
+        ],
+        exampleProblem: 'คะแนน 10 น้ำหนัก 2 และคะแนน 20 น้ำหนัก 1 จงหาค่าเฉลี่ยถ่วงน้ำหนัก',
+        exampleSolution: 'x̄ = (10×2 + 20×1)/(2+1) = 40/3'
+    },
+    {
+        id: 'm8.3',
+        title: 'พิสัย',
+        category: 'สถิติ',
+        level: 'ม.1',
+        formula: 'R = xmax - xmin',
+        displayFormula: 'R = ค่าสูงสุด - ค่าต่ำสุด',
+        desc: 'วัดการกระจายโดยดูความแตกต่างระหว่างค่าสูงสุดและต่ำสุด',
+        vars: [
+            { symbol: 'xmax', name: 'ค่าสูงสุด' },
+            { symbol: 'xmin', name: 'ค่าต่ำสุด' }
+        ],
+        exampleProblem: 'ข้อมูล 2,5,8,10 จงหาพิสัย',
+        exampleSolution: 'R = 10 - 2 = 8'
+    },
+    {
+        id: 'm8.4',
+        title: 'ความแปรปรวนของประชากร',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 'sigma^2 = sum((x-mu)^2)/N',
+        displayFormula: 'σ² = Σ(x-μ)²/N',
+        desc: 'ใช้วัดการกระจายของข้อมูลประชากร',
+        vars: [
+            { symbol: 'μ', name: 'ค่าเฉลี่ยประชากร' },
+            { symbol: 'N', name: 'จำนวนข้อมูล' }
+        ],
+        exampleProblem: 'จงหาความแปรปรวนของข้อมูลที่กำหนด',
+        exampleSolution: 'หาค่าเฉลี่ยก่อน แล้วหาผลรวมของกำลังสองของส่วนเบี่ยงเบนหารด้วย N'
+    },
+    {
+        id: 'm8.5',
+        title: 'ส่วนเบี่ยงเบนมาตรฐานประชากร',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 'sigma = sqrt(sum((x-mu)^2)/N)',
+        displayFormula: 'σ = √[Σ(x-μ)²/N]',
+        desc: 'รากที่สองของความแปรปรวนประชากร',
+        vars: [
+            { symbol: 'σ', name: 'ส่วนเบี่ยงเบนมาตรฐาน' }
+        ],
+        exampleProblem: 'จงหาส่วนเบี่ยงเบนมาตรฐานจากความแปรปรวน 25',
+        exampleSolution: 'σ = √25 = 5'
+    },
+    {
+        id: 'm8.6',
+        title: 'ความแปรปรวนของกลุ่มตัวอย่าง',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 's^2 = sum((x-x_bar)^2)/(n-1)',
+        displayFormula: 's² = Σ(x-x̄)²/(n-1)',
+        desc: 'ใช้หาความแปรปรวนของกลุ่มตัวอย่าง',
+        vars: [
+            { symbol: 'x̄', name: 'ค่าเฉลี่ยตัวอย่าง' },
+            { symbol: 'n', name: 'จำนวนตัวอย่าง' }
+        ],
+        exampleProblem: 'จงหาความแปรปรวนของกลุ่มตัวอย่าง',
+        exampleSolution: 'หาผลรวมกำลังสองของส่วนเบี่ยงเบนแล้วหารด้วย n-1'
+    },
+    {
+        id: 'm8.7',
+        title: 'มัธยฐานข้อมูลจำนวนคี่',
+        category: 'สถิติ',
+        level: 'ม.2',
+        formula: 'Median = x_((n+1)/2)',
+        displayFormula: 'Median = x₍ₙ₊₁₎/₂',
+        desc: 'หาค่ากลางของข้อมูลเมื่อจำนวนข้อมูลเป็นจำนวนคี่',
+        vars: [
+            { symbol: 'n', name: 'จำนวนข้อมูล' }
+        ],
+        exampleProblem: 'ข้อมูลเรียงแล้ว 2,4,7,9,12 จงหามัธยฐาน',
+        exampleSolution: 'ตำแหน่ง = (5+1)/2 = 3 ดังนั้นมัธยฐาน = 7'
+    },
+    {
+        id: 'm8.8',
+        title: 'คะแนนมาตรฐาน Z',
+        category: 'สถิติ',
+        level: 'ม.6',
+        formula: 'z = (x-mu)/sigma',
+        displayFormula: 'z = (x-μ)/σ',
+        desc: 'ใช้บอกตำแหน่งของข้อมูลเมื่อเทียบกับค่าเฉลี่ยในหน่วยส่วนเบี่ยงเบนมาตรฐาน',
+        vars: [
+            { symbol: 'x', name: 'ค่าข้อมูล' },
+            { symbol: 'μ', name: 'ค่าเฉลี่ย' },
+            { symbol: 'σ', name: 'ส่วนเบี่ยงเบนมาตรฐาน' }
+        ],
+        exampleProblem: 'ถ้า x=70, μ=60 และ σ=5 จงหา z',
+        exampleSolution: 'z = (70-60)/5 = 2'
     }
-]
-        ];
+]];
+```
 
+
+        
         const physicsData = [
             {
                 id: 'p1',
@@ -695,6 +1861,8 @@
             }
         ];
 
+
+        
         const chemData = [
             {
                 id: 'c1',
@@ -792,6 +1960,8 @@
             }
         ];
 
+
+        
         const symbolsData = [
             // Arithmetic & Basics
             { sym: '+', name: 'บวก (Plus)', mean: 'การรวมจำนวนสองจำนวนเข้าด้วยกัน', cat: 'การคำนวณพื้นฐาน', ex: '5 + 3 = 8' },
