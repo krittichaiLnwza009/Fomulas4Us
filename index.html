@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="th" class="scroll-smooth">
 <head>
@@ -81,7 +92,16 @@
         .dark ::-webkit-scrollbar-thumb {
             background: rgba(75, 85, 99, 0.5);
         }
-    </style>
+    
+        /* Clear, consistent formula and variable typography */
+        .formula-box { overflow-x: auto; }
+        .formula-box .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: clamp(1rem, 2.2vw, 1.2rem); line-height: 1.8; letter-spacing: 0; overflow-wrap: anywhere; }
+        .variable-symbol { display: inline-block; min-width: 4.5rem; padding-right: .5rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; overflow-wrap: anywhere; }
+        .variable-description { line-height: 1.65; overflow-wrap: anywhere; }
+        #physics-formulas-grid, #math-formulas-grid, #chemistry-formulas-grid { align-items: start; }
+        #physics-formulas-grid li, #math-formulas-grid li, #chemistry-formulas-grid li { gap: .5rem; line-height: 1.65; }
+
+</style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
@@ -285,7 +305,7 @@
                         <i class="fa-solid fa-calculator text-blue-600 mr-3"></i>สูตรคณิตศาสตร์ (Mathematics Formulas)
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-                        สูตรคณิตศาสตร์พื้นฐานและเพิ่มเติม ครบถ้วนตั้งแต่ ม.1 ถึง ม.6 พร้อมคำอธิบายและตัวอย่างโจทย์
+                        คลังสูตรคณิตศาสตร์ แยกตามหมวดชัดเจน ตั้งแต่ ม.1 ถึง ม.6 พร้อมคำอธิบายและตัวอย่างโจทย์
                     </p>
                 </div>
                 <!-- Filter Pills -->
@@ -296,8 +316,7 @@
 
             <!-- Filter Tags -->
             <div class="flex flex-wrap gap-2 text-xs">
-                <button onclick="setMathCategory('all')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-blue-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
-                <button onclick="setMathCategory('เรขาคณิต')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เรขาคณิต">เรขาคณิต & พี้นที่</button>
+                <button onclick="setMathCategory('เรขาคณิต')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-blue-600 text-white shadow-sm" data-cat="เรขาคณิต">เรขาคณิต & พี้นที่</button>
                 <button onclick="setMathCategory('พีชคณิต')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="พีชคณิต">พีชคณิต & สมการ</button>
                 <button onclick="setMathCategory('ตรีโกณมิติ')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ตรีโกณมิติ">ตรีโกณมิติ</button>
                 <button onclick="setMathCategory('ภาคตัดกรวย')" class="math-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ภาคตัดกรวย">เรขาคณิตวิเคราะห์ & ภาคตัดกรวย</button>
@@ -322,7 +341,7 @@
                         <i class="fa-solid fa-atom text-purple-600 mr-3"></i>สูตรฟิสิกส์ (Physics Formulas)
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-                        รวบรวมสูตรวิชาฟิสิกส์ ม.4 - ม.6 แยกตามหมวดหมู่ พร้อมหน่วยของตัวแปรและตัวอย่างการคำนวณอย่างละเอียด
+                        คลังสูตรฟิสิกส์ ม.4 - ม.6 แยก 7 หมวดชัดเจน พร้อมภาพประกอบ หน่วยของตัวแปร และตัวอย่างการคำนวณ
                     </p>
                 </div>
                 <div class="flex items-center space-x-2">
@@ -332,8 +351,7 @@
 
             <!-- Filter Tags -->
             <div class="flex flex-wrap gap-2 text-xs">
-                <button onclick="setPhysicsCategory('all')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-purple-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
-                <button onclick="setPhysicsCategory('การเคลื่อนที่')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การเคลื่อนที่">การเคลื่อนที่แนวตรง & กฎนิวตัน</button>
+                <button onclick="setPhysicsCategory('การเคลื่อนที่')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-purple-600 text-white shadow-sm" data-cat="การเคลื่อนที่">การเคลื่อนที่แนวตรง & กฎนิวตัน</button>
                 <button onclick="setPhysicsCategory('งานและพลังงาน')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="งานและพลังงาน">งาน พลังงาน & โมเมนตัม</button>
                 <button onclick="setPhysicsCategory('การเคลื่อนที่แบบซิมเปิล')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การเคลื่อนที่แบบซิมเปิล">วงกลม & SHM</button>
                 <button onclick="setPhysicsCategory('คลื่นและแสง')" class="physics-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="คลื่นและแสง">คลื่น เสียง & แสง</button>
@@ -357,7 +375,7 @@
                         <i class="fa-solid fa-flask text-emerald-600 mr-3"></i>สูตรเคมี (Chemistry Formulas)
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-                        คลังสูตรคำนวณเคมี ม.4 - ม.6 ปริมาณสารสัมพันธ์ แก๊ส กรด-เบส ไฟฟ้าเคมี พร้อมตัวอย่างโจทย์
+                        คลังสูตรเคมี ม.4 - ม.6 แยกตามหมวดปริมาณสารสัมพันธ์ แก๊ส สมดุล กรด-เบส ไฟฟ้าเคมี และเคมีอินทรีย์
                     </p>
                 </div>
                 <div class="flex items-center space-x-2">
@@ -367,13 +385,13 @@
 
             <!-- Filter Tags -->
             <div class="flex flex-wrap gap-2 text-xs">
-                <button onclick="setChemCategory('all')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-emerald-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
-                <button onclick="setChemCategory('ปริมาณสารสัมพันธ์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ปริมาณสารสัมพันธ์">ปริมาณสารสัมพันธ์ & ความเข้มข้น</button>
+                <button onclick="setChemCategory('ปริมาณสารสัมพันธ์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-emerald-600 text-white shadow-sm" data-cat="ปริมาณสารสัมพันธ์">ปริมาณสารสัมพันธ์ & ความเข้มข้น</button>
                 <button onclick="setChemCategory('แก๊สและของแข็ง')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="แก๊สและของแข็ง">แก๊สและสมบัติของแก๊ส</button>
                 <button onclick="setChemCategory('อัตราและสมดุล')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="อัตราและสมดุล">อัตราการเกิดปฏิกิริยา & สมดุลเคมี</button>
                 <button onclick="setChemCategory('กรด-เบส')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="กรด-เบส">กรด - เบส & บัฟเฟอร์</button>
                 <button onclick="setChemCategory('ไฟฟ้าเคมี')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ไฟฟ้าเคมี">ไฟฟ้าเคมี</button>
-                <button onclick="setChemCategory('เคมีอินทรีย์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เคมีอินทรีย์">เคมีอินทรีย์ & เทอร์โมเคมี</button>
+                <button onclick="setChemCategory('เคมีอินทรีย์')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เคมีอินทรีย์">เคมีอินทรีย์</button>
+                <button onclick="setChemCategory('พลังงานเคมี')" class="chem-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="พลังงานเคมี">พลังงานเคมี & เทอร์โมเคมี</button>
             </div>
 
             <!-- Grid Container -->
@@ -402,9 +420,8 @@
 
             <!-- Category Pills -->
             <div class="flex flex-wrap gap-2 text-xs">
-                <button onclick="setSymbolCategory('all')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-amber-600 text-white shadow-sm" data-cat="all">ทั้งหมด</button>
                 <button onclick="setSymbolCategory('การคำนวณพื้นฐาน')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="การคำนวณพื้นฐาน">พีชคณิต & การคำนวณ</button>
-                <button onclick="setSymbolCategory('เรขาคณิตและเซต')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เรขาคณิตและเซต">เรขาคณิต & เซต</button>
+                <button onclick="setSymbolCategory('เรขาคณิตและเซต')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-amber-600 text-white shadow-sm" data-cat="เรขาคณิตและเซต">เรขาคณิต & เซต</button>
                 <button onclick="setSymbolCategory('แคลคูลัสและตรรกศาสตร์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="แคลคูลัสและตรรกศาสตร์">แคลคูลัส & ตรรกศาสตร์</button>
                 <button onclick="setSymbolCategory('เมทริกซ์และเวกเตอร์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="เมทริกซ์และเวกเตอร์">เมทริกซ์ & เวกเตอร์</button>
                 <button onclick="setSymbolCategory('ค่าคงที่ฟิสิกส์')" class="symbol-cat-btn px-3 py-1.5 rounded-full font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300" data-cat="ค่าคงที่ฟิสิกส์">ค่าคงที่ทางฟิสิกส์</button>
@@ -440,17 +457,23 @@
 
         // State Store
         let currentTab = 'home';
-        let mathCategory = 'all';
-        let physicsCategory = 'all';
-        let chemCategory = 'all';
-        let symbolCategory = 'all';
-        let bookmarks = JSON.parse(localStorage.getItem('f4us_bookmarks') || '[]');
+        let mathCategory = 'เรขาคณิต';
+        let physicsCategory = 'การเคลื่อนที่';
+        let chemCategory = 'ปริมาณสารสัมพันธ์';
+        let symbolCategory = 'เรขาคณิตและเซต';
+        let bookmarks = [];
+        try {
+            const storedBookmarks = JSON.parse(localStorage.getItem('f4us_bookmarks') || '[]');
+            bookmarks = Array.isArray(storedBookmarks) ? storedBookmarks : [];
+        } catch (e) {
+            bookmarks = [];
+        }
 
 
         
         // Global Data Sets
 
-const mathData = [[
+const mathData = [
     // =========================================================
     // หมวด 1: เรขาคณิต + พื้นที่ — 30 สูตร
     // =========================================================
@@ -472,7 +495,8 @@ const mathData = [[
     {
         id: 'm1.2',
         title: 'พื้นที่สี่เหลี่ยมผืนผ้า',
-        category: 'เรขาคณิต',
+        diagram: 'rectangle',
+            category: 'เรขาคณิต',
         level: 'ม.1',
         formula: 'A = lw',
         displayFormula: 'A = กว้าง × ยาว',
@@ -488,7 +512,8 @@ const mathData = [[
     {
         id: 'm1.3',
         title: 'พื้นที่สี่เหลี่ยมจัตุรัส',
-        category: 'เรขาคณิต',
+        diagram: 'square',
+            category: 'เรขาคณิต',
         level: 'ม.1',
         formula: 'A = s^2',
         displayFormula: 'A = s²',
@@ -503,7 +528,8 @@ const mathData = [[
     {
         id: 'm1.4',
         title: 'พื้นที่สามเหลี่ยม',
-        category: 'เรขาคณิต',
+        diagram: 'triangle',
+            category: 'เรขาคณิต',
         level: 'ม.1',
         formula: 'A = (1/2)bh',
         displayFormula: 'A = ½bh',
@@ -518,7 +544,8 @@ const mathData = [[
     {
         id: 'm1.5',
         title: 'พื้นที่สี่เหลี่ยมด้านขนาน',
-        category: 'เรขาคณิต',
+        diagram: 'parallelogram',
+            category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'A = bh',
         displayFormula: 'A = bh',
@@ -533,7 +560,8 @@ const mathData = [[
     {
         id: 'm1.6',
         title: 'พื้นที่สี่เหลี่ยมคางหมู',
-        category: 'เรขาคณิต',
+        diagram: 'trapezoid',
+            category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'A = (1/2)(a+b)h',
         displayFormula: 'A = ½(a + b)h',
@@ -548,7 +576,9 @@ const mathData = [[
     {
         id: 'm1.7',
         title: 'พื้นที่สี่เหลี่ยมขนมเปียกปูน',
-        category: 'เรขาคณิต',
+        diagram: 'rhombus',
+        diagram: 'kite',
+            category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'A = (1/2)d1*d2',
         displayFormula: 'A = ½d₁d₂',
@@ -606,7 +636,8 @@ const mathData = [[
     {
         id: 'm1.11',
         title: 'พื้นที่วงกลม',
-        category: 'เรขาคณิต',
+        diagram: 'circle',
+            category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'A = pi*r^2',
         displayFormula: 'A = πr²',
@@ -636,7 +667,8 @@ const mathData = [[
     {
         id: 'm1.13',
         title: 'พื้นที่ภาคของวงกลม',
-        category: 'เรขาคณิต',
+        diagram: 'sector',
+            category: 'เรขาคณิต',
         level: 'ม.3',
         formula: 'A = (theta/360)*pi*r^2',
         displayFormula: 'A = (θ/360°)πr²',
@@ -694,7 +726,8 @@ const mathData = [[
     {
         id: 'm1.17',
         title: 'พื้นที่รูปว่าว',
-        category: 'เรขาคณิต',
+        diagram: 'kite',
+            category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'A = (1/2)d1*d2',
         displayFormula: 'A = ½d₁d₂',
@@ -708,6 +741,7 @@ const mathData = [[
     {
         id: 'm1.18',
         title: 'พื้นที่รูปหลายเหลี่ยมด้านเท่า',
+        diagram: 'polygon',
         category: 'เรขาคณิต',
         level: 'ม.3',
         formula: 'A = (1/2)Pa',
@@ -753,6 +787,7 @@ const mathData = [[
     {
         id: 'm1.21',
         title: 'พื้นที่ผิวลูกบาศก์',
+        diagram: 'cube',
         category: 'เรขาคณิต',
         level: 'ม.2',
         formula: 'SA = 6s^2',
@@ -782,6 +817,7 @@ const mathData = [[
     {
         id: 'm1.23',
         title: 'พื้นที่ผิวทรงกระบอก',
+        diagram: 'cylinder',
         category: 'เรขาคณิต',
         level: 'ม.3',
         formula: 'SA = 2*pi*r*(r+h)',
@@ -826,6 +862,7 @@ const mathData = [[
     {
         id: 'm1.26',
         title: 'พื้นที่ผิวทรงกลม',
+        diagram: 'sphere',
         category: 'เรขาคณิต',
         level: 'ม.3',
         formula: 'SA = 4*pi*r^2',
@@ -840,6 +877,7 @@ const mathData = [[
     {
         id: 'm1.27',
         title: 'พื้นที่สามเหลี่ยมด้านเท่า',
+        diagram: 'equilateral',
         category: 'เรขาคณิต',
         level: 'ม.3',
         formula: 'A = (sqrt(3)/4)s^2',
@@ -854,6 +892,7 @@ const mathData = [[
     {
         id: 'm1.28',
         title: 'พื้นที่จากสูตรเฮรอน',
+        diagram: 'heron',
         category: 'เรขาคณิต',
         level: 'ม.4',
         formula: 'A = sqrt(s(s-a)(s-b)(s-c))',
@@ -1530,7 +1569,7 @@ const mathData = [[
         title: 'กฎผลบวกของอนุพันธ์',
         category: 'แคลคูลัส',
         level: 'ม.6',
-        formula: '(f+g)\\' = f\\' + g\\'',
+        formula: `(f+g)' = f' + g'`,
         displayFormula: '(f+g)′ = f′ + g′',
         desc: 'อนุพันธ์ของผลบวกเท่ากับผลบวกของอนุพันธ์',
         vars: [
@@ -1544,7 +1583,7 @@ const mathData = [[
         title: 'กฎผลคูณ',
         category: 'แคลคูลัส',
         level: 'ม.6',
-        formula: '(fg)\\' = f\\'g + fg\\'',
+        formula: `(fg)' = f'g + fg'`,
         displayFormula: '(fg)′ = f′g + fg′',
         desc: 'ใช้หาอนุพันธ์ของผลคูณของสองฟังก์ชัน',
         vars: [
@@ -1558,7 +1597,7 @@ const mathData = [[
         title: 'กฎผลหาร',
         category: 'แคลคูลัส',
         level: 'ม.6',
-        formula: '(f/g)\\' = (f\\'g-fg\\')/g^2',
+        formula: `(f/g)' = (f'g-fg')/g^2`,
         displayFormula: '(f/g)′ = (f′g - fg′)/g²',
         desc: 'ใช้หาอนุพันธ์ของฟังก์ชันผลหาร',
         vars: [
@@ -1572,7 +1611,7 @@ const mathData = [[
         title: 'กฎลูกโซ่',
         category: 'แคลคูลัส',
         level: 'ม.6',
-        formula: 'd/dx f(g(x)) = f\\'(g(x))*g\\'(x)',
+        formula: `d/dx f(g(x)) = f'(g(x))*g'(x)`,
         displayFormula: 'd/dx[f(g(x))] = f′(g(x))g′(x)',
         desc: 'ใช้หาอนุพันธ์ของฟังก์ชันประกอบ',
         vars: [
@@ -1732,7 +1771,7 @@ const mathData = [[
         exampleProblem: 'ถ้า x=70, μ=60 และ σ=5 จงหา z',
         exampleSolution: 'z = (70-60)/5 = 2'
     }
-]];
+];
 
 
         
@@ -1742,127 +1781,1096 @@ const mathData = [[
                 title: 'สมการการเคลื่อนที่เส้นตรงความเร่งคงที่',
                 category: 'การเคลื่อนที่',
                 level: 'ม.4',
-                formula: 'v = u + at,  s = ut + (1/2)at^2,  v^2 = u^2 + 2as',
-                displayFormula: 'v = u + at \\quad | \\quad s = ut + \\frac{1}{2}at^2 \\quad | \\quad v^2 = u^2 + 2as',
-                desc: '4 สมการหลักในการคำนวณการเคลื่อนที่แนวตรงเมื่อความเร่งคงที่',
-                vars: [
-                    { symbol: 'u', name: 'ความเร็วต้น (m/s)' },
-                    { symbol: 'v', name: 'ความเร็วปลาย (m/s)' },
-                    { symbol: 'a', name: 'ความเร่ง (m/s²)' },
-                    { symbol: 's', name: 'การกระจัด (m)' },
-                    { symbol: 't', name: 'เวลา (s)' }
-                ],
-                exampleProblem: 'รถยนต์ออกตัวจากหยุดนิ่ง (u=0) ด้วยความเร่ง 2 m/s² เป็นเวลา 5 วินาที จงหาความเร็วปลายและการกระจัด',
-                exampleSolution: '1. หาความเร็วปลาย: v = u + at = 0 + (2)(5) = 10 m/s\n2. หาการกระจัด: s = (0)(5) + 0.5(2)(5)² = 25 เมตร'
+                formula: 'v = u + at, s = ut + 1/2at², v² = u² + 2as',
+                displayFormula: 'v = u + at, s = ut + 1/2at², v² = u² + 2as',
+                desc: 'การเคลื่อนที่แนวตรงเมื่อความเร่งคงที่',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p2',
-                title: 'กฎข้อที่สองของนิวตัน (Newton\'s 2nd Law)',
+                title: 'ความเร็วเฉลี่ย',
                 category: 'การเคลื่อนที่',
                 level: 'ม.4',
-                formula: 'ΣF = m * a',
-                displayFormula: '\\Sigma \\vec{F} = m \\vec{a}',
-                desc: 'แรงลัพธ์ที่กระทำต่อวัตถุเท่ากับมวลคูณด้วยความเร่งของวัตถุนั้น',
-                vars: [
-                    { symbol: 'ΣF', name: 'แรงลัพธ์ (นิวตัน, N)' },
-                    { symbol: 'm', name: 'มวลของวัตถุ (กิโลกรัม, kg)' },
-                    { symbol: 'a', name: 'ความเร่ง (m/s²)' }
-                ],
-                exampleProblem: 'วัตถุมวล 5 kg ถูกแรงผลัก 20 N บนพื้นลื่น จงหาความเร่งของวัตถุ',
-                exampleSolution: 'จาก ΣF = ma\n20 = 5 × a\na = 20 / 5 = 4 m/s²'
+                formula: 'v_avg = Δx / Δt',
+                displayFormula: 'v_avg = Δx / Δt',
+                desc: 'อัตราการเปลี่ยนการกระจัดต่อเวลา',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p3',
-                title: 'พลังงานจลน์และพลังงานศักย์โน้มถ่วง',
-                category: 'งานและพลังงาน',
+                title: 'อัตราเร็วเฉลี่ย',
+                category: 'การเคลื่อนที่',
                 level: 'ม.4',
-                formula: 'E_k = (1/2)mv^2,  E_p = mgh',
-                displayFormula: 'E_k = \\frac{1}{2}mv^2 \\quad | \\quad E_p = mgh',
-                desc: 'พลังงานจลน์เนื่องจากการเคลื่อนที่ และพลังงานศักย์เนื่องจากความสูง',
-                vars: [
-                    { symbol: 'E_k', name: 'พลังงานจลน์ (จูล, J)' },
-                    { symbol: 'E_p', name: 'พลังงานศักย์โน้มถ่วง (จูล, J)' },
-                    { symbol: 'm', name: 'มวล (kg)' },
-                    { symbol: 'v', name: 'ความเร็ว (m/s)' },
-                    { symbol: 'g', name: 'ความเร่งเนื่องจากแรงดึงดูดโลก (≈ 9.8 หรือ 10 m/s²)' },
-                    { symbol: 'h', name: 'ความสูงจากระดับอ้างอิง (m)' }
-                ],
-                exampleProblem: 'วัตถุมวล 2 kg ตกจากที่สูง 5 เมตร (g = 10 m/s²) จงหาพลังงานศักย์ที่จุดเริ่มต้น',
-                exampleSolution: 'E_p = mgh = (2 kg) × (10 m/s²) × (5 m) = 100 จูล (J)'
+                formula: 'speed_avg = total distance / total time',
+                displayFormula: 'speed_avg = total distance / total time',
+                desc: 'ระยะทางรวมต่อเวลารวม',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p4',
-                title: 'ความสัมพันธ์คลื่น (Wave Equation)',
-                category: 'คลื่นและแสง',
-                level: 'ม.5',
-                formula: 'v = f * λ',
-                displayFormula: 'v = f \\cdot \\lambda',
-                desc: 'ความสัมพันธ์ระหว่างอัตราเร็วคลื่น ความถี่ และความยาวคลื่น',
-                vars: [
-                    { symbol: 'v', name: 'อัตราเร็วคลื่น (m/s)' },
-                    { symbol: 'f', name: 'ความถี่คลื่น (เฮิรตซ์, Hz)' },
-                    { symbol: 'λ (แลมบ์ดา)', name: 'ความยาวคลื่น (m)' }
-                ],
-                exampleProblem: 'คลื่นเสียงมีความถี่ 500 Hz เคลื่อนที่ในอากาศด้วยอัตราเร็ว 340 m/s จงหาความยาวคลื่น',
-                exampleSolution: 'จาก v = fλ\n340 = 500 × λ\nλ = 340 / 500 = 0.68 เมตร'
+                title: 'ความเร่ง',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'a = Δv / Δt',
+                displayFormula: 'a = Δv / Δt',
+                desc: 'อัตราการเปลี่ยนความเร็วต่อเวลา',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p5',
-                title: 'กฎแก๊สอุดมคติ (Ideal Gas Law)',
-                category: 'ความร้อนและแก๊ส',
-                level: 'ม.5',
-                formula: 'P * V = n * R * T',
-                displayFormula: 'P V = n R T',
-                desc: 'สมการสภาวะของแก๊สอุดมคติ เชื่อมโยงความดัน ปริมาตร โมล และอุณหภูมิ',
-                vars: [
-                    { symbol: 'P', name: 'ความดัน (พาสคัล Pa หรือ atm)' },
-                    { symbol: 'V', name: 'ปริมาตร (m³ หรือ L)' },
-                    { symbol: 'n', name: 'จำนวนโมล (mol)' },
-                    { symbol: 'R', name: 'ค่าคงที่แก๊ส (8.314 J/mol·K หรือ 0.0821 L·atm/mol·K)' },
-                    { symbol: 'T', name: 'อุณหภูมิสัมบูรณ์ (เคลวิน, K)' }
-                ],
-                exampleProblem: 'แก๊ส 1 โมล ที่อุณหภูมิ 27°C (300 K) ความดัน 1 atm มีปริมาตรกี่ลิตร (R = 0.0821)',
-                exampleSolution: 'PV = nRT\n(1)(V) = (1)(0.0821)(300)\nV = 24.63 ลิตร'
+                title: 'การตกอย่างอิสระ',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'v = u + gt, s = ut + 1/2gt²',
+                displayFormula: 'v = u + gt, s = ut + 1/2gt²',
+                desc: 'การเคลื่อนที่แนวดิ่งภายใต้ g',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p6',
-                title: 'กฎของโอห์มและกำลังไฟฟ้า (Ohm\'s Law & Power)',
-                category: 'ไฟฟ้าและแม่เหล็ก',
-                level: 'ม.5',
-                formula: 'V = I * R,  P = V * I = I^2 * R = V^2 / R',
-                displayFormula: 'V = I R \\quad | \\quad P = V I = I^2 R = \\frac{V^2}{R}',
-                desc: 'ความต่างศักย์ กระแส ความต้านทาน และกำลังไฟฟ้าในวงจรไฟฟ้ากระแสตรง',
-                vars: [
-                    { symbol: 'V', name: 'ความต่างศักย์ (โวลต์, V)' },
-                    { symbol: 'I', name: 'กระแสไฟฟ้า (แอมแปร์, A)' },
-                    { symbol: 'R', name: 'ความต้านทาน (โอห์ม, Ω)' },
-                    { symbol: 'P', name: 'กำลังไฟฟ้า (วัตต์, W)' }
-                ],
-                exampleProblem: 'พัดลมไฟฟ้าใช้ความต่างศักย์ 220V มีกระแสไหลผ่าน 0.5A จงหากำลังไฟฟ้า',
-                exampleSolution: 'P = V × I = 220 V × 0.5 A = 110 วัตต์ (W)'
+                title: 'ระยะทางจากกราฟ v-t',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 's = area under v-t graph',
+                displayFormula: 's = area under v-t graph',
+                desc: 'พื้นที่ใต้กราฟความเร็ว-เวลาเท่ากับการกระจัด',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
             },
             {
                 id: 'p7',
-                title: 'พลังงานโฟตอนและสมการไอน์สไตน์ (Photoelectric)',
+                title: 'ตำแหน่งจากความเร็วคงที่',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 's = s₀ + vt',
+                displayFormula: 's = s₀ + vt',
+                desc: 'การเคลื่อนที่ด้วยความเร็วคงที่',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p8',
+                title: 'ความเร็วเชิงมุม',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'ω = Δθ / Δt',
+                displayFormula: 'ω = Δθ / Δt',
+                desc: 'อัตราการเปลี่ยนมุมต่อเวลา',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p9',
+                title: 'ความสัมพันธ์ความเร็วเชิงเส้น-เชิงมุม',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'v = ωr',
+                displayFormula: 'v = ωr',
+                desc: 'เชื่อมโยงการเคลื่อนที่รอบวงกลมกับการหมุน',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p10',
+                title: 'ความเร่งสู่ศูนย์กลาง',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'a_c = v²/r = ω²r',
+                displayFormula: 'a_c = v²/r = ω²r',
+                desc: 'ความเร่งของวัตถุที่เคลื่อนที่เป็นวงกลม',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p11',
+                title: 'แรงสู่ศูนย์กลาง',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'F_c = mv²/r = mω²r',
+                displayFormula: 'F_c = mv²/r = mω²r',
+                desc: 'แรงลัพธ์ที่ชี้เข้าสู่ศูนย์กลาง',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p12',
+                title: 'กฎข้อที่สองของนิวตัน',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'ΣF = ma',
+                displayFormula: 'ΣF = ma',
+                desc: 'แรงลัพธ์เท่ากับมวลคูณความเร่ง',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p13',
+                title: 'น้ำหนัก',
+                category: 'การเคลื่อนที่',
+                level: 'ม.4',
+                formula: 'W = mg',
+                displayFormula: 'W = mg',
+                desc: 'แรงโน้มถ่วงที่โลกกระทำต่อวัตถุ',
+                vars: [{'symbol': 'u', 'name': 'ความเร็วต้น (m/s)'}, {'symbol': 'v', 'name': 'ความเร็วปลาย (m/s)'}, {'symbol': 'a', 'name': 'ความเร่ง (m/s²)'}, {'symbol': 't', 'name': 'เวลา (s)'}],
+                exampleProblem: 'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ',
+                exampleSolution: 'แนวทาง: '+'ถ้ากำหนดค่าตัวแปรตามโจทย์ แล้วแทนค่าในสมการเพื่อหาปริมาณที่ต้องการ'
+            },
+            {
+                id: 'p14',
+                title: 'งานของแรงคงที่',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'W = Fs cosθ',
+                displayFormula: 'W = Fs cosθ',
+                desc: 'งานเมื่อแรงทำมุมกับการกระจัด',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p15',
+                title: 'กำลัง',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'P = W/t',
+                displayFormula: 'P = W/t',
+                desc: 'อัตราการทำงานต่อเวลา',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p16',
+                title: 'พลังงานจลน์',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'K = 1/2 mv²',
+                displayFormula: 'K = 1/2 mv²',
+                desc: 'พลังงานของวัตถุเนื่องจากการเคลื่อนที่',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p17',
+                title: 'พลังงานศักย์โน้มถ่วง',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'U_g = mgh',
+                displayFormula: 'U_g = mgh',
+                desc: 'พลังงานเนื่องจากตำแหน่งในสนามโน้มถ่วง',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p18',
+                title: 'พลังงานศักย์สปริง',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'U_s = 1/2 kx²',
+                displayFormula: 'U_s = 1/2 kx²',
+                desc: 'พลังงานสะสมในสปริง',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p19',
+                title: 'ทฤษฎีบทงาน-พลังงาน',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'W_net = ΔK',
+                displayFormula: 'W_net = ΔK',
+                desc: 'งานลัพธ์เท่ากับการเปลี่ยนพลังงานจลน์',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p20',
+                title: 'กฎอนุรักษ์พลังงานกล',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'K_i + U_i = K_f + U_f',
+                displayFormula: 'K_i + U_i = K_f + U_f',
+                desc: 'พลังงานกลคงที่เมื่อไม่มีแรงไม่อนุรักษ์ทำงาน',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p21',
+                title: 'ประสิทธิภาพ',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'η = (E_out/E_in) × 100%',
+                displayFormula: 'η = (E_out/E_in) × 100%',
+                desc: 'อัตราส่วนพลังงานที่ได้ต่อพลังงานที่ป้อน',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p22',
+                title: 'โมเมนตัม',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'p = mv',
+                displayFormula: 'p = mv',
+                desc: 'ปริมาณการเคลื่อนที่ของวัตถุ',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p23',
+                title: 'อิมพัลส์',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'J = FΔt = Δp',
+                displayFormula: 'J = FΔt = Δp',
+                desc: 'ผลของแรงที่ทำต่อช่วงเวลาหนึ่ง',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p24',
+                title: 'การชนแบบยืดหยุ่นหนึ่งมิติ',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'm₁u₁ + m₂u₂ = m₁v₁ + m₂v₂',
+                displayFormula: 'm₁u₁ + m₂u₂ = m₁v₁ + m₂v₂',
+                desc: 'อนุรักษ์โมเมนตัมในการชน',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p25',
+                title: 'จุดศูนย์กลางมวล',
+                category: 'งานและพลังงาน',
+                level: 'ม.4',
+                formula: 'x_cm = Σmᵢxᵢ / Σmᵢ',
+                displayFormula: 'x_cm = Σmᵢxᵢ / Σmᵢ',
+                desc: 'ตำแหน่งเฉลี่ยถ่วงน้ำหนักด้วยมวล',
+                vars: [{'symbol': 'W', 'name': 'งาน (J)'}, {'symbol': 'P', 'name': 'กำลัง (W)'}, {'symbol': 'K', 'name': 'พลังงานจลน์ (J)'}, {'symbol': 'm', 'name': 'มวล (kg)'}],
+                exampleProblem: 'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'ระบุพลังงานหรือแรงที่เกี่ยวข้อง แล้วเลือกสมการให้ตรงกับสิ่งที่โจทย์ถาม'
+            },
+            {
+                id: 'p26',
+                title: 'คาบการเคลื่อนที่วงกลม',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'T = 2π/ω',
+                displayFormula: 'T = 2π/ω',
+                desc: 'คาบสัมพันธ์กับความเร็วเชิงมุม',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p27',
+                title: 'ความถี่',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'f = 1/T',
+                displayFormula: 'f = 1/T',
+                desc: 'จำนวนรอบต่อหนึ่งหน่วยเวลา',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p28',
+                title: 'SHM ตำแหน่ง',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'x = A cos(ωt + φ)',
+                displayFormula: 'x = A cos(ωt + φ)',
+                desc: 'ตำแหน่งของวัตถุในการสั่นแบบฮาร์มอนิกอย่างง่าย',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p29',
+                title: 'ความเร็วใน SHM',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'v = -Aω sin(ωt + φ)',
+                displayFormula: 'v = -Aω sin(ωt + φ)',
+                desc: 'ความเร็วของวัตถุใน SHM',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p30',
+                title: 'ความเร่งใน SHM',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'a = -ω²x',
+                displayFormula: 'a = -ω²x',
+                desc: 'ความเร่งแปรผันตรงกับการกระจัดและทิศตรงข้าม',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p31',
+                title: 'คาบสปริง',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'T = 2π√(m/k)',
+                displayFormula: 'T = 2π√(m/k)',
+                desc: 'คาบการสั่นของมวลติดสปริง',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p32',
+                title: 'ความถี่สปริง',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'f = (1/2π)√(k/m)',
+                displayFormula: 'f = (1/2π)√(k/m)',
+                desc: 'ความถี่ของระบบมวล-สปริง',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p33',
+                title: 'คาบลูกตุ้มอย่างง่าย',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'T = 2π√(L/g)',
+                displayFormula: 'T = 2π√(L/g)',
+                desc: 'คาบลูกตุ้มเมื่อมุมแกว่งเล็ก',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p34',
+                title: 'พลังงานรวมของ SHM',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'E = 1/2 kA²',
+                displayFormula: 'E = 1/2 kA²',
+                desc: 'พลังงานรวมคงที่ของระบบสปริงใน SHM',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p35',
+                title: 'ความถี่เชิงมุมสปริง',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'ω = √(k/m)',
+                displayFormula: 'ω = √(k/m)',
+                desc: 'ความถี่เชิงมุมของระบบสปริง',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p36',
+                title: 'ความถี่เชิงมุมลูกตุ้ม',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'ω = √(g/L)',
+                displayFormula: 'ω = √(g/L)',
+                desc: 'ความถี่เชิงมุมของลูกตุ้มมุมเล็ก',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p37',
+                title: 'แรงสปริง',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'F = -kx',
+                displayFormula: 'F = -kx',
+                desc: 'กฎของฮุกสำหรับสปริง',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p38',
+                title: 'แรงเสียดทาน',
+                category: 'การเคลื่อนที่แบบซิมเปิล',
+                level: 'ม.5',
+                formula: 'f = μN',
+                displayFormula: 'f = μN',
+                desc: 'แรงเสียดทานแบบจำลองพื้นฐาน',
+                vars: [{'symbol': 'A', 'name': 'แอมพลิจูด (m)'}, {'symbol': 'ω', 'name': 'ความถี่เชิงมุม (rad/s)'}, {'symbol': 'T', 'name': 'คาบ (s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}],
+                exampleProblem: 'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยของคาบ ความถี่ และความถี่เชิงมุมก่อนแทนค่า'
+            },
+            {
+                id: 'p39',
+                title: 'สมการคลื่น',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'v = fλ',
+                displayFormula: 'v = fλ',
+                desc: 'ความเร็วคลื่น ความถี่ และความยาวคลื่น',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p40',
+                title: 'ความถี่และคาบคลื่น',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'f = 1/T',
+                displayFormula: 'f = 1/T',
+                desc: 'ความสัมพันธ์ระหว่างความถี่กับคาบ',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p41',
+                title: 'การสะท้อน',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'θ_i = θ_r',
+                displayFormula: 'θ_i = θ_r',
+                desc: 'มุมตกกระทบเท่ากับมุมสะท้อน',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p42',
+                title: 'ดัชนีหักเห',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'n = c/v',
+                displayFormula: 'n = c/v',
+                desc: 'อัตราส่วนความเร็วแสงในสุญญากาศต่อในตัวกลาง',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p43',
+                title: 'กฎของสเนลล์',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'n₁ sinθ₁ = n₂ sinθ₂',
+                displayFormula: 'n₁ sinθ₁ = n₂ sinθ₂',
+                desc: 'ความสัมพันธ์ของมุมเมื่อแสงหักเห',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p44',
+                title: 'มุมวิกฤต',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'sinθ_c = n₂/n₁',
+                displayFormula: 'sinθ_c = n₂/n₁',
+                desc: 'ใช้เมื่อแสงเดินทางจากตัวกลางหนาแน่นเชิงแสงมากไปน้อย',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p45',
+                title: 'ความเข้มเสียง',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'β = 10 log(I/I₀)',
+                displayFormula: 'β = 10 log(I/I₀)',
+                desc: 'ระดับความเข้มเสียงในเดซิเบล',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p46',
+                title: 'ความถี่บีต',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'f_beat = |f₁ - f₂|',
+                displayFormula: 'f_beat = |f₁ - f₂|',
+                desc: 'ความถี่การสั่นพ้องจากคลื่นสองความถี่ใกล้กัน',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p47',
+                title: 'การเลี้ยวเบนช่องเดี่ยว',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'a sinθ = mλ',
+                displayFormula: 'a sinθ = mλ',
+                desc: 'ตำแหน่งแถบมืดจากการเลี้ยวเบน',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p48',
+                title: 'การแทรกสอดสลิตคู่',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'd sinθ = mλ',
+                displayFormula: 'd sinθ = mλ',
+                desc: 'ตำแหน่งแถบสว่างจากการแทรกสอด',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p49',
+                title: 'ระยะระหว่างแถบสลิตคู่',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'Δy = λL/d',
+                displayFormula: 'Δy = λL/d',
+                desc: 'ระยะห่างแถบสว่างบนฉาก',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p50',
+                title: 'สมการกระจกทรงกลม',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: '1/f = 1/u + 1/v',
+                displayFormula: '1/f = 1/u + 1/v',
+                desc: 'ความสัมพันธ์ระยะวัตถุ ภาพ และโฟกัส',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p51',
+                title: 'กำลังขยายเลนส์',
+                category: 'คลื่นและแสง',
+                level: 'ม.5',
+                formula: 'm = v/u = h_i/h_o',
+                displayFormula: 'm = v/u = h_i/h_o',
+                desc: 'อัตราส่วนขนาดภาพต่อวัตถุ',
+                vars: [{'symbol': 'v', 'name': 'อัตราเร็วคลื่น (m/s)'}, {'symbol': 'f', 'name': 'ความถี่ (Hz)'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}, {'symbol': 'n', 'name': 'ดัชนีหักเห'}],
+                exampleProblem: 'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน',
+                exampleSolution: 'แนวทาง: '+'เขียนข้อมูลที่โจทย์ให้มา แล้วตรวจว่าความยาวคลื่นและความถี่ใช้หน่วยสอดคล้องกัน'
+            },
+            {
+                id: 'p52',
+                title: 'กฎแก๊สอุดมคติ',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'PV = nRT',
+                displayFormula: 'PV = nRT',
+                desc: 'สมการสภาวะของแก๊สอุดมคติ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p53',
+                title: 'กฎของบอยล์',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'P₁V₁ = P₂V₂',
+                displayFormula: 'P₁V₁ = P₂V₂',
+                desc: 'ความสัมพันธ์ความดัน-ปริมาตรที่อุณหภูมิคงที่',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p54',
+                title: 'กฎของชาร์ลส์',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'V₁/T₁ = V₂/T₂',
+                displayFormula: 'V₁/T₁ = V₂/T₂',
+                desc: 'ความสัมพันธ์ปริมาตร-อุณหภูมิที่ความดันคงที่',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p55',
+                title: 'กฎของเกย์-ลูสแซก',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'P₁/T₁ = P₂/T₂',
+                displayFormula: 'P₁/T₁ = P₂/T₂',
+                desc: 'ความสัมพันธ์ความดัน-อุณหภูมิที่ปริมาตรคงที่',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p56',
+                title: 'กฎแก๊สรวม',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'P₁V₁/T₁ = P₂V₂/T₂',
+                displayFormula: 'P₁V₁/T₁ = P₂V₂/T₂',
+                desc: 'รวมกฎของบอยล์ ชาร์ลส์ และเกย์-ลูสแซก',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p57',
+                title: 'ความร้อนสัมผัส',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'Q = mcΔT',
+                displayFormula: 'Q = mcΔT',
+                desc: 'พลังงานความร้อนที่ทำให้อุณหภูมิเปลี่ยน',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p58',
+                title: 'ความร้อนแฝง',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'Q = mL',
+                displayFormula: 'Q = mL',
+                desc: 'พลังงานสำหรับเปลี่ยนสถานะโดยอุณหภูมิคงที่',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p59',
+                title: 'การขยายตัวเชิงเส้น',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'ΔL = αL₀ΔT',
+                displayFormula: 'ΔL = αL₀ΔT',
+                desc: 'การเปลี่ยนความยาวจากอุณหภูมิ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p60',
+                title: 'การขยายตัวเชิงปริมาตร',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'ΔV = βV₀ΔT',
+                displayFormula: 'ΔV = βV₀ΔT',
+                desc: 'การเปลี่ยนปริมาตรจากอุณหภูมิ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p61',
+                title: 'กฎข้อที่หนึ่งของอุณหพลศาสตร์',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'ΔU = Q - W',
+                displayFormula: 'ΔU = Q - W',
+                desc: 'ความสัมพันธ์พลังงานภายใน ความร้อน และงานที่ระบบทำ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p62',
+                title: 'พลังงานจลน์เฉลี่ยของแก๊ส',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'K_avg = 3/2 kT',
+                displayFormula: 'K_avg = 3/2 kT',
+                desc: 'พลังงานจลน์เฉลี่ยของอนุภาคแก๊สอุดมคติ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p63',
+                title: 'ความเร็วรากที่สองของกำลังสองเฉลี่ย',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'v_rms = √(3RT/M)',
+                displayFormula: 'v_rms = √(3RT/M)',
+                desc: 'ความเร็ว rms ของโมเลกุลแก๊ส',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p64',
+                title: 'สมการการนำความร้อน',
+                category: 'ความร้อนและแก๊ส',
+                level: 'ม.5',
+                formula: 'Q/t = kAΔT/L',
+                displayFormula: 'Q/t = kAΔT/L',
+                desc: 'อัตราการถ่ายเทความร้อนผ่านวัสดุ',
+                vars: [{'symbol': 'P', 'name': 'ความดัน'}, {'symbol': 'V', 'name': 'ปริมาตร'}, {'symbol': 'T', 'name': 'อุณหภูมิสัมบูรณ์ (K)'}, {'symbol': 'n', 'name': 'จำนวนโมล (mol)'}],
+                exampleProblem: 'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ',
+                exampleSolution: 'แนวทาง: '+'เปลี่ยนอุณหภูมิเป็นเคลวินเมื่อใช้กฎแก๊ส แล้วแทนค่าในสมการ'
+            },
+            {
+                id: 'p65',
+                title: 'กฎของคูลอมบ์',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'F = k|q₁q₂|/r²',
+                displayFormula: 'F = k|q₁q₂|/r²',
+                desc: 'แรงไฟฟ้าระหว่างประจุจุดสองประจุ',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p66',
+                title: 'สนามไฟฟ้า',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'E = F/q = kQ/r²',
+                displayFormula: 'E = F/q = kQ/r²',
+                desc: 'แรงต่อหนึ่งหน่วยประจุทดสอบ',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p67',
+                title: 'ศักย์ไฟฟ้าจากประจุจุด',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'V = kQ/r',
+                displayFormula: 'V = kQ/r',
+                desc: 'ศักย์ไฟฟ้าที่ระยะ r จากประจุจุด',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p68',
+                title: 'พลังงานศักย์ไฟฟ้า',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'U = kqQ/r',
+                displayFormula: 'U = kqQ/r',
+                desc: 'พลังงานของระบบประจุ',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p69',
+                title: 'กฎของโอห์ม',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'V = IR',
+                displayFormula: 'V = IR',
+                desc: 'ความสัมพันธ์ความต่างศักย์ กระแส และความต้านทาน',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p70',
+                title: 'กำลังไฟฟ้า',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'P = VI = I²R = V²/R',
+                displayFormula: 'P = VI = I²R = V²/R',
+                desc: 'กำลังที่ใช้ในวงจรไฟฟ้า',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p71',
+                title: 'ตัวต้านทานอนุกรม',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'R_eq = R₁ + R₂ + ...',
+                displayFormula: 'R_eq = R₁ + R₂ + ...',
+                desc: 'ความต้านทานสมมูลแบบอนุกรม',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p72',
+                title: 'ตัวต้านทานขนาน',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: '1/R_eq = 1/R₁ + 1/R₂ + ...',
+                displayFormula: '1/R_eq = 1/R₁ + 1/R₂ + ...',
+                desc: 'ความต้านทานสมมูลแบบขนาน',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p73',
+                title: 'ประจุของตัวเก็บประจุ',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'Q = CV',
+                displayFormula: 'Q = CV',
+                desc: 'ความสัมพันธ์ประจุ ความจุ และแรงดัน',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p74',
+                title: 'พลังงานตัวเก็บประจุ',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'U = 1/2 CV²',
+                displayFormula: 'U = 1/2 CV²',
+                desc: 'พลังงานสะสมในตัวเก็บประจุ',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p75',
+                title: 'แรงแม่เหล็กต่อประจุ',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'F = qvB sinθ',
+                displayFormula: 'F = qvB sinθ',
+                desc: 'แรงแม่เหล็กที่กระทำต่อประจุเคลื่อนที่',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p76',
+                title: 'แรงแม่เหล็กต่อลวดมีกระแส',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'F = BIL sinθ',
+                displayFormula: 'F = BIL sinθ',
+                desc: 'แรงแม่เหล็กที่กระทำต่อลวดตัวนำ',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p77',
+                title: 'ฟลักซ์แม่เหล็ก',
+                category: 'ไฟฟ้าและแม่เหล็ก',
+                level: 'ม.5',
+                formula: 'Φ_B = BA cosθ',
+                displayFormula: 'Φ_B = BA cosθ',
+                desc: 'ปริมาณสนามแม่เหล็กที่ทะลุผ่านพื้นที่',
+                vars: [{'symbol': 'V', 'name': 'ความต่างศักย์ (V)'}, {'symbol': 'I', 'name': 'กระแส (A)'}, {'symbol': 'R', 'name': 'ความต้านทาน (Ω)'}, {'symbol': 'q', 'name': 'ประจุ (C)'}],
+                exampleProblem: 'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม',
+                exampleSolution: 'แนวทาง: '+'วาดวงจรหรือทิศทางสนามก่อน แล้วเลือกสมการที่สัมพันธ์กับปริมาณที่โจทย์ถาม'
+            },
+            {
+                id: 'p78',
+                title: 'พลังงานโฟตอน',
                 category: 'ฟิสิกส์ยุคใหม่',
                 level: 'ม.6',
-                formula: 'E = h * f = h * c / λ',
-                displayFormula: 'E = h f = \\frac{h c}{\\lambda}',
-                desc: 'พลังงานของคลื่นแม่เหล็กไฟฟ้า (โฟตอน) ตามทฤษฎีควอนตัมของพลังค์',
-                vars: [
-                    { symbol: 'E', name: 'พลังงานโฟตอน (J)' },
-                    { symbol: 'h', name: 'ค่าคงที่ของพลังค์ (6.626 × 10⁻³⁴ J·s)' },
-                    { symbol: 'f', name: 'ความถี่ของแสง (Hz)' },
-                    { symbol: 'c', name: 'ความเร็วแสง (3 × 10⁸ m/s)' }
-                ],
-                exampleProblem: 'จงหาพลังงานของแสงที่มีความถี่ 5 × 10¹⁴ Hz',
-                exampleSolution: 'E = hf = (6.63 × 10⁻³⁴) × (5 × 10¹⁴)\nE = 3.315 × 10⁻¹⁹ จูล'
+                formula: 'E = hf = hc/λ',
+                displayFormula: 'E = hf = hc/λ',
+                desc: 'พลังงานของโฟตอน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p79',
+                title: 'สมการโฟโตอิเล็กทริก',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'K_max = hf - φ',
+                displayFormula: 'K_max = hf - φ',
+                desc: 'พลังงานจลน์สูงสุดของอิเล็กตรอนโฟโตอิเล็กทริก',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p80',
+                title: 'ศักย์หยุดยั้ง',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'eV_s = K_max',
+                displayFormula: 'eV_s = K_max',
+                desc: 'เชื่อมศักย์หยุดยั้งกับพลังงานจลน์สูงสุด',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p81',
+                title: 'ความยาวคลื่นเดอบรอยล์',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'λ = h/p',
+                displayFormula: 'λ = h/p',
+                desc: 'ความเป็นคลื่นของอนุภาค',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p82',
+                title: 'สมมูลมวล-พลังงาน',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'E = mc²',
+                displayFormula: 'E = mc²',
+                desc: 'ความสัมพันธ์มวลกับพลังงาน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p83',
+                title: 'พลังงานรวมสัมพัทธภาพ',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'E² = p²c² + m²c⁴',
+                displayFormula: 'E² = p²c² + m²c⁴',
+                desc: 'พลังงาน โมเมนตัม และมวลในสัมพัทธภาพ',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p84',
+                title: 'ระดับพลังงานอะตอมไฮโดรเจน',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'E_n = -13.6/n² eV',
+                displayFormula: 'E_n = -13.6/n² eV',
+                desc: 'ระดับพลังงานของอะตอมไฮโดรเจน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p85',
+                title: 'สมการไรด์เบิร์ก',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: '1/λ = R_H(1/n₁² - 1/n₂²)',
+                displayFormula: '1/λ = R_H(1/n₁² - 1/n₂²)',
+                desc: 'ความยาวคลื่นของเส้นสเปกตรัมไฮโดรเจน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p86',
+                title: 'กฎการสลายตัวกัมมันตรังสี',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'N = N₀e^{-λt}',
+                displayFormula: 'N = N₀e^{-λt}',
+                desc: 'จำนวนอนุภาคที่เหลือหลังการสลาย',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p87',
+                title: 'ครึ่งชีวิต',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'T₁/₂ = ln2/λ',
+                displayFormula: 'T₁/₂ = ln2/λ',
+                desc: 'เวลาที่สารกัมมันตรังสีเหลือครึ่งหนึ่ง',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p88',
+                title: 'กิจกรรมกัมมันตรังสี',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'A = λN',
+                displayFormula: 'A = λN',
+                desc: 'อัตราการสลายของนิวเคลียส',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p89',
+                title: 'พลังงานยึดเหนี่ยวมวลพร่อง',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'E_b = Δmc²',
+                displayFormula: 'E_b = Δmc²',
+                desc: 'พลังงานยึดเหนี่ยวของนิวเคลียสจาก mass defect',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p90',
+                title: 'โมเมนตัมโฟตอน',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'p = E/c = h/λ',
+                displayFormula: 'p = E/c = h/λ',
+                desc: 'โมเมนตัมของโฟตอน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
+            },
+            {
+                id: 'p91',
+                title: 'ความถี่คอมป์ตัน',
+                category: 'ฟิสิกส์ยุคใหม่',
+                level: 'ม.6',
+                formula: 'Δλ = h/(m_ec)(1-cosθ)',
+                displayFormula: 'Δλ = h/(m_ec)(1-cosθ)',
+                desc: 'การเปลี่ยนความยาวคลื่นจากการกระเจิงของโฟตอน',
+                vars: [{'symbol': 'E', 'name': 'พลังงาน (J)'}, {'symbol': 'h', 'name': 'ค่าคงที่พลังค์'}, {'symbol': 'c', 'name': 'ความเร็วแสง'}, {'symbol': 'λ', 'name': 'ความยาวคลื่น (m)'}],
+                exampleProblem: 'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน',
+                exampleSolution: 'แนวทาง: '+'ตรวจหน่วยพลังงานและค่าคงที่ที่ใช้ จากนั้นแทนค่าอย่างเป็นขั้นตอน'
             }
         ];
 
-
-        
-        const chemData = [
+                const chemData = [
             {
                 id: 'c1',
                 title: 'สูตรคำนวณจำนวนโมล (Mole Concept)',
@@ -1957,6 +2965,181 @@ const mathData = [[
                 exampleProblem: 'เซลล์ไฟฟ้าประกอบด้วย Cu²⁺/Cu (E° = +0.34 V) และ Zn²⁺/Zn (E° = -0.76 V) จงหาค่า E°cell',
                 exampleSolution: 'แคโทด (Cu): +0.34 V (ค่ามากกว่า), แอโนด (Zn): -0.76 V\nE°cell = (+0.34) - (-0.76) = +1.10 โวลต์ (เกิดปฏิกิริยาได้เอง)'
             }
+,
+            {
+                id: 'c7', title: 'ร้อยละโดยมวล', category: 'ปริมาณสารสัมพันธ์', level: 'ม.4', formula: '%mass = (mass solute / mass solution) × 100', displayFormula: '%mass = (mass solute / mass solution) × 100', desc: 'คำนวณร้อยละโดยมวล',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c8', title: 'โมลาริตี', category: 'ปริมาณสารสัมพันธ์', level: 'ม.4', formula: 'M = mol / L', displayFormula: 'M = mol / L', desc: 'ความเข้มข้นโมลต่อลิตร',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c9', title: 'โมแลลิตี', category: 'ปริมาณสารสัมพันธ์', level: 'ม.4', formula: 'm = mol solute / kg solvent', displayFormula: 'm = mol solute / kg solvent', desc: 'ความเข้มข้นโมลต่อกิโลกรัมตัวทำละลาย',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c10', title: 'เศษส่วนโมล', category: 'ปริมาณสารสัมพันธ์', level: 'ม.4', formula: 'X_i = n_i / n_total', displayFormula: 'X_i = n_i / n_total', desc: 'สัดส่วนจำนวนโมลขององค์ประกอบ',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c11', title: 'กฎของอาโวกาโดร', category: 'แก๊สและของแข็ง', level: 'ม.4', formula: 'V₁/n₁ = V₂/n₂', displayFormula: 'V₁/n₁ = V₂/n₂', desc: 'ปริมาตรแก๊สแปรผันตรงกับจำนวนโมลที่ T และ P คงที่',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c12', title: 'ความหนาแน่นของแก๊ส', category: 'แก๊สและของแข็ง', level: 'ม.4', formula: 'd = PM/RT', displayFormula: 'd = PM/RT', desc: 'ความหนาแน่นของแก๊สอุดมคติ',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c13', title: 'กฎของดอลตัน', category: 'แก๊สและของแข็ง', level: 'ม.4', formula: 'P_total = ΣP_i', displayFormula: 'P_total = ΣP_i', desc: 'ความดันรวมเท่ากับผลรวมความดันย่อย',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c14', title: 'อัตราการเกิดปฏิกิริยา', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'rate = -Δ[A]/Δt', displayFormula: 'rate = -Δ[A]/Δt', desc: 'การเปลี่ยนแปลงความเข้มข้นต่อเวลา',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c15', title: 'สมการอัตรา', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'rate = k[A]^m[B]^n', displayFormula: 'rate = k[A]^m[B]^n', desc: 'ความสัมพันธ์อัตรากับความเข้มข้นของสารตั้งต้น',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c16', title: 'ค่าคงที่สมดุล', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'K_c = [C]^c[D]^d/[A]^a[B]^b', displayFormula: 'K_c = [C]^c[D]^d/[A]^a[B]^b', desc: 'ค่าคงที่สมดุลจากความเข้มข้น',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c17', title: 'ผลหารปฏิกิริยา', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'Q_c = [C]^c[D]^d/[A]^a[B]^b', displayFormula: 'Q_c = [C]^c[D]^d/[A]^a[B]^b', desc: 'ใช้ทำนายทิศทางการเลื่อนสมดุล',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c18', title: 'pH', category: 'กรด-เบส', level: 'ม.5', formula: 'pH = -log[H⁺]', displayFormula: 'pH = -log[H⁺]', desc: 'วัดความเป็นกรดของสารละลาย',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c19', title: 'pOH', category: 'กรด-เบส', level: 'ม.5', formula: 'pOH = -log[OH⁻]', displayFormula: 'pOH = -log[OH⁻]', desc: 'วัดความเป็นเบสของสารละลาย',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c20', title: 'ความสัมพันธ์ pH-pOH', category: 'กรด-เบส', level: 'ม.5', formula: 'pH + pOH = 14', displayFormula: 'pH + pOH = 14', desc: 'สำหรับสารละลายในน้ำที่ 25°C',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c21', title: 'สมการเฮนเดอร์สัน-แฮสเซลบัลช์', category: 'กรด-เบส', level: 'ม.5', formula: 'pH = pK_a + log([A⁻]/[HA])', displayFormula: 'pH = pK_a + log([A⁻]/[HA])', desc: 'คำนวณ pH ของบัฟเฟอร์กรดอ่อน',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c22', title: 'ศักย์เซลล์มาตรฐาน', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'E°cell = E°cathode - E°anode', displayFormula: 'E°cell = E°cathode - E°anode', desc: 'คำนวณศักย์ไฟฟ้าของเซลล์',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c23', title: 'สมการเนิร์นสต์', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'E = E° - (0.0592/n)logQ', displayFormula: 'E = E° - (0.0592/n)logQ', desc: 'ศักย์เซลล์เมื่อไม่อยู่ในสภาวะมาตรฐานที่ 25°C',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c24', title: 'กฎของฟาราเดย์', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'Q = It', displayFormula: 'Q = It', desc: 'ประจุไฟฟ้าจากกระแสและเวลา',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c25', title: 'มวลสารที่เกิดจากอิเล็กโทรลิซิส', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'm = ItM/(nF)', displayFormula: 'm = ItM/(nF)', desc: 'คำนวณมวลสารจากปริมาณไฟฟ้า',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c26', title: 'ดีกรีไม่อิ่มตัว', category: 'เคมีอินทรีย์', level: 'ม.6', formula: 'DBE = (2C + 2 + N - H - X)/2', displayFormula: 'DBE = (2C + 2 + N - H - X)/2', desc: 'คำนวณจำนวนวงแหวนและพันธะคู่/สามโดยประมาณ',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c27', title: 'แก๊สจากการเผาไหม้', category: 'เคมีอินทรีย์', level: 'ม.6', formula: 'n(C) = n(CO₂), n(H) = 2n(H₂O)', displayFormula: 'n(C) = n(CO₂), n(H) = 2n(H₂O)', desc: 'ใช้ผลิตภัณฑ์การเผาไหม้หาสูตรอย่างง่าย',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c28', title: 'ความร้อนปฏิกิริยา', category: 'พลังงานเคมี', level: 'ม.6', formula: 'ΔH_rxn = ΣΔH_f(products) - ΣΔH_f(reactants)', displayFormula: 'ΔH_rxn = ΣΔH_f(products) - ΣΔH_f(reactants)', desc: 'คำนวณเอนทัลปีจากค่าเอนทัลปีการเกิดมาตรฐาน',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c29', title: 'กฎของเฮสส์', category: 'พลังงานเคมี', level: 'ม.6', formula: 'ΔH_total = ΣΔH_steps', displayFormula: 'ΔH_total = ΣΔH_steps', desc: 'เอนทัลปีรวมเท่ากับผลรวมของขั้นตอน',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            {
+                id: 'c30', title: 'พลังงานพันธะ', category: 'พลังงานเคมี', level: 'ม.6', formula: 'ΔH ≈ ΣE(bonds broken) - ΣE(bonds formed)', displayFormula: 'ΔH ≈ ΣE(bonds broken) - ΣE(bonds formed)', desc: 'ประมาณเอนทัลปีจากพลังงานพันธะ',
+                vars: [{symbol: 'x', name: 'ตัวแปรตามสูตร'}, {symbol: 'n', name: 'จำนวนโมลเมื่อเกี่ยวข้อง'}, {symbol: 'T', name: 'อุณหภูมิเมื่อเกี่ยวข้อง'}],
+                exampleProblem: 'เลือกข้อมูลจากโจทย์ให้ตรงกับตัวแปรในสูตร แล้วคำนวณตามขั้นตอน',
+                exampleSolution: 'แนวทาง: เขียนข้อมูลที่กำหนด → เลือกสูตร → แทนค่า → ตรวจหน่วยและความสมเหตุสมผล'
+            },
+            { id: 'c31', title: 'เปอร์เซ็นต์โดยมวล', category: 'ปริมาณสารสัมพันธ์', level: 'ม.5', formula: '%w/w = (m_solute/m_solution) × 100', displayFormula: '%w/w = (มวลตัวละลาย / มวลสารละลาย) × 100', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'m_solute', name:'มวลตัวละลาย'}, {symbol:'m_solution', name:'มวลสารละลาย'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c32', title: 'เปอร์เซ็นต์โดยปริมาตร', category: 'ปริมาณสารสัมพันธ์', level: 'ม.5', formula: '%v/v = (V_solute/V_solution) × 100', displayFormula: '%v/v = (Vตัวละลาย / Vสารละลาย) × 100', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'V_solute', name:'ปริมาตรตัวละลาย'}, {symbol:'V_solution', name:'ปริมาตรสารละลาย'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c33', title: 'โมแลลิตี', category: 'ปริมาณสารสัมพันธ์', level: 'ม.5', formula: 'm = n_solute / kg_solvent', displayFormula: 'm = mol ตัวละลาย / kg ตัวทำละลาย', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'m', name:'โมแลลิตี (mol/kg)'}, {symbol:'n_solute', name:'จำนวนโมลตัวละลาย'}, {symbol:'kg_solvent', name:'มวลตัวทำละลาย (kg)'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c34', title: 'เศษส่วนโมล', category: 'ปริมาณสารสัมพันธ์', level: 'ม.5', formula: 'X_A = n_A/n_total', displayFormula: 'X_A = n_A/n_total', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'X_A', name:'เศษส่วนโมลของ A'}, {symbol:'n_A', name:'จำนวนโมลของ A'}, {symbol:'n_total', name:'จำนวนโมลรวม'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c35', title: 'สมการแก๊สอุดมคติ', category: 'แก๊สและของแข็ง', level: 'ม.5', formula: 'PV = nRT', displayFormula: 'PV = nRT', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'P', name:'ความดัน'}, {symbol:'V', name:'ปริมาตร'}, {symbol:'n', name:'จำนวนโมล'}, {symbol:'R', name:'ค่าคงที่แก๊ส'}, {symbol:'T', name:'อุณหภูมิสัมบูรณ์ (K)'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c36', title: 'กฎของบอยล์', category: 'แก๊สและของแข็ง', level: 'ม.5', formula: 'P1V1 = P2V2', displayFormula: 'P₁V₁ = P₂V₂', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'P₁, P₂', name:'ความดันเริ่มต้นและสุดท้าย'}, {symbol:'V₁, V₂', name:'ปริมาตรเริ่มต้นและสุดท้าย'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c37', title: 'กฎของชาร์ลส์', category: 'แก๊สและของแข็ง', level: 'ม.5', formula: 'V1/T1 = V2/T2', displayFormula: 'V₁/T₁ = V₂/T₂', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'V₁, V₂', name:'ปริมาตรเริ่มต้นและสุดท้าย'}, {symbol:'T₁, T₂', name:'อุณหภูมิสัมบูรณ์เริ่มต้นและสุดท้าย (K)'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c38', title: 'กฎของอาโวกาโดร', category: 'แก๊สและของแข็ง', level: 'ม.5', formula: 'V1/n1 = V2/n2', displayFormula: 'V₁/n₁ = V₂/n₂', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'V₁, V₂', name:'ปริมาตรเริ่มต้นและสุดท้าย'}, {symbol:'n₁, n₂', name:'จำนวนโมลเริ่มต้นและสุดท้าย'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c39', title: 'ความหนาแน่นของแก๊ส', category: 'แก๊สและของแข็ง', level: 'ม.5', formula: 'd = PM/(RT)', displayFormula: 'd = PM/RT', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'d', name:'ความหนาแน่นของแก๊ส'}, {symbol:'P', name:'ความดัน'}, {symbol:'M', name:'มวลโมลาร์'}, {symbol:'R', name:'ค่าคงที่แก๊ส'}, {symbol:'T', name:'อุณหภูมิสัมบูรณ์ (K)'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c40', title: 'อัตราการเกิดปฏิกิริยาจากสัมประสิทธิ์', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'rate = -(1/a)Δ[A]/Δt', displayFormula: 'rate = −(1/a)Δ[A]/Δt', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'rate', name:'อัตราการเกิดปฏิกิริยา'}, {symbol:'a', name:'สัมประสิทธิ์ของ A'}, {symbol:'Δ[A]', name:'การเปลี่ยนแปลงความเข้มข้นของ A'}, {symbol:'Δt', name:'ช่วงเวลา'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c41', title: 'สมดุล Kp', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'Kp = (PC^c PD^d)/(PA^a PB^b)', displayFormula: 'Kp = (P_C^c P_D^d)/(P_A^a P_B^b)', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Kp', name:'ค่าคงที่สมดุลในรูปความดัน'}, {symbol:'P_A, P_B, P_C, P_D', name:'ความดันย่อยของสารแต่ละชนิด'}, {symbol:'a, b, c, d', name:'สัมประสิทธิ์ในสมการเคมี'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c42', title: 'ความสัมพันธ์ Kp และ Kc', category: 'อัตราและสมดุล', level: 'ม.5', formula: 'Kp = Kc(RT)^Δn', displayFormula: 'Kp = Kc(RT)^Δn', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Kp', name:'ค่าคงที่สมดุลจากความดัน'}, {symbol:'Kc', name:'ค่าคงที่สมดุลจากความเข้มข้น'}, {symbol:'R', name:'ค่าคงที่แก๊ส'}, {symbol:'T', name:'อุณหภูมิสัมบูรณ์ (K)'}, {symbol:'Δn', name:'ผลต่างโมลแก๊สผลิตภัณฑ์และสารตั้งต้น'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c43', title: 'ค่าคงที่การแตกตัวของกรด', category: 'กรด-เบส', level: 'ม.5', formula: 'Ka = [H+][A-]/[HA]', displayFormula: 'Kₐ = [H⁺][A⁻]/[HA]', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Ka', name:'ค่าคงที่การแตกตัวของกรด'}, {symbol:'[H⁺]', name:'ความเข้มข้นไฮโดรเนียมโดยประมาณ'}, {symbol:'[A⁻]', name:'ความเข้มข้นเบสคู่กรด'}, {symbol:'[HA]', name:'ความเข้มข้นกรดที่ไม่แตกตัว'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c44', title: 'ค่าคงที่การแตกตัวของเบส', category: 'กรด-เบส', level: 'ม.5', formula: 'Kb = [BH+][OH-]/[B]', displayFormula: 'K_b = [BH⁺][OH⁻]/[B]', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Kb', name:'ค่าคงที่การแตกตัวของเบส'}, {symbol:'[BH⁺]', name:'ความเข้มข้นกรดคู่เบส'}, {symbol:'[OH⁻]', name:'ความเข้มข้นไฮดรอกไซด์'}, {symbol:'[B]', name:'ความเข้มข้นเบสที่ไม่แตกตัว'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c45', title: 'ความสัมพันธ์ Ka และ Kb', category: 'กรด-เบส', level: 'ม.5', formula: 'KaKb = Kw', displayFormula: 'KₐK_b = K_w', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Ka', name:'ค่าคงที่การแตกตัวของกรด'}, {symbol:'Kb', name:'ค่าคงที่การแตกตัวของเบสคู่กัน'}, {symbol:'Kw', name:'ค่าคงที่ไอออนของน้ำ'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c46', title: 'ค่าคงที่ไอออนไนซ์ของน้ำ', category: 'กรด-เบส', level: 'ม.5', formula: 'Kw = [H+][OH-]', displayFormula: 'K_w = [H⁺][OH⁻]', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'Kw', name:'ค่าคงที่ไอออนของน้ำ'}, {symbol:'[H⁺]', name:'ความเข้มข้นไฮโดรเนียม'}, {symbol:'[OH⁻]', name:'ความเข้มข้นไฮดรอกไซด์'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c47', title: 'ร้อยละการแตกตัวของกรดอ่อน', category: 'กรด-เบส', level: 'ม.5', formula: '%ionization = ([H+]/[HA]initial) × 100', displayFormula: '% แตกตัว = ([H⁺]/[HA]เริ่มต้น) × 100', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'%ionization', name:'ร้อยละการแตกตัว'}, {symbol:'[H⁺]', name:'ความเข้มข้นไฮโดรเนียมที่สมดุล'}, {symbol:'[HA]initial', name:'ความเข้มข้นกรดเริ่มต้น'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c48', title: 'สมการเซลล์ไฟฟ้าเคมี', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'E°cell = E°red(cathode) + E°ox(anode)', displayFormula: 'E°cell = E°red(cathode) + E°ox(anode)', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'E°cell', name:'ศักย์ไฟฟ้ามาตรฐานของเซลล์'}, {symbol:'E°red(cathode)', name:'ศักย์รีดักชันที่แคโทด'}, {symbol:'E°ox(anode)', name:'ศักย์ออกซิเดชันที่แอโนด'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c49', title: 'พลังงานไฟฟ้ากับประจุ', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'W = QV', displayFormula: 'W = QV', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'W', name:'พลังงานไฟฟ้า/งาน (J)'}, {symbol:'Q', name:'ประจุไฟฟ้า (C)'}, {symbol:'V', name:'ความต่างศักย์ไฟฟ้า (V)'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c50', title: 'จำนวนโมลอิเล็กตรอนจากประจุ', category: 'ไฟฟ้าเคมี', level: 'ม.5', formula: 'n(e-) = Q/F', displayFormula: 'n(e⁻) = Q/F', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n(e⁻)', name:'จำนวนโมลอิเล็กตรอน'}, {symbol:'Q', name:'ประจุไฟฟ้า (C)'}, {symbol:'F', name:'ค่าคงที่ฟาราเดย์'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c51', title: 'สูตรทั่วไปของแอลเคน', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_nH_(2n+2)', displayFormula: 'CₙH₂ₙ₊₂', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n', name:'จำนวนอะตอมคาร์บอน'}, {symbol:'CₙH₂ₙ₊₂', name:'สูตรทั่วไปของแอลเคน'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c52', title: 'สูตรทั่วไปของแอลคีน', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_nH_(2n)', displayFormula: 'CₙH₂ₙ', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n', name:'จำนวนอะตอมคาร์บอน'}, {symbol:'CₙH₂ₙ', name:'สูตรทั่วไปของแอลคีนสายเปิดที่มีพันธะคู่หนึ่งตำแหน่ง'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c53', title: 'สูตรทั่วไปของแอลไคน์', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_nH_(2n-2)', displayFormula: 'CₙH₂ₙ₋₂', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n', name:'จำนวนอะตอมคาร์บอน'}, {symbol:'CₙH₂ₙ₋₂', name:'สูตรทั่วไปของแอลไคน์สายเปิดที่มีพันธะสามหนึ่งตำแหน่ง'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c54', title: 'สมการการเผาไหม้ไฮโดรคาร์บอน', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_xH_y + (x+y/4)O2 -> xCO2 + (y/2)H2O', displayFormula: 'CₓHᵧ + (x+y/4)O₂ → xCO₂ + (y/2)H₂O', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'x, y', name:'จำนวนอะตอมคาร์บอนและไฮโดรเจนในไฮโดรคาร์บอน'}, {symbol:'O₂', name:'ออกซิเจน'}, {symbol:'CO₂', name:'คาร์บอนไดออกไซด์'}, {symbol:'H₂O', name:'น้ำ'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c55', title: 'สูตรทั่วไปของแอลกอฮอล์', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_nH_(2n+1)OH', displayFormula: 'CₙH₂ₙ₊₁OH', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n', name:'จำนวนอะตอมคาร์บอน'}, {symbol:'CₙH₂ₙ₊₁OH', name:'สูตรทั่วไปของแอลกอฮอล์อิ่มตัวสายเปิด'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c56', title: 'สูตรทั่วไปของกรดคาร์บอกซิลิก', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'C_nH_(2n+1)COOH', displayFormula: 'CₙH₂ₙ₊₁COOH', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'n', name:'จำนวนอะตอมคาร์บอนในหมู่แอลคิล'}, {symbol:'CₙH₂ₙ₊₁COOH', name:'สูตรทั่วไปของกรดคาร์บอกซิลิกอิ่มตัวสายเปิด'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c57', title: 'เอสเทอริฟิเคชัน', category: 'เคมีอินทรีย์', level: 'ม.5', formula: 'RCOOH + R\'OH ⇌ RCOOR\' + H2O', displayFormula: 'RCOOH + R′OH ⇌ RCOOR′ + H₂O', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'R, R′', name:'หมู่ไฮโดรคาร์บอน'}, {symbol:'RCOOH', name:'กรดคาร์บอกซิลิก'}, {symbol:'R′OH', name:'แอลกอฮอล์'}, {symbol:'RCOOR′', name:'เอสเทอร์'}, {symbol:'H₂O', name:'น้ำ'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c58', title: 'ความร้อนแบบ q = mcΔT', category: 'พลังงานเคมี', level: 'ม.5', formula: 'q = mcΔT', displayFormula: 'q = mcΔT', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'q', name:'ความร้อนที่รับหรือคาย (J)'}, {symbol:'m', name:'มวลสาร (g หรือ kg)'}, {symbol:'c', name:'ความจุความร้อนจำเพาะ'}, {symbol:'ΔT', name:'การเปลี่ยนแปลงอุณหภูมิ'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c59', title: 'ความร้อนโมลาร์', category: 'พลังงานเคมี', level: 'ม.5', formula: 'q = nΔH', displayFormula: 'q = nΔH', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'q', name:'ความร้อนที่รับหรือคาย'}, {symbol:'n', name:'จำนวนโมล'}, {symbol:'ΔH', name:'เอนทัลปีต่อโมล'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
+            { id: 'c60', title: 'พลังงานกิบส์', category: 'พลังงานเคมี', level: 'ม.5', formula: 'ΔG = ΔH - TΔS', displayFormula: 'ΔG = ΔH − TΔS', desc: 'สูตรสำคัญสำหรับใช้คำนวณและวิเคราะห์โจทย์เคมีในหมวดนี้', vars: [{symbol:'ΔG', name:'การเปลี่ยนแปลงพลังงานกิบส์'}, {symbol:'ΔH', name:'การเปลี่ยนแปลงเอนทัลปี'}, {symbol:'T', name:'อุณหภูมิสัมบูรณ์ (K)'}, {symbol:'ΔS', name:'การเปลี่ยนแปลงเอนโทรปี'}], exampleProblem: 'เลือกค่าจากโจทย์แล้วแทนค่าในสูตร', exampleSolution: 'แทนค่าตามโจทย์ ตรวจหน่วย และตรวจความสมเหตุสมผลของคำตอบ' },
         ];
 
 
@@ -2044,7 +3227,7 @@ const mathData = [[
             { sym: 'ρ', name: 'โร (Rho)', mean: 'ใช้แทนความหนาแน่นของสาร (มวล/ปริมาตร) หรือความต้านทานไฟฟ้าจำเพาะ', cat: 'อักษรกรีก', ex: 'ρ = m / V' },
             { sym: 'σ', name: 'ซิกมาตัวเล็ก (Sigma)', mean: 'ใช้แทนส่วนเบี่ยงเบนมาตรฐาน หรือความเค้น (Stress)', cat: 'อักษรกรีก', ex: 'σ = F / A' },
             { sym: 'τ', name: 'ทอร์ก (Torque / Tau)', mean: 'แรงบิดที่ทำให้วัตถุหมุนรอบแกน', cat: 'อักษรกรีก', ex: 'τ = r × F' },
-            { sym: 'Ω', name: 'โอเมก้าตัวใหญ่ (Omega)', name: 'หน่วยความต้านทานไฟฟ้า (โอห์ม)', cat: 'อักษรกรีก', ex: 'R = 10 Ω' },
+            { sym: 'Ω', name: 'โอเมก้าตัวใหญ่ (Omega)', mean: 'หน่วยความต้านทานไฟฟ้า (โอห์ม)', cat: 'อักษรกรีก', ex: 'R = 10 Ω' },
             { sym: 'ω', name: 'โอเมก้าตัวเล็ก (Omega)', mean: 'ความเร็วเชิงมุม (Angular velocity)', cat: 'อักษรกรีก', ex: 'ω = 2πf' }
         ];
 
@@ -2322,16 +3505,25 @@ const mathData = [[
             renderBookmarksHome();
         }
 
-        function copyFormulaText(text) {
-            // Fallback for copy text
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-
-            showToast(`คัดลอกสูตร "${text}" แล้ว`);
+        async function copyFormulaText(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    const dummy = document.createElement("textarea");
+                    dummy.value = text;
+                    dummy.setAttribute("readonly", "");
+                    dummy.style.position = "fixed";
+                    dummy.style.opacity = "0";
+                    document.body.appendChild(dummy);
+                    dummy.select();
+                    document.execCommand("copy");
+                    dummy.remove();
+                }
+                showToast(`คัดลอกสูตร "${text}" แล้ว`);
+            } catch (error) {
+                showToast('ไม่สามารถคัดลอกสูตรได้');
+            }
         }
 
         function showToast(message) {
@@ -2357,11 +3549,35 @@ const mathData = [[
             });
         }
 
+        function areaDiagram(type) {
+            const common = 'viewBox="0 0 260 165" role="img" aria-label="ภาพประกอบสูตรพื้นที่"';
+            const stroke = 'stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round"';
+            const fill = 'fill="currentColor" opacity="0.10"';
+            const labels = {
+                rectangle: `<svg ${common} class="w-full h-32 text-blue-500"><rect x="45" y="35" width="170" height="80" ${fill} ${stroke}/><text x="130" y="28" text-anchor="middle" font-size="13" fill="currentColor">กว้าง w</text><text x="222" y="78" text-anchor="middle" font-size="13" fill="currentColor" transform="rotate(90 222 78)">ยาว l</text></svg>`,
+                square: `<svg ${common} class="w-full h-32 text-blue-500"><rect x="60" y="25" width="110" height="110" ${fill} ${stroke}/><text x="115" y="18" text-anchor="middle" font-size="13" fill="currentColor">a</text></svg>`,
+                triangle: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M45 120 L215 120 L130 25 Z" ${fill} ${stroke}/><line x1="130" y1="25" x2="130" y2="120" ${stroke}/><text x="130" y="142" text-anchor="middle" font-size="13" fill="currentColor">ฐาน b</text><text x="140" y="75" font-size="13" fill="currentColor">h</text></svg>`,
+                parallelogram: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M65 35 L215 35 L185 120 L35 120 Z" ${fill} ${stroke}/><line x1="65" y1="35" x2="65" y2="120" ${stroke}/><text x="125" y="142" text-anchor="middle" font-size="13" fill="currentColor">ฐาน b</text><text x="72" y="80" font-size="13" fill="currentColor">h</text></svg>`,
+                trapezoid: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M75 35 L185 35 L220 120 L40 120 Z" ${fill} ${stroke}/><text x="130" y="25" text-anchor="middle" font-size="13" fill="currentColor">a</text><text x="130" y="142" text-anchor="middle" font-size="13" fill="currentColor">b</text><text x="193" y="80" font-size="13" fill="currentColor">h</text></svg>`,
+                circle: `<svg ${common} class="w-full h-32 text-blue-500"><circle cx="130" cy="75" r="52" ${fill} ${stroke}/><line x1="130" y1="75" x2="182" y2="75" ${stroke}/><text x="154" y="67" font-size="13" fill="currentColor">r</text></svg>`,
+                sector: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M130 75 L182 75 A52 52 0 0 0 130 23 Z" ${fill} ${stroke}/><line x1="130" y1="75" x2="182" y2="75" ${stroke}/><text x="150" y="67" font-size="13" fill="currentColor">r</text><text x="133" y="52" font-size="13" fill="currentColor">θ</text></svg>`,
+                kite: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M130 20 L200 75 L130 130 L60 75 Z" ${fill} ${stroke}/><line x1="130" y1="20" x2="130" y2="130" ${stroke}/><line x1="60" y1="75" x2="200" y2="75" ${stroke}/><text x="135" y="58" font-size="12" fill="currentColor">d₁</text><text x="135" y="98" font-size="12" fill="currentColor">d₂</text></svg>`,
+                rhombus: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M130 20 L205 75 L130 130 L55 75 Z" ${fill} ${stroke}/><line x1="130" y1="20" x2="130" y2="130" ${stroke}/><line x1="55" y1="75" x2="205" y2="75" ${stroke}/><text x="138" y="58" font-size="12" fill="currentColor">d₁</text><text x="138" y="98" font-size="12" fill="currentColor">d₂</text></svg>`,
+                polygon: `<svg ${common} class="w-full h-32 text-blue-500"><polygon points="130,20 205,60 180,125 80,125 55,60" ${fill} ${stroke}/><text x="130" y="82" text-anchor="middle" font-size="14" fill="currentColor">n ด้าน</text></svg>`,
+                cube: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M70 55 L150 25 L220 55 L140 88 Z M70 55 V115 L140 145 V88 M140 88 L220 55 V115 L140 145" ${fill} ${stroke}/><text x="160" y="20" text-anchor="middle" font-size="13" fill="currentColor">ลูกบาศก์</text></svg>`,
+                cylinder: `<svg ${common} class="w-full h-32 text-blue-500"><ellipse cx="130" cy="30" rx="60" ry="16" ${fill} ${stroke}/><path d="M70 30 V115 M190 30 V115" ${stroke}/><ellipse cx="130" cy="115" rx="60" ry="16" ${fill} ${stroke}/></svg>`,
+                sphere: `<svg ${common} class="w-full h-32 text-blue-500"><circle cx="130" cy="75" r="52" ${fill} ${stroke}/><ellipse cx="130" cy="75" rx="52" ry="18" ${stroke}/></svg>`,
+                equilateral: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M130 20 L210 125 L50 125 Z" ${fill} ${stroke}/><line x1="130" y1="20" x2="130" y2="125" ${stroke}/></svg>`,
+                heron: `<svg ${common} class="w-full h-32 text-blue-500"><path d="M55 120 L210 120 L125 30 Z" ${fill} ${stroke}/></svg>`
+            };
+            return labels[type] || '';
+        }
+
         function renderFormulaCard(item, subjectColor) {
             const isBookmarked = bookmarks.includes(item.id);
             const starClass = isBookmarked ? 'fa-solid text-amber-400' : 'fa-regular text-slate-400';
 
-            const varsList = item.vars.map(v => `<li class="flex items-start"><span class="font-mono font-bold text-slate-800 dark:text-slate-200 w-16 shrink-0">${v.symbol}:</span> <span class="text-slate-600 dark:text-slate-400">${v.name}</span></li>`).join('');
+            const varsList = (Array.isArray(item.vars) ? item.vars : []).map(v => `<li class="flex items-start"><span class="variable-symbol text-slate-800 dark:text-slate-200">${escapeHtml(v.symbol)}:</span><span class="variable-description text-slate-600 dark:text-slate-400">${escapeHtml(v.name)}</span></li>`).join('');
 
             return `
             <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
@@ -2383,10 +3599,9 @@ const mathData = [[
 
                     <h3 class="text-lg font-bold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(item.desc)}</p>
-
-                    <!-- Formula Display Box -->
+<!-- Formula Display Box -->
                     <div class="formula-box my-4 p-4 rounded-xl border border-sky-100 dark:border-slate-700 relative group">
-                        <div class="font-mono text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 text-center tracking-wide overflow-x-auto py-1">
+                        <div class="font-mono text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 text-center tracking-normal overflow-x-auto py-1 break-words">
                             ${escapeHtml(item.displayFormula || item.formula)}
                         </div>
                         <button onclick="copyFormulaText('${item.formula.replace(/'/g, "\\'")}')" class="absolute right-2 top-2 opacity-80 sm:opacity-0 group-hover:opacity-100 p-1.5 rounded-md bg-white/80 dark:bg-slate-800/80 text-xs text-slate-600 dark:text-slate-300 hover:bg-white transition-all" title="คัดลอกข้อความสูตร">
@@ -2401,15 +3616,6 @@ const mathData = [[
                             ${varsList}
                         </ul>
                     </div>
-
-                    <!-- Example Solution Box -->
-                    <div class="mt-4 border-t border-slate-100 dark:border-slate-700/60 pt-3 text-xs">
-                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">
-                            <i class="fa-solid fa-lightbulb mr-1"></i>ตัวอย่างโจทย์และวิธีทำ:
-                        </span>
-                        <p class="font-medium text-slate-700 dark:text-slate-300 mb-1">${escapeHtml(item.exampleProblem)}</p>
-                        <pre class="bg-slate-100 dark:bg-slate-900 p-3 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 font-sans whitespace-pre-wrap leading-relaxed">${escapeHtml(item.exampleSolution)}</pre>
-                    </div>
                 </div>
             </div>`;
         }
@@ -2419,8 +3625,8 @@ const mathData = [[
             const grid = document.getElementById('math-formulas-grid');
             const searchText = document.getElementById('math-filter-text').value.toLowerCase();
             const filtered = mathData.filter(d => {
-                const matchCat = mathCategory === 'all' || d.category === mathCategory;
-                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                const matchCat = d.category === mathCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText) || d.formula.toLowerCase().includes(searchText);
                 return matchCat && matchSearch;
             });
 
@@ -2453,8 +3659,8 @@ const mathData = [[
             const grid = document.getElementById('physics-formulas-grid');
             const searchText = document.getElementById('physics-filter-text').value.toLowerCase();
             const filtered = physicsData.filter(d => {
-                const matchCat = physicsCategory === 'all' || d.category === physicsCategory;
-                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                const matchCat = d.category === physicsCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText) || d.formula.toLowerCase().includes(searchText);
                 return matchCat && matchSearch;
             });
 
@@ -2487,8 +3693,8 @@ const mathData = [[
             const grid = document.getElementById('chem-formulas-grid');
             const searchText = document.getElementById('chem-filter-text').value.toLowerCase();
             const filtered = chemData.filter(d => {
-                const matchCat = chemCategory === 'all' || d.category === chemCategory;
-                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText);
+                const matchCat = d.category === chemCategory;
+                const matchSearch = d.title.toLowerCase().includes(searchText) || d.desc.toLowerCase().includes(searchText) || d.formula.toLowerCase().includes(searchText);
                 return matchCat && matchSearch;
             });
 
@@ -2522,7 +3728,7 @@ const mathData = [[
             const query = (document.getElementById('symbol-search-input').value || '').toLowerCase().trim();
 
             const filtered = symbolsData.filter(s => {
-                const matchCat = symbolCategory === 'all' || s.cat === symbolCategory;
+                const matchCat = s.cat === symbolCategory;
                 const matchQ = s.sym.toLowerCase().includes(query) || s.name.toLowerCase().includes(query) || s.mean.toLowerCase().includes(query);
                 return matchCat && matchQ;
             });
@@ -2609,28 +3815,8 @@ const mathData = [[
         }
 
         function registerOfflineServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                const swCode = `
-                    const CACHE_NAME = 'f4us-v1';
-                    self.addEventListener('install', e => {
-                        e.waitUntil(
-                            caches.open(CACHE_NAME).then(cache => {
-                                return cache.addAll(['./']);
-                            })
-                        );
-                    });
-                    self.addEventListener('fetch', e => {
-                        e.respondWith(
-                            caches.match(e.request).then(response => response || fetch(e.request))
-                        );
-                    });
-                `;
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(swUrl).catch(() => {
-                    // Cache registration silently managed offline
-                });
-            }
+            // Service Worker ต้องใช้ไฟล์ sw.js บน http/https จึงไม่สร้างจาก Blob
+            // หน้า HTML นี้ยังพึ่ง CDN ภายนอก จึงไม่ควรแสดงว่า Offline 100%
         }
 
         // Initialize App State
